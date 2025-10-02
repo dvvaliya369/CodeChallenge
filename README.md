@@ -1,85 +1,270 @@
-# CodeChallenge
-## Project Documentation
+# 🍳 CodeChallenge - Recipe Sharing App
 
-### Developed by Dharmendra Valiya
+[![React Native](https://img.shields.io/badge/React_Native-0.75.4-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactnative.dev/)
+[![React](https://img.shields.io/badge/React-18.2.0-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0.4-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-It was developed in React-native-cli.
+A modern React Native application for sharing cooking recipes with camera functionality, built with the latest React Native architecture.
 
-## Tech Tools
+## 📱 Features
 
-CodeChallenge uses a number of open source tools to work properly:
+- **Recipe Discovery**: Browse through various cooking recipes
+- **Camera Integration**: Capture photos of your culinary creations
+- **User Stories**: Share cooking experiences
+- **Category Filtering**: Find recipes by category
+- **Cooking Duration**: Set and track cooking times
+- **Modern UI**: Clean, intuitive interface built with React Native Paper
 
-- [react-native] - an open-source mobile application framework created by Facebook, Inc.
-- [npm] - package manager for the JavaScript.
-- [node.js] - an open-source, cross-platform, back-end JavaScript runtime environment
-- [Visul Studio Code] - source-code editor made by Microsoft.
-- [Xcode] - Apple's integrated development environment for macOS, used to develop software for macOS, iOS, iPadOS, watchOS, and tvOS.
-- [Android studio] - official integrated development environment for Google's Android operating system.
+## 🛠️ Technology Stack
 
-## Installation
+### Core Technologies
+- **[React Native 0.75.4](https://reactnative.dev/)** - Cross-platform mobile development
+- **[React 18.2.0](https://reactjs.org/)** - JavaScript library for building user interfaces
+- **[TypeScript 5.0.4](https://www.typescriptlang.org/)** - Type-safe JavaScript development
+- **[React Navigation 6.x](https://reactnavigation.org/)** - Navigation library for React Native
 
-CodeChallenge recommneds [Node.js](https://nodejs.org/) v12+ to run.
+### UI & Styling
+- **[React Native Paper 5.x](https://reactnativepaper.com/)** - Material Design components
+- **[React Native Vector Icons 10.x](https://github.com/oblador/react-native-vector-icons)** - Customizable icons
+- **[React Native Reanimated 3.x](https://docs.swmansion.com/react-native-reanimated/)** - Smooth animations
 
-Install the above mentioned tools and clone the project from mentioned github repo.
-# repo url ~> git clone https://github.com/dvvaliya/CodeChallenge.git
+### Camera & Media
+- **[React Native Vision Camera 4.x](https://mrousavy.github.io/react-native-vision-camera/)** - Modern camera library
+- **[React Native Gesture Handler 2.x](https://docs.swmansion.com/react-native-gesture-handler/)** - Touch and gesture handling
 
-```sh
-cd CodeChallenge
+### Development Tools
+- **[Node.js 18+](https://nodejs.org/)** - JavaScript runtime
+- **[Metro](https://metrobundler.dev/)** - JavaScript bundler
+- **[Jest](https://jestjs.io/)** - Testing framework
+- **[ESLint](https://eslint.org/)** - Code linting
+- **[Prettier](https://prettier.io/)** - Code formatting
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Before running the app, ensure you have the following installed:
+
+- **Node.js 18+** - [Download](https://nodejs.org/)
+- **npm or Yarn** - Package manager
+- **React Native CLI** - `npm install -g react-native-cli`
+- **Xcode 12+** (for iOS development) - [Download](https://developer.apple.com/xcode/)
+- **Android Studio** (for Android development) - [Download](https://developer.android.com/studio)
+
+### 📲 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/dvvaliya/CodeChallenge.git
+   cd CodeChallenge
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **iOS Setup** (macOS only)
+   ```bash
+   cd ios && pod install && cd ..
+   ```
+
+### 🏃‍♂️ Running the App
+
+#### For iOS Simulator
+```bash
+# Start Metro bundler
+npm start
+
+# Run on iOS (in a new terminal)
+npm run ios
+# or for specific simulator
+npx react-native run-ios --simulator="iPhone 15"
+```
+
+#### For Android Device/Emulator
+```bash
+# Make sure your Android device is connected or emulator is running
+adb devices
+
+# Start Metro bundler
+npm start
+
+# Run on Android (in a new terminal)
+npm run android
+```
+
+### 🧪 Testing
+
+```bash
+# Run tests
+npm test
+
+# Run tests in watch mode
+npm test -- --watch
+
+# Run tests with coverage
+npm test -- --coverage
+```
+
+### 🧹 Cleaning & Troubleshooting
+
+If you encounter issues, try these commands:
+
+```bash
+# Clean project
+npm run clean
+
+# Reset Metro cache
+npm run reset-cache
+
+# Clean and reinstall
+rm -rf node_modules package-lock.json
 npm install
-cd ios
-pod install
+cd ios && pod install && cd ..
 ```
 
-#### To run on android device or emulator
-Note:- Make sure your device is connected to your machine or your emulator is opened.
+## 📁 Project Structure
 
-```sh
-npm start
-npx react-native run-android
+```
+CodeChallenge/
+├── src/
+│   ├── assets/           # Static assets
+│   │   ├── Fonts/        # Font files (.ttf)
+│   │   └── Images/       # Image assets
+│   ├── components/       # Reusable UI components
+│   │   ├── Home/         # Home screen components
+│   │   │   ├── HomeUserStory.js
+│   │   │   ├── Category.js
+│   │   │   └── HomeRecipeList.js
+│   │   └── Post/         # Post screen components
+│   │       ├── CookingDurationSlider.js
+│   │       └── PostTextInput.js
+│   ├── navigations/      # Navigation configuration
+│   │   └── Navigator.js  # Main navigator with bottom tabs
+│   ├── screens/          # App screens
+│   │   ├── Home/         # Home screen
+│   │   ├── Post/         # Post creation screen
+│   │   ├── Search/       # Search functionality
+│   │   ├── Notifications/ # Notifications
+│   │   └── Profile/      # User profile
+│   ├── styles/           # Global styles
+│   │   └── Style.js      # Centralized styling
+│   └── utilities/        # Helper functions and constants
+│       ├── Colors.js     # Color palette
+│       ├── Constant.js   # App constants
+│       └── Images.js     # Image references
+├── android/              # Android-specific code
+├── ios/                  # iOS-specific code
+└── __tests__/           # Test files
 ```
 
-#### To run on iOS device or simulator
-Note:- If you are running app on your device make sure your device is connected to your machine.
+## 🎨 Key Components
 
-```sh
-npm start
-npx react-native run-ios
-```
+### Home Screen Components
+- **HomeUserStory**: Displays user stories at the top
+- **Category**: Shows recipe categories for filtering
+- **HomeRecipeList**: Main recipe list with infinite scroll
 
-#### To run for testing
-```sh
-npm run test
-```
+### Post Screen Components
+- **CookingDurationSlider**: Interactive slider for cooking time
+- **PostTextInput**: Reusable text input for recipe details
 
-Quick tips for understanding structure and editing in codebase:
-1. CodeChallege codebase structure is like CodeChallenge-> src-> assets, components, navigations, screens, styles & utilities.
-2. assets folder consist of two folders: Fonts & Images 
-a. Add all fonts in Fonts folder and make sure it has .ttf extension file.
-b. Add all images in Images folder to used them in the app.
-3. components folder consits of frequently used components so we can reuse them anywhere in the app.
-   * a. Right now components consist of two folders: Home & Post.
-   * b. Home folder consits of three components which we are using in Home screen named as HomeUserStory.js for showing top most list of Home screen, Category.js       for displaying category type and HomeRecipeList for main list of recipe in Home screen.
-   * c. Post folder consist of two components named as CookingDurationSlider.js which we are using in Post screen for sliding values for cooking duration and PostTextInput.js which we are usinh for TextInput like recipe name & Description.
-   * Note: In Above any components you can make any changes to reflect them in all screens wherever we are using that components.
-4. navigations folder contain main Navigator.js file which we are using to assign bottom tabs and any screen we need them in stack that should be put in this class.
-5. screens folder is the main folder where we have all the screens folder like Home, Post, Search, Notifications & Profile.
-   * a. Home folder consist the Home.js which we are using for rendering Home screen UI.
-   * b. Post folder consist the Post.js & Pic.js, while Post.js are using for rendering Post screen UI & Pic.js are using for custom laytout of camera overlay.
-6. styles folder consist of Style.js in that we are declaring all the styles of the app at one place, so we can reuse any styles as we want.
-7. utilities folder consist of Colors.js, Constant.js & Images.js, while Colors.js are using for all colors which we are using in the app and Constant.js are declaring all static values at one place and Images.js are using for declaring all static images which we are using in the app so similar images we use use without reassign them.
+### Camera Integration
+- **Pic.js**: Custom camera overlay with modern UI
+- Uses React Native Vision Camera for high-performance image capture
 
-P.s. For better experience of camera and UI of the app try to run on Real android device via debugging or on iOS Simulator.
+## 🔧 Configuration
 
-###### Author - Dharmendra Valiya
+### Metro Configuration
+The project uses the latest Metro bundler configuration for optimal performance and compatibility with React Native 0.75.x.
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+### Babel Configuration
+Configured with the latest React Native preset and necessary plugins for modern JavaScript features.
 
-   [dill]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [git-repo-url]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [Android studio]: <https://developer.android.com/studio>
-   [npm]: <https://www.npmjs.com/>
-   [Visul Studio Code]: <https://code.visualstudio.com/download>
-   [node.js]: <http://nodejs.org>
-   [Xcode]: <https://developer.apple.com/xcode/>
-   [react-native]: <https://reactnative.dev/>
- 
+### ESLint & Prettier
+Code quality is maintained with ESLint and Prettier configurations following React Native best practices.
+
+## 📱 Platform-Specific Notes
+
+### iOS
+- Minimum iOS version: 12.0
+- Camera permissions configured in `Info.plist`
+- Uses CocoaPods for dependency management
+
+### Android
+- Minimum SDK version: 21 (Android 5.0)
+- Target SDK version: 34 (Android 14)
+- Camera permissions configured in `AndroidManifest.xml`
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📜 Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm start` | Start Metro bundler |
+| `npm run ios` | Run on iOS simulator |
+| `npm run android` | Run on Android device/emulator |
+| `npm test` | Run tests |
+| `npm run lint` | Lint code |
+| `npm run clean` | Clean project build files |
+| `npm run reset-cache` | Reset Metro cache |
+
+## 🚨 Troubleshooting
+
+### Common Issues
+
+1. **Metro bundler cache issues**
+   ```bash
+   npm run reset-cache
+   ```
+
+2. **iOS build issues**
+   ```bash
+   cd ios && pod install && cd ..
+   npx react-native run-ios --clean
+   ```
+
+3. **Android build issues**
+   ```bash
+   cd android && ./gradlew clean && cd ..
+   npm run android
+   ```
+
+4. **Node modules issues**
+   ```bash
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Dharmendra Valiya**
+- GitHub: [@dvvaliya](https://github.com/dvvaliya)
+
+---
+
+## 📞 Support
+
+For support and questions:
+- Create an [issue](https://github.com/dvvaliya/CodeChallenge/issues)
+- Review the [troubleshooting](#-troubleshooting) section
+- Check React Native [documentation](https://reactnative.dev/docs/getting-started)
+
+---
+
+*Built with ❤️ using React Native*
