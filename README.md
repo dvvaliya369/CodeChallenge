@@ -1,9 +1,43 @@
-# CodeChallenge
+# CodeChallenge - Updated to React Native 0.81.4
 ## Project Documentation
 
 ### Developed by Dharmendra Valiya
+### ✅ **UPDATED TO REACT NATIVE 0.81.4**
 
-It was developed in React-native-cli.
+It was developed in React-native-cli and has been updated to the latest React Native version with all compatible dependencies.
+
+## 🚀 Recent Updates (React Native 0.81.4)
+
+- ✅ **React Native**: Updated from 0.64.2 → 0.81.4
+- ✅ **React**: Updated from 17.0.1 → 19.2.0  
+- ✅ **Navigation**: Updated @react-navigation packages to v7.x
+- ✅ **Dependencies**: All React Native libraries updated to latest compatible versions
+- ✅ **Babel**: Updated to use @react-native/babel-preset
+- ✅ **Jest**: Updated testing configuration for new dependencies
+- ✅ **Breaking Changes**: Fixed deprecated package references
+
+### 📦 Key Updated Dependencies
+
+**Core Framework:**
+- React Native: 0.81.4
+- React: 19.2.0
+
+**Navigation:**
+- @react-navigation/native: 7.1.17
+- @react-navigation/stack: 7.4.8  
+- @react-navigation/bottom-tabs: 7.4.7
+
+**UI & Animation:**
+- react-native-paper: 5.14.5
+- react-native-vector-icons: 10.3.0
+- react-native-gesture-handler: 2.28.0
+- react-native-reanimated: 4.1.2
+- react-native-screens: 4.16.0
+- react-native-safe-area-context: 5.6.1
+
+**Replaced Deprecated Packages:**
+- `@react-native-community/masked-view` → `@react-native-masked-view/masked-view`
+- `metro-react-native-babel-preset` → `@react-native/babel-preset`
 
 ## Tech Tools
 
