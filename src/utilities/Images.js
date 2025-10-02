@@ -29,7 +29,10 @@ const Images =
 
     postBgImage: require("../assets/Images/NoImage.png"),
     homePlusIcon:require("../assets/Images/HomePlusIcon.png"),
-    picCameraIcon:require("../assets/Images/PicCameraTapIcon.png")
+    picCameraIcon:require("../assets/Images/PicCameraTapIcon.png"),
+    
+    // Settings icon placeholder (using existing icon for now)
+    settingsIcon:require("../assets/Images/HomeProfileIcon.png")
 
 }
 
