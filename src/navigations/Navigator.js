@@ -13,6 +13,7 @@ import Post from '../screens/Post/Post'
 import Pic from '../screens/Post/Pic'
 import Profile from '../screens/Profile/Profile'
 import Search from '../screens/Search/Search';
+import Settings from '../screens/Settings/Settings';
 import Colors from '../utilities/Colors';
 import Style from '../styles/Style';
 import Constants from '../utilities/Constants';
@@ -32,8 +33,14 @@ const Navigator = ({ navigation, route }) => {
         //Bottom tab bar and its events
         return (
             <>
-                <MaterialBottomTabNavigator.Navigator initialRouteName="Home" barStyle={{ backgroundColor: 'white' }}
-                    labeled={true} shifting={false} backBehavior='initialRoute'>
+                <MaterialBottomTabNavigator.Navigator 
+                    initialRouteName="Home" 
+                    screenOptions={{
+                        tabBarStyle: { backgroundColor: 'white' },
+                        tabBarActiveTintColor: Colors.themeYellowColor,
+                        tabBarInactiveTintColor: Colors.themeLightGrayTextColor,
+                    }}
+                >
                     <MaterialBottomTabNavigator.Screen name="Home" component={Home}
                         options={{
                             
@@ -41,7 +48,7 @@ const Navigator = ({ navigation, route }) => {
                             tabBarLabel: ({ focused }) => (
                                 <Text style={{ color: focused ? 'black' : Colors.themeLightGrayTextColor, fontSize: 12 }}>Home</Text>
                             ),
-                            tabBarVisible: true, // To show & hide the tab bar for specific screens.
+                            tabBarStyle: { display: 'flex' }, // To show & hide the tab bar for specific screens.
                              // Custom icon for tab bar
                             tabBarIcon: ({ focused }) => (
                                 <Image source={Images.homeTabIcon}
@@ -55,11 +62,7 @@ const Navigator = ({ navigation, route }) => {
 
                     <MaterialBottomTabNavigator.Screen name="Post" component={Post}
                         options={{
-                            // drawBehind: false,
-                            // bottomTabs: {
-                            //     visible: false
-                            // },
-                            tabBarVisible: !postTabBarHide, //Show & hide tab bar
+                            tabBarStyle: postTabBarHide ? { display: 'none' } : { display: 'flex' }, //Show & hide tab bar
                             tabBarLabel: ({ focused }) => (
                                 <Text style={{ color: focused ? 'black' : Colors.themeLightGrayTextColor, fontSize: 12 }}>Post</Text>
                             ), /* Custom label for tab bar*/
@@ -146,6 +149,7 @@ const Navigator = ({ navigation, route }) => {
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Home" component={bottomnavigator} options={{ headerShown: false }} />
                 <Stack.Screen name="Pic" component={Pic} options={{ headerShown: false }} />
+                <Stack.Screen name="Settings" component={Settings} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
