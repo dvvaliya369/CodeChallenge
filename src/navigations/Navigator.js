@@ -13,6 +13,7 @@ import Post from '../screens/Post/Post'
 import Pic from '../screens/Post/Pic'
 import Profile from '../screens/Profile/Profile'
 import Search from '../screens/Search/Search';
+import Recipes from '../screens/Recipes/Recipes';
 import Colors from '../utilities/Colors';
 import Style from '../styles/Style';
 import Constants from '../utilities/Constants';
@@ -32,11 +33,16 @@ const Navigator = ({ navigation, route }) => {
         //Bottom tab bar and its events
         return (
             <>
-                <MaterialBottomTabNavigator.Navigator initialRouteName="Home" barStyle={{ backgroundColor: 'white' }}
-                    labeled={true} shifting={false} backBehavior='initialRoute'>
+                <MaterialBottomTabNavigator.Navigator initialRouteName="Home" 
+                    screenOptions={{
+                        headerShown: false,
+                        tabBarStyle: { 
+                            backgroundColor: 'white',
+                            height: 60,
+                        }
+                    }}>
                     <MaterialBottomTabNavigator.Screen name="Home" component={Home}
                         options={{
-                            
                             // Custom label for tab bar
                             tabBarLabel: ({ focused }) => (
                                 <Text style={{ color: focused ? 'black' : Colors.themeLightGrayTextColor, fontSize: 12 }}>Home</Text>
@@ -55,11 +61,7 @@ const Navigator = ({ navigation, route }) => {
 
                     <MaterialBottomTabNavigator.Screen name="Post" component={Post}
                         options={{
-                            // drawBehind: false,
-                            // bottomTabs: {
-                            //     visible: false
-                            // },
-                            tabBarVisible: !postTabBarHide, //Show & hide tab bar
+                            tabBarStyle: postTabBarHide ? { display: 'none' } : {},
                             tabBarLabel: ({ focused }) => (
                                 <Text style={{ color: focused ? 'black' : Colors.themeLightGrayTextColor, fontSize: 12 }}>Post</Text>
                             ), /* Custom label for tab bar*/
@@ -76,7 +78,7 @@ const Navigator = ({ navigation, route }) => {
 
                         listeners={() => ({
                             tabPress: e => {
-                                setPostTabBarhide(true) // Setting Tab bar hideen is true for Post tab or screen.
+                                setPostTabBarhide(true) // Setting Tab bar hidden is true for Post tab or screen.
                             },
                         })}
                     />
@@ -90,7 +92,7 @@ const Navigator = ({ navigation, route }) => {
                             tabBarIcon: ({ focused }) => (
                                 <>
 
-                                    {/* Seach Bottom tab custom component */}
+                                    {/* Search Bottom tab custom component */}
                                     <View
                                         style={[Style.searchTabBar, { bottom: postTabBarHide ? Platform.OS === "ios" ? 0 : -25 : 10 }]}>
                                         <Image
@@ -146,6 +148,16 @@ const Navigator = ({ navigation, route }) => {
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Home" component={bottomnavigator} options={{ headerShown: false }} />
                 <Stack.Screen name="Pic" component={Pic} options={{ headerShown: false }} />
+                <Stack.Screen name="Recipes" component={Recipes} options={{ 
+                    title: 'My Recipes',
+                    headerStyle: {
+                        backgroundColor: Colors.themeYellowColor,
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
