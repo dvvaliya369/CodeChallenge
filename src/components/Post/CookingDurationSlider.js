@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import Colors from '../../utilities/Colors'
 import Style from '../../styles/Style'
-import Slider from 'react-native-slider'
+import { Slider } from '@react-native-community/slider'
 
 //Custom component for slider - Cooking Duration
 const CookingDurationSlider = ({ onChange }) => {
