@@ -1,85 +1,185 @@
-# CodeChallenge
-## Project Documentation
+# CodeChallenge - React Native App
 
-### Developed by Dharmendra Valiya
+A React Native application for recipe sharing and discovery. Users can browse recipes, share their own, and interact with a community of cooking enthusiasts.
 
-It was developed in React-native-cli.
+## Features
 
-## Tech Tools
+- 📱 **Home Screen**: Browse featured recipes and user stories
+- 🔍 **Search**: Discover recipes by ingredients or categories  
+- ➕ **Post**: Share your own recipes with photos and cooking instructions
+- 🔔 **Notifications**: Stay updated with community interactions
+- 👤 **Profile**: Manage your account and saved recipes
 
-CodeChallenge uses a number of open source tools to work properly:
+## Tech Stack
 
-- [react-native] - an open-source mobile application framework created by Facebook, Inc.
-- [npm] - package manager for the JavaScript.
-- [node.js] - an open-source, cross-platform, back-end JavaScript runtime environment
-- [Visul Studio Code] - source-code editor made by Microsoft.
-- [Xcode] - Apple's integrated development environment for macOS, used to develop software for macOS, iOS, iPadOS, watchOS, and tvOS.
-- [Android studio] - official integrated development environment for Google's Android operating system.
+- **Framework**: [React Native](https://reactnative.dev/) - Cross-platform mobile development
+- **Navigation**: [React Navigation v5](https://reactnavigation.org/) - Screen navigation and routing
+- **UI Components**: [React Native Paper](https://callstack.github.io/react-native-paper/) - Material Design components
+- **Camera**: [React Native Camera](https://github.com/react-native-camera/react-native-camera) - Photo capture functionality
+- **Icons**: [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons) - Scalable icon library
+
+## Prerequisites
+
+Before running this project, ensure you have:
+
+- **Node.js** v14+ installed ([Download here](https://nodejs.org/))
+- **React Native CLI** installed globally: `npm install -g react-native-cli`
+- **Android Studio** (for Android development)
+- **Xcode** (for iOS development - macOS only)
+- **CocoaPods** (for iOS dependencies): `sudo gem install cocoapods`
 
 ## Installation
 
-CodeChallenge recommneds [Node.js](https://nodejs.org/) v12+ to run.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/dvvaliya/CodeChallenge.git
+   cd CodeChallenge
+   ```
 
-Install the above mentioned tools and clone the project from mentioned github repo.
-# repo url ~> git clone https://github.com/dvvaliya/CodeChallenge.git
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-```sh
-cd CodeChallenge
-npm install
-cd ios
-pod install
-```
+3. **iOS Setup** (macOS only)
+   ```bash
+   cd ios
+   pod install
+   cd ..
+   ```
 
-#### To run on android device or emulator
-Note:- Make sure your device is connected to your machine or your emulator is opened.
+4. **Android Setup**
+   - Ensure Android Studio is installed and configured
+   - Start an Android emulator or connect a physical device via USB debugging
 
-```sh
+## Running the App
+
+### Android
+```bash
+# Start the Metro bundler
 npm start
+
+# Run on Android (in a new terminal)
 npx react-native run-android
 ```
 
-#### To run on iOS device or simulator
-Note:- If you are running app on your device make sure your device is connected to your machine.
-
-```sh
+### iOS (macOS only)
+```bash
+# Start the Metro bundler
 npm start
+
+# Run on iOS (in a new terminal)
 npx react-native run-ios
 ```
 
-#### To run for testing
-```sh
-npm run test
+### Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm start` | Start the Metro bundler |
+| `npm run android` | Run app on Android device/emulator |
+| `npm run ios` | Run app on iOS device/simulator |
+| `npm test` | Run Jest tests |
+| `npm run lint` | Run ESLint code linting |
+
+## Project Structure
+
+```
+CodeChallenge/
+├── src/
+│   ├── components/          # Reusable UI components
+│   │   ├── Home/           # Home screen specific components
+│   │   └── Post/           # Post screen specific components
+│   ├── navigations/        # Navigation configuration
+│   ├── screens/            # Main app screens
+│   │   ├── Home/          # Home screen
+│   │   ├── Search/        # Search screen
+│   │   ├── Post/          # Recipe posting screen
+│   │   ├── Notifications/ # Notifications screen
+│   │   └── Profile/       # User profile screen
+│   ├── styles/            # Global styles and themes
+│   └── utilities/         # Constants, colors, and helper functions
+├── android/               # Android-specific code and configuration
+├── ios/                  # iOS-specific code and configuration
+└── assets/              # Fonts and images
+    ├── Fonts/
+    └── Images/
 ```
 
-Quick tips for understanding structure and editing in codebase:
-1. CodeChallege codebase structure is like CodeChallenge-> src-> assets, components, navigations, screens, styles & utilities.
-2. assets folder consist of two folders: Fonts & Images 
-a. Add all fonts in Fonts folder and make sure it has .ttf extension file.
-b. Add all images in Images folder to used them in the app.
-3. components folder consits of frequently used components so we can reuse them anywhere in the app.
-   * a. Right now components consist of two folders: Home & Post.
-   * b. Home folder consits of three components which we are using in Home screen named as HomeUserStory.js for showing top most list of Home screen, Category.js       for displaying category type and HomeRecipeList for main list of recipe in Home screen.
-   * c. Post folder consist of two components named as CookingDurationSlider.js which we are using in Post screen for sliding values for cooking duration and PostTextInput.js which we are usinh for TextInput like recipe name & Description.
-   * Note: In Above any components you can make any changes to reflect them in all screens wherever we are using that components.
-4. navigations folder contain main Navigator.js file which we are using to assign bottom tabs and any screen we need them in stack that should be put in this class.
-5. screens folder is the main folder where we have all the screens folder like Home, Post, Search, Notifications & Profile.
-   * a. Home folder consist the Home.js which we are using for rendering Home screen UI.
-   * b. Post folder consist the Post.js & Pic.js, while Post.js are using for rendering Post screen UI & Pic.js are using for custom laytout of camera overlay.
-6. styles folder consist of Style.js in that we are declaring all the styles of the app at one place, so we can reuse any styles as we want.
-7. utilities folder consist of Colors.js, Constant.js & Images.js, while Colors.js are using for all colors which we are using in the app and Constant.js are declaring all static values at one place and Images.js are using for declaring all static images which we are using in the app so similar images we use use without reassign them.
+### Key Components
 
-P.s. For better experience of camera and UI of the app try to run on Real android device via debugging or on iOS Simulator.
+#### Home Components
+- **HomeUserStory.js**: Displays user story carousel at the top
+- **Category.js**: Shows recipe categories for filtering
+- **HomeRecipeList.js**: Main recipe feed with cards
 
-###### Author - Dharmendra Valiya
+#### Post Components  
+- **CookingDurationSlider.js**: Interactive slider for cooking time
+- **PostTextInput.js**: Custom text input for recipe details
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+## Development Guidelines
 
-   [dill]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [git-repo-url]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [Android studio]: <https://developer.android.com/studio>
-   [npm]: <https://www.npmjs.com/>
-   [Visul Studio Code]: <https://code.visualstudio.com/download>
-   [node.js]: <http://nodejs.org>
-   [Xcode]: <https://developer.apple.com/xcode/>
-   [react-native]: <https://reactnative.dev/>
- 
+### Adding New Screens
+1. Create screen component in `src/screens/[ScreenName]/`
+2. Add navigation route in `src/navigations/Navigator.js`
+3. Import and register in the appropriate navigator
+
+### Styling
+- Global styles are defined in `src/styles/Style.js`
+- Colors are centralized in `src/utilities/Colors.js`
+- Use consistent spacing and typography from the style guide
+
+### Assets
+- **Fonts**: Add `.ttf` files to `assets/Fonts/`
+- **Images**: Place images in `assets/Images/` and reference in `src/utilities/Images.js`
+
+## Testing
+
+Run the test suite with:
+```bash
+npm test
+```
+
+The project uses Jest for unit testing. Test files should be placed in the `__tests__/` directory or alongside components with `.test.js` extension.
+
+## Debugging
+
+### React Native Debugger
+1. Install React Native Debugger
+2. Start the app and shake device/press Ctrl+M
+3. Select "Debug with Chrome" or "Debug with React Native Debugger"
+
+### Common Issues
+
+**Metro bundler issues**: Clear cache with `npx react-native start --reset-cache`
+
+**iOS build errors**: Delete `ios/build` folder and run `cd ios && pod install`
+
+**Android build errors**: Clean project with `cd android && ./gradlew clean`
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Performance Tips
+
+- Test on real devices for optimal camera and UI performance
+- Use React Native's built-in performance monitoring
+- Optimize images and assets for mobile consumption
+- Implement lazy loading for large lists
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Author
+
+**Dharmendra Valiya** - [GitHub Profile](https://github.com/dvvaliya)
+
+---
+
+For more information about React Native development, visit the [official documentation](https://reactnative.dev/docs/getting-started).
