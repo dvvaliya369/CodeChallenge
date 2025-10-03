@@ -1,85 +1,190 @@
-# CodeChallenge
-## Project Documentation
+# CodeChallenge 🍳
 
-### Developed by Dharmendra Valiya
+## Project Overview
 
-It was developed in React-native-cli.
+A modern React Native application for recipe sharing and cooking experiences. Built with React Native CLI, this app provides a comprehensive platform for food enthusiasts to discover, share, and create culinary content.
 
-## Tech Tools
+### 📱 Features
 
-CodeChallenge uses a number of open source tools to work properly:
+- **Recipe Discovery**: Browse through various categories of recipes
+- **Recipe Sharing**: Share your own recipes with the community
+- **Camera Integration**: Capture and share photos of your culinary creations
+- **User Stories**: Share cooking experiences and tips
+- **Search Functionality**: Find specific recipes and ingredients
+- **Notifications**: Stay updated with community activities
+- **User Profiles**: Manage your recipes and preferences
 
-- [react-native] - an open-source mobile application framework created by Facebook, Inc.
-- [npm] - package manager for the JavaScript.
-- [node.js] - an open-source, cross-platform, back-end JavaScript runtime environment
-- [Visul Studio Code] - source-code editor made by Microsoft.
-- [Xcode] - Apple's integrated development environment for macOS, used to develop software for macOS, iOS, iPadOS, watchOS, and tvOS.
-- [Android studio] - official integrated development environment for Google's Android operating system.
+## 🛠 Tech Stack
 
-## Installation
+This project leverages modern mobile development tools and frameworks:
 
-CodeChallenge recommneds [Node.js](https://nodejs.org/) v12+ to run.
+- **[React Native](https://reactnative.dev/)** - Cross-platform mobile app framework by Meta
+- **[React Navigation](https://reactnavigation.org/)** - Navigation library for React Native
+- **[React Native Paper](https://callstack.github.io/react-native-paper/)** - Material Design components
+- **[React Native Camera](https://github.com/react-native-camera/react-native-camera)** - Camera functionality
+- **[Node.js](https://nodejs.org/)** - JavaScript runtime environment
+- **[npm](https://www.npmjs.com/)** - Package manager for JavaScript
+- **[Visual Studio Code](https://code.visualstudio.com/)** - Source code editor
+- **[Xcode](https://developer.apple.com/xcode/)** - IDE for iOS development
+- **[Android Studio](https://developer.android.com/studio)** - IDE for Android development
 
-Install the above mentioned tools and clone the project from mentioned github repo.
-# repo url ~> git clone https://github.com/dvvaliya/CodeChallenge.git
+## 📋 Prerequisites
 
-```sh
-cd CodeChallenge
-npm install
-cd ios
-pod install
-```
+Before you begin, ensure you have the following installed:
 
-#### To run on android device or emulator
-Note:- Make sure your device is connected to your machine or your emulator is opened.
+- **Node.js** v16+ (recommended v18+)
+- **React Native CLI** or **Expo CLI**
+- **Xcode** (for iOS development on macOS)
+- **Android Studio** (for Android development)
+- **CocoaPods** (for iOS dependencies)
 
-```sh
+## 🚀 Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/dvvaliya/CodeChallenge.git
+   cd CodeChallenge
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **iOS Setup** (macOS only)
+   ```bash
+   cd ios && pod install && cd ..
+   ```
+
+## 🏃‍♂️ Running the Application
+
+### Android
+Make sure you have an Android device connected or Android emulator running.
+
+```bash
+# Start the Metro bundler
 npm start
+
+# Run on Android
 npx react-native run-android
 ```
 
-#### To run on iOS device or simulator
-Note:- If you are running app on your device make sure your device is connected to your machine.
+### iOS
+Make sure you have Xcode installed and an iOS device connected or simulator running.
 
-```sh
+```bash
+# Start the Metro bundler
 npm start
+
+# Run on iOS
 npx react-native run-ios
 ```
 
-#### To run for testing
-```sh
+## 🧪 Testing
+
+Run the test suite:
+```bash
 npm run test
 ```
 
-Quick tips for understanding structure and editing in codebase:
-1. CodeChallege codebase structure is like CodeChallenge-> src-> assets, components, navigations, screens, styles & utilities.
-2. assets folder consist of two folders: Fonts & Images 
-a. Add all fonts in Fonts folder and make sure it has .ttf extension file.
-b. Add all images in Images folder to used them in the app.
-3. components folder consits of frequently used components so we can reuse them anywhere in the app.
-   * a. Right now components consist of two folders: Home & Post.
-   * b. Home folder consits of three components which we are using in Home screen named as HomeUserStory.js for showing top most list of Home screen, Category.js       for displaying category type and HomeRecipeList for main list of recipe in Home screen.
-   * c. Post folder consist of two components named as CookingDurationSlider.js which we are using in Post screen for sliding values for cooking duration and PostTextInput.js which we are usinh for TextInput like recipe name & Description.
-   * Note: In Above any components you can make any changes to reflect them in all screens wherever we are using that components.
-4. navigations folder contain main Navigator.js file which we are using to assign bottom tabs and any screen we need them in stack that should be put in this class.
-5. screens folder is the main folder where we have all the screens folder like Home, Post, Search, Notifications & Profile.
-   * a. Home folder consist the Home.js which we are using for rendering Home screen UI.
-   * b. Post folder consist the Post.js & Pic.js, while Post.js are using for rendering Post screen UI & Pic.js are using for custom laytout of camera overlay.
-6. styles folder consist of Style.js in that we are declaring all the styles of the app at one place, so we can reuse any styles as we want.
-7. utilities folder consist of Colors.js, Constant.js & Images.js, while Colors.js are using for all colors which we are using in the app and Constant.js are declaring all static values at one place and Images.js are using for declaring all static images which we are using in the app so similar images we use use without reassign them.
+## 📁 Project Structure
 
-P.s. For better experience of camera and UI of the app try to run on Real android device via debugging or on iOS Simulator.
+The codebase is organized for scalability and maintainability:
 
-###### Author - Dharmendra Valiya
+```
+CodeChallenge/
+├── src/
+│   ├── assets/
+│   │   ├── Fonts/          # Custom fonts (.ttf files)
+│   │   └── Images/         # App images and icons
+│   ├── components/
+│   │   ├── Home/           # Home screen components
+│   │   │   ├── HomeUserStory.js
+│   │   │   ├── Category.js
+│   │   │   └── HomeRecipeList.js
+│   │   └── Post/           # Post screen components
+│   │       ├── CookingDurationSlider.js
+│   │       └── PostTextInput.js
+│   ├── navigations/
+│   │   └── Navigator.js    # Main navigation configuration
+│   ├── screens/
+│   │   ├── Home/           # Home screen
+│   │   ├── Post/           # Post creation screens
+│   │   ├── Search/         # Search functionality
+│   │   ├── Notifications/  # Notification screen
+│   │   └── Profile/        # User profile
+│   ├── styles/
+│   │   └── Style.js        # Global styles
+│   └── utilities/
+│       ├── Colors.js       # Color constants
+│       ├── Constants.js    # App constants
+│       └── Images.js       # Image imports
+├── android/               # Android specific code
+├── ios/                   # iOS specific code
+└── __tests__/            # Test files
+```
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+### Key Directories:
 
-   [dill]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [git-repo-url]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [Android studio]: <https://developer.android.com/studio>
-   [npm]: <https://www.npmjs.com/>
-   [Visul Studio Code]: <https://code.visualstudio.com/download>
-   [node.js]: <http://nodejs.org>
-   [Xcode]: <https://developer.apple.com/xcode/>
-   [react-native]: <https://reactnative.dev/>
- 
+- **`assets/`**: Static resources (fonts, images)
+- **`components/`**: Reusable UI components organized by feature
+- **`navigations/`**: Navigation structure and routing
+- **`screens/`**: Main application screens
+- **`styles/`**: Centralized styling
+- **`utilities/`**: Constants, helpers, and utilities
+
+## 🔧 Development Guidelines
+
+### Adding New Screens
+1. Create screen component in appropriate `src/screens/` folder
+2. Add navigation route in `src/navigations/Navigator.js`
+3. Update any required navigation flows
+
+### Adding New Components
+1. Create reusable components in `src/components/`
+2. Follow existing naming conventions
+3. Import and use across multiple screens when applicable
+
+### Styling
+- Use `src/styles/Style.js` for global styles
+- Reference colors from `src/utilities/Colors.js`
+- Maintain consistent design patterns
+
+## 📱 Supported Platforms
+
+- **iOS**: 11.0+
+- **Android**: API level 21+ (Android 5.0+)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Dharmendra Valiya**
+- GitHub: [@dvvaliya](https://github.com/dvvaliya)
+
+## 🚨 Troubleshooting
+
+### Common Issues:
+
+1. **Metro bundler issues**: Clear cache with `npx react-native start --reset-cache`
+2. **iOS pod installation**: Run `cd ios && pod deintegrate && pod install`
+3. **Android build issues**: Clean build with `cd android && ./gradlew clean`
+
+### Performance Tips:
+- Test on real devices for camera and UI performance
+- Use iOS Simulator and Android Emulator for development
+- Enable Flipper for debugging (React Native 0.62+)
+
+---
+
+**Note**: For the best camera experience and UI performance, testing on real devices is recommended.
