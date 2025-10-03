@@ -1,0 +1,798 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Component renders correctly when disabled 1`] = `
+<View
+  accessibilityLabel="Test Button"
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#007AFF",
+      "borderColor": "#007AFF",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 44,
+      "opacity": 0.6,
+      "paddingHorizontal": 16,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "600",
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#FFFFFF",
+          },
+          Object {
+            "fontSize": 16,
+          },
+          Object {
+            "opacity": 0.6,
+          },
+          Object {},
+        ]
+      }
+    >
+      Test Button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button Component renders correctly when loading 1`] = `
+<View
+  accessibilityLabel="Test Button"
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#007AFF",
+      "borderColor": "#007AFF",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 44,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#FFFFFF"
+      hidesWhenStopped={true}
+      size="small"
+    />
+    <Text
+      style={
+        Array [
+          Array [
+            Object {
+              "fontWeight": "600",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#FFFFFF",
+            },
+            Object {
+              "fontSize": 16,
+            },
+            false,
+            Object {},
+          ],
+          Object {
+            "marginLeft": 8,
+          },
+        ]
+      }
+    >
+      Test Button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button Component renders correctly with custom styles 1`] = `
+<View
+  accessibilityLabel="Test Button"
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "red",
+      "borderColor": "#007AFF",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 44,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "600",
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#FFFFFF",
+          },
+          Object {
+            "fontSize": 16,
+          },
+          false,
+          Object {
+            "color": "white",
+          },
+        ]
+      }
+    >
+      Test Button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button Component renders correctly with different sizes 1`] = `
+<View
+  accessibilityLabel="Test Button"
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#007AFF",
+      "borderColor": "#007AFF",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 32,
+      "opacity": 1,
+      "paddingHorizontal": 12,
+      "paddingVertical": 6,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "600",
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#FFFFFF",
+          },
+          Object {
+            "fontSize": 14,
+          },
+          false,
+          Object {},
+        ]
+      }
+    >
+      Test Button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button Component renders correctly with different sizes 2`] = `
+<View
+  accessibilityLabel="Test Button"
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#007AFF",
+      "borderColor": "#007AFF",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 44,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "600",
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#FFFFFF",
+          },
+          Object {
+            "fontSize": 16,
+          },
+          false,
+          Object {},
+        ]
+      }
+    >
+      Test Button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button Component renders correctly with different sizes 3`] = `
+<View
+  accessibilityLabel="Test Button"
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#007AFF",
+      "borderColor": "#007AFF",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 52,
+      "opacity": 1,
+      "paddingHorizontal": 20,
+      "paddingVertical": 14,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "600",
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#FFFFFF",
+          },
+          Object {
+            "fontSize": 18,
+          },
+          false,
+          Object {},
+        ]
+      }
+    >
+      Test Button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button Component renders correctly with different variants 1`] = `
+<View
+  accessibilityLabel="Test Button"
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#007AFF",
+      "borderColor": "#007AFF",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 44,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "600",
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#FFFFFF",
+          },
+          Object {
+            "fontSize": 16,
+          },
+          false,
+          Object {},
+        ]
+      }
+    >
+      Test Button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button Component renders correctly with different variants 2`] = `
+<View
+  accessibilityLabel="Test Button"
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F2F2F7",
+      "borderColor": "#F2F2F7",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 44,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "600",
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#007AFF",
+          },
+          Object {
+            "fontSize": 16,
+          },
+          false,
+          Object {},
+        ]
+      }
+    >
+      Test Button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button Component renders correctly with different variants 3`] = `
+<View
+  accessibilityLabel="Test Button"
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "transparent",
+      "borderColor": "#007AFF",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 44,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "600",
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#007AFF",
+          },
+          Object {
+            "fontSize": 16,
+          },
+          false,
+          Object {},
+        ]
+      }
+    >
+      Test Button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button Component renders correctly with different variants 4`] = `
+<View
+  accessibilityLabel="Test Button"
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "transparent",
+      "borderColor": "transparent",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 44,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "600",
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#007AFF",
+          },
+          Object {
+            "fontSize": 16,
+          },
+          false,
+          Object {},
+        ]
+      }
+    >
+      Test Button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button Component renders correctly with title 1`] = `
+<View
+  accessibilityLabel="Test Button"
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#007AFF",
+      "borderColor": "#007AFF",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 44,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "600",
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#FFFFFF",
+          },
+          Object {
+            "fontSize": 16,
+          },
+          false,
+          Object {},
+        ]
+      }
+    >
+      Test Button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button Component renders correctly without title 1`] = `
+<View
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#007AFF",
+      "borderColor": "#007AFF",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "minHeight": 44,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  />
+</View>
+`;
