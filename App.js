@@ -18,6 +18,7 @@ import {
   Divider,
   Chip,
 } from 'react-native-paper';
+import SignupScreen from './SignupScreen';
 
 const theme = {
   ...DefaultTheme,
@@ -28,7 +29,7 @@ const theme = {
   },
 };
 
-const LoginScreen = () => {
+const LoginScreen = ({ onNavigateToSignup }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -122,7 +123,7 @@ const LoginScreen = () => {
               <Text style={styles.footerText}>Don't have an account?</Text>
               <Button
                 mode="text"
-                onPress={() => Alert.alert('Sign Up', 'Navigate to sign up screen')}
+                onPress={onNavigateToSignup}
               >
                 Sign Up
               </Button>
@@ -155,9 +156,23 @@ const LoginScreen = () => {
 };
 
 const App = () => {
+  const [currentScreen, setCurrentScreen] = useState('login'); // 'login' or 'signup'
+
+  const handleNavigateToSignup = () => {
+    setCurrentScreen('signup');
+  };
+
+  const handleNavigateToLogin = () => {
+    setCurrentScreen('login');
+  };
+
   return (
     <PaperProvider theme={theme}>
-      <LoginScreen />
+      {currentScreen === 'login' ? (
+        <LoginScreen onNavigateToSignup={handleNavigateToSignup} />
+      ) : (
+        <SignupScreen onNavigateToLogin={handleNavigateToLogin} />
+      )}
     </PaperProvider>
   );
 };
