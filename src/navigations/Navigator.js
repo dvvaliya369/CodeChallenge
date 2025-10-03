@@ -13,6 +13,7 @@ import Post from '../screens/Post/Post'
 import Pic from '../screens/Post/Pic'
 import Profile from '../screens/Profile/Profile'
 import Search from '../screens/Search/Search';
+import Favorites from '../screens/Favorites/Favorites';
 import Colors from '../utilities/Colors';
 import Style from '../styles/Style';
 import Constants from '../utilities/Constants';
@@ -102,6 +103,21 @@ const Navigator = ({ navigation, route }) => {
                                         />
                                     </View>
                                 </>)
+                        }}
+                    />
+
+                    <MaterialBottomTabNavigator.Screen name="Favorites" component={Favorites}
+                        options={{
+                            tabBarLabel: ({ focused }) => (
+                                <Text style={{ color: focused ? 'black' : Colors.themeLightGrayTextColor, fontSize: 12 }}>Favorites</Text>
+                            ),
+                            tabBarIcon: ({ focused }) => (
+                                <Image source={Images.homeLike}
+                                    style={{
+                                        width: 24, height: 24, tintColor: focused ?
+                                            Colors.themeYellowColor : Colors.themeLightGrayTextColor
+                                    }} />
+                            ),
                         }}
                     />
 
