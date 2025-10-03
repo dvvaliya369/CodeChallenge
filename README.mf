@@ -1,0 +1,23 @@
+# README.mf
+
+This is a README.mf file for the CodeChallenge project.
+
+## Overview
+
+This file serves as an additional documentation file for the project.
+
+## Purpose
+
+This README.mf file can be used for:
+- Additional project documentation
+- Specific configuration notes
+- Development guidelines
+- Build instructions
+
+## Related Files
+
+See the main README.md file for comprehensive project documentation.
+
+---
+
+*Created: 2025-10-03*
