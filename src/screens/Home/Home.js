@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
 import { ScrollView, View } from 'react-native'
 import GlobalFont from 'react-native-global-font'
+import { Button } from 'react-native-paper'
 import Category from '../../components/Home/Category'
 import HomeRecipeList from '../../components/Home/HomeRecipeList'
 import HomeUserStory from '../../components/Home/HomeUserStory'
+import PaperExampleComponent from '../../components/examples/PaperExampleComponent'
 import Style from '../../styles/Style'
 
 // Block of code for Home screen render
-const Home = ({ route }) => {
+const Home = ({ route, navigation }) => {
     useEffect(() => {
         // Globally apply font for all the screens in the app(if fonts is different for each screens like 
         // bold or anything we just need to change the style in fontStyle)
@@ -19,6 +21,18 @@ const Home = ({ route }) => {
         // Change ScrollView to View if we want to scroll just Recipe List
         <ScrollView showsVerticalScrollIndicator={false}
             style={{ flex: 1, backgroundColor: 'white' }}>
+            
+            {/* React Native Paper Example Component - Remove this after testing */}
+            <View style={{ padding: 16 }}>
+                <Button 
+                  mode="contained" 
+                  onPress={() => navigation.navigate('PaperExample')}
+                  style={{ marginBottom: 16 }}
+                >
+                  View Paper Components Demo
+                </Button>
+            </View>
+            
             {/* Component for home user story view from top of the screen */}
             <HomeUserStory />
             {/* Component for home type of food  cateory */}

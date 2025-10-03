@@ -13,6 +13,7 @@ import Post from '../screens/Post/Post'
 import Pic from '../screens/Post/Pic'
 import Profile from '../screens/Profile/Profile'
 import Search from '../screens/Search/Search';
+import PaperExampleComponent from '../components/examples/PaperExampleComponent';
 import Colors from '../utilities/Colors';
 import Style from '../styles/Style';
 import Constants from '../utilities/Constants';
@@ -146,6 +147,14 @@ const Navigator = ({ navigation, route }) => {
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Home" component={bottomnavigator} options={{ headerShown: false }} />
                 <Stack.Screen name="Pic" component={Pic} options={{ headerShown: false }} />
+                <Stack.Screen 
+                    name="PaperExample" 
+                    component={PaperExampleComponent} 
+                    options={{ 
+                        headerShown: true,
+                        title: 'React Native Paper Demo' 
+                    }} 
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );
