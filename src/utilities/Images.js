@@ -23,6 +23,7 @@ const Images =
     homeSearchIcon:require("../assets/Images/HomeSearchIcon.png"),
     homeNotificationsIcon:require("../assets/Images/HomeNotificationIcon.png"),
     homeProfileIcon:require("../assets/Images/HomeProfileIcon.png"),
+    homeSettingsIcon:require("../assets/Images/HomeSettingsIcon.png"),
 
     homeTransparentImage:require("../assets/Images/Home_LIkeTransparentBg.png"),
     homeLikeIcon:require("../assets/Images/Home_Like.png"),

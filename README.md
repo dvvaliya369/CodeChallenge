@@ -1,85 +1,207 @@
-# CodeChallenge
+# CodeChallenge React Native App
+
 ## Project Documentation
 
 ### Developed by Dharmendra Valiya
 
-It was developed in React-native-cli.
+A recipe sharing mobile application developed in React Native CLI.
 
-## Tech Tools
+## 📱 Features
 
-CodeChallenge uses a number of open source tools to work properly:
+- **Home Screen**: Browse recipes and user stories
+- **Post Screen**: Create and share new recipes with camera integration
+- **Search Screen**: Find recipes and users
+- **Notifications**: Stay updated with app activities
+- **Profile**: Manage your account and view your recipes
+- **Settings**: Configure app preferences and account settings
 
-- [react-native] - an open-source mobile application framework created by Facebook, Inc.
-- [npm] - package manager for the JavaScript.
-- [node.js] - an open-source, cross-platform, back-end JavaScript runtime environment
-- [Visul Studio Code] - source-code editor made by Microsoft.
-- [Xcode] - Apple's integrated development environment for macOS, used to develop software for macOS, iOS, iPadOS, watchOS, and tvOS.
-- [Android studio] - official integrated development environment for Google's Android operating system.
+## 🛠 Tech Stack
 
-## Installation
+CodeChallenge uses modern open-source technologies:
 
-CodeChallenge recommneds [Node.js](https://nodejs.org/) v12+ to run.
+- **[React Native](https://reactnative.dev/)** - Cross-platform mobile development framework
+- **[React Navigation 6](https://reactnavigation.org/)** - Navigation library for React Native
+- **[React Native Paper](https://reactnativepaper.com/)** - Material Design components
+- **[React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)** - Icon library
+- **[React Native Camera](https://react-native-camera.github.io/react-native-camera/)** - Camera functionality
+- **[Node.js](https://nodejs.org/)** - JavaScript runtime environment
+- **[npm](https://www.npmjs.com/)** - Package manager
+- **[Visual Studio Code](https://code.visualstudio.com/)** - Source code editor
+- **[Xcode](https://developer.apple.com/xcode/)** - iOS development environment
+- **[Android Studio](https://developer.android.com/studio)** - Android development environment
 
-Install the above mentioned tools and clone the project from mentioned github repo.
-# repo url ~> git clone https://github.com/dvvaliya/CodeChallenge.git
+## 🚀 Installation & Setup
 
-```sh
-cd CodeChallenge
-npm install
-cd ios
-pod install
-```
+### Prerequisites
 
-#### To run on android device or emulator
-Note:- Make sure your device is connected to your machine or your emulator is opened.
+- **Node.js** v16+ is required
+- **React Native CLI** installed globally
+- **Android Studio** (for Android development)
+- **Xcode** (for iOS development, macOS only)
 
-```sh
+### Installation Steps
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/dvvaliya/CodeChallenge.git
+   cd CodeChallenge
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **iOS Setup** (if developing for iOS):
+   ```bash
+   cd ios && pod install && cd ..
+   ```
+
+## 📱 Running the App
+
+### Android Device/Emulator
+Ensure your Android device is connected via USB with debugging enabled, or start your Android emulator.
+
+```bash
 npm start
 npx react-native run-android
 ```
 
-#### To run on iOS device or simulator
-Note:- If you are running app on your device make sure your device is connected to your machine.
+### iOS Device/Simulator
+For iOS device, ensure it's connected to your Mac and properly configured for development.
 
-```sh
+```bash
 npm start
 npx react-native run-ios
 ```
 
-#### To run for testing
-```sh
+### Development Mode
+To start the Metro bundler:
+```bash
+npm start
+# or
+npx react-native start
+```
+
+## 🧪 Testing
+
+Run the test suite:
+```bash
 npm run test
 ```
 
-Quick tips for understanding structure and editing in codebase:
-1. CodeChallege codebase structure is like CodeChallenge-> src-> assets, components, navigations, screens, styles & utilities.
-2. assets folder consist of two folders: Fonts & Images 
-a. Add all fonts in Fonts folder and make sure it has .ttf extension file.
-b. Add all images in Images folder to used them in the app.
-3. components folder consits of frequently used components so we can reuse them anywhere in the app.
-   * a. Right now components consist of two folders: Home & Post.
-   * b. Home folder consits of three components which we are using in Home screen named as HomeUserStory.js for showing top most list of Home screen, Category.js       for displaying category type and HomeRecipeList for main list of recipe in Home screen.
-   * c. Post folder consist of two components named as CookingDurationSlider.js which we are using in Post screen for sliding values for cooking duration and PostTextInput.js which we are usinh for TextInput like recipe name & Description.
-   * Note: In Above any components you can make any changes to reflect them in all screens wherever we are using that components.
-4. navigations folder contain main Navigator.js file which we are using to assign bottom tabs and any screen we need them in stack that should be put in this class.
-5. screens folder is the main folder where we have all the screens folder like Home, Post, Search, Notifications & Profile.
-   * a. Home folder consist the Home.js which we are using for rendering Home screen UI.
-   * b. Post folder consist the Post.js & Pic.js, while Post.js are using for rendering Post screen UI & Pic.js are using for custom laytout of camera overlay.
-6. styles folder consist of Style.js in that we are declaring all the styles of the app at one place, so we can reuse any styles as we want.
-7. utilities folder consist of Colors.js, Constant.js & Images.js, while Colors.js are using for all colors which we are using in the app and Constant.js are declaring all static values at one place and Images.js are using for declaring all static images which we are using in the app so similar images we use use without reassign them.
+Run linting:
+```bash
+npm run lint
+```
 
-P.s. For better experience of camera and UI of the app try to run on Real android device via debugging or on iOS Simulator.
+## 📁 Project Structure
 
-###### Author - Dharmendra Valiya
+```
+CodeChallenge/
+├── src/
+│   ├── assets/           # Fonts and Images
+│   │   ├── Fonts/        # Custom fonts (.ttf files)
+│   │   └── Images/       # App images and icons
+│   ├── components/       # Reusable UI components
+│   │   ├── Home/         # Home screen components
+│   │   └── Post/         # Post screen components
+│   ├── navigations/      # Navigation configuration
+│   │   └── Navigator.js  # Main navigation setup
+│   ├── screens/          # App screens
+│   │   ├── Home/         # Home screen
+│   │   ├── Post/         # Post creation screen
+│   │   ├── Search/       # Search functionality
+│   │   ├── Notifications/ # Notifications screen
+│   │   ├── Profile/      # User profile screen
+│   │   └── Settings/     # App settings screen
+│   ├── styles/           # Global styles
+│   │   └── Style.js      # Centralized styling
+│   └── utilities/        # Helper functions and constants
+│       ├── Colors.js     # Color constants
+│       ├── Constants.js  # App constants
+│       └── Images.js     # Image imports
+├── android/              # Android-specific files
+├── ios/                  # iOS-specific files
+└── package.json          # Project dependencies
+```
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+## 🎨 Styling Guidelines
 
-   [dill]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [git-repo-url]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [Android studio]: <https://developer.android.com/studio>
-   [npm]: <https://www.npmjs.com/>
-   [Visul Studio Code]: <https://code.visualstudio.com/download>
-   [node.js]: <http://nodejs.org>
-   [Xcode]: <https://developer.apple.com/xcode/>
-   [react-native]: <https://reactnative.dev/>
- 
+- All styles are centralized in `src/styles/Style.js`
+- Colors are defined in `src/utilities/Colors.js`
+- Images are imported in `src/utilities/Images.js`
+- Components follow Material Design principles
+
+## 📱 Screen Details
+
+### Home Screen
+- User story carousel at the top
+- Recipe categories
+- Main recipe feed with user interactions
+
+### Post Screen
+- Recipe creation form
+- Camera integration for food photos
+- Cooking duration slider
+- Recipe description input
+
+### Settings Screen (New!)
+- App preferences toggle
+- Dark mode support
+- Notification settings
+- Account management options
+
+## 🔧 Development Tips
+
+1. **Adding New Screens**: Place them in `src/screens/[ScreenName]/` and update `Navigator.js`
+2. **Reusable Components**: Add to `src/components/` for use across multiple screens
+3. **Styling**: Use the centralized style system for consistency
+4. **Images**: Add new images to `src/assets/Images/` and reference them in `Images.js`
+5. **Colors**: Define new colors in `Colors.js` for theme consistency
+
+## 📝 Recent Updates
+
+### Version Updates
+- **React Native**: Updated from 0.64.2 to 0.72.6
+- **React**: Updated from 17.0.1 to 18.2.0
+- **React Navigation**: Updated from v5 to v6
+- **React Native Paper**: Updated from v4 to v5
+
+### New Features
+- Added Settings screen with preferences management
+- Updated navigation to React Navigation 6
+- Improved TypeScript support
+- Enhanced development dependencies
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin feature-name`
+5. Submit a pull request
+
+## 📄 License
+
+This project is private and proprietary.
+
+## 👨‍💻 Author
+
+**Dharmendra Valiya**
+
+---
+
+### 💡 Performance Tips
+
+- For the best camera and UI experience, test on a real Android device via USB debugging or on iOS Simulator
+- Enable JavaScript debugging for development
+- Use Flipper for advanced debugging and performance monitoring
+
+### 🐛 Troubleshooting
+
+- **Metro bundler issues**: Clear cache with `npx react-native start --reset-cache`
+- **iOS build issues**: Clean and rebuild: `cd ios && xcodebuild clean && cd ..`
+- **Android build issues**: Clean Gradle: `cd android && ./gradlew clean && cd ..`
+
+For more detailed troubleshooting, refer to the [React Native documentation](https://reactnative.dev/docs/troubleshooting).
