@@ -3,13 +3,15 @@
 
 ### Developed by Dharmendra Valiya
 
-It was developed in React-native-cli.
+It was developed in React-native-cli with React Native Paper UI components.
 
 ## Tech Tools
 
 CodeChallenge uses a number of open source tools to work properly:
 
 - [react-native] - an open-source mobile application framework created by Facebook, Inc.
+- [react-native-paper] - Material Design 3 components for React Native
+- [react-native-vector-icons] - Icon library for React Native
 - [npm] - package manager for the JavaScript.
 - [node.js] - an open-source, cross-platform, back-end JavaScript runtime environment
 - [Visul Studio Code] - source-code editor made by Microsoft.
@@ -82,4 +84,6 @@ P.s. For better experience of camera and UI of the app try to run on Real androi
    [node.js]: <http://nodejs.org>
    [Xcode]: <https://developer.apple.com/xcode/>
    [react-native]: <https://reactnative.dev/>
+   [react-native-paper]: <https://callstack.github.io/react-native-paper/>
+   [react-native-vector-icons]: <https://github.com/oblador/react-native-vector-icons>
  
