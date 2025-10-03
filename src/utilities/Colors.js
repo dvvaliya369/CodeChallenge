@@ -5,6 +5,10 @@ const Colors = {
     themePoloBlueColor: "#3E5481",
     categoryTypeLightGreyColor: "#F4F5F7",
     themeLightGrayTextColor: "#9FA5C0",
-    recipeUserTextColor: "#2E3E5C"
+    themeLightGrayColor: "#E8E8E8",
+    recipeUserTextColor: "#2E3E5C",
+    themeRedColor: "#FF6B6B",
+    white: "#FFFFFF",
+    black: "#000000"
 }
 export default Colors;
