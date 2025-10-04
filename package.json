@@ -38,7 +38,10 @@
     "react-test-renderer": "17.0.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|@react-native|react-native-paper|react-native-vector-icons|react-native-iphone-x-helper|react-native-safe-area-context)/)"
+    ]
   },
   "rnpm": {
     "assets": [
