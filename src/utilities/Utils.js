@@ -95,9 +95,93 @@ const throttle = (func, delay) => {
   };
 };
 
+/**
+ * Creates a deep clone of the provided value. Handles objects, arrays, dates, 
+ * regular expressions, and primitive values. Maintains proper prototype chains
+ * and handles circular references.
+ * 
+ * @param {*} obj - The value to clone
+ * @param {WeakMap} visited - Internal parameter to track visited objects (prevents infinite recursion)
+ * @returns {*} - A deep copy of the input value
+ * 
+ * @example
+ * const original = {
+ *   name: 'John',
+ *   age: 30,
+ *   hobbies: ['reading', 'coding'],
+ *   profile: {
+ *     social: { twitter: '@john' }
+ *   }
+ * };
+ * 
+ * const cloned = Utils.clone(original);
+ * cloned.hobbies.push('gaming'); // Won't affect original
+ * console.log(original.hobbies); // ['reading', 'coding']
+ * console.log(cloned.hobbies);   // ['reading', 'coding', 'gaming']
+ */
+const clone = (obj, visited = new WeakMap()) => {
+  // Handle null, undefined, and primitive values
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  // Handle circular references
+  if (visited.has(obj)) {
+    return visited.get(obj);
+  }
+
+  // Handle Date objects
+  if (obj instanceof Date) {
+    return new Date(obj.getTime());
+  }
+
+  // Handle RegExp objects
+  if (obj instanceof RegExp) {
+    return new RegExp(obj.source, obj.flags);
+  }
+
+  // Handle Arrays
+  if (Array.isArray(obj)) {
+    const clonedArray = [];
+    visited.set(obj, clonedArray);
+    
+    for (let i = 0; i < obj.length; i++) {
+      clonedArray[i] = clone(obj[i], visited);
+    }
+    
+    return clonedArray;
+  }
+
+  // Handle Objects
+  const clonedObj = Object.create(Object.getPrototypeOf(obj));
+  visited.set(obj, clonedObj);
+
+  // Clone all enumerable properties
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      clonedObj[key] = clone(obj[key], visited);
+    }
+  }
+
+  // Clone non-enumerable properties
+  const propertyNames = Object.getOwnPropertyNames(obj);
+  for (const key of propertyNames) {
+    if (!clonedObj.hasOwnProperty(key)) {
+      const descriptor = Object.getOwnPropertyDescriptor(obj, key);
+      if (descriptor && descriptor.value !== undefined) {
+        descriptor.value = clone(descriptor.value, visited);
+      }
+      Object.defineProperty(clonedObj, key, descriptor);
+    }
+  }
+
+  return clonedObj;
+};
+
 const Utils = {
   debounce,
-  throttle
+  throttle,
+  clone
 };
 
 export default Utils;
