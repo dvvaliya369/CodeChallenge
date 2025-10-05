@@ -178,10 +178,49 @@ const clone = (obj, visited = new WeakMap()) => {
   return clonedObj;
 };
 
+/**
+ * Extracts a query parameter value from a URL string.
+ * 
+ * @param {string} url - The URL string to parse (or current window.location.href if not provided)
+ * @param {string} paramName - The name of the query parameter to extract
+ * @returns {string|null} - The parameter value or null if not found
+ * 
+ * @example
+ * const url = 'https://example.com/page?name=john&age=30&category=tech';
+ * 
+ * console.log(Utils.getQueryParam(url, 'name'));     // 'john'
+ * console.log(Utils.getQueryParam(url, 'age'));      // '30'
+ * console.log(Utils.getQueryParam(url, 'missing'));  // null
+ * 
+ * // In a browser environment, you can omit the URL to use current location
+ * console.log(Utils.getQueryParam(null, 'name'));    // Gets 'name' from current URL
+ */
+const getQueryParam = (url, paramName) => {
+  try {
+    // Use current location if no URL provided (browser environment)
+    const targetUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
+    
+    if (!targetUrl || !paramName) {
+      return null;
+    }
+
+    // Create URL object to parse query parameters
+    const urlObj = new URL(targetUrl);
+    const params = new URLSearchParams(urlObj.search);
+    
+    return params.get(paramName);
+  } catch (error) {
+    // Handle invalid URLs gracefully
+    console.warn('Invalid URL provided to getQueryParam:', error.message);
+    return null;
+  }
+};
+
 const Utils = {
   debounce,
   throttle,
-  clone
+  clone,
+  getQueryParam
 };
 
 export default Utils;
