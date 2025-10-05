@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { ScrollView, View } from 'react-native'
+import { Button, Card, Title } from 'react-native-paper'
 import GlobalFont from 'react-native-global-font'
 import Category from '../../components/Home/Category'
 import HomeRecipeList from '../../components/Home/HomeRecipeList'
 import HomeUserStory from '../../components/Home/HomeUserStory'
+import PaperComponentsExample from '../../components/PaperComponentsExample'
 import Style from '../../styles/Style'
 
 // Block of code for Home screen render
@@ -19,6 +21,21 @@ const Home = ({ route }) => {
         // Change ScrollView to View if we want to scroll just Recipe List
         <ScrollView showsVerticalScrollIndicator={false}
             style={{ flex: 1, backgroundColor: 'white' }}>
+            
+            {/* React Native Paper Test Card */}
+            <Card style={{ margin: 16, marginTop: 50 }}>
+                <Card.Content>
+                    <Title>React Native Paper Setup Complete!</Title>
+                    <Button 
+                        mode="contained" 
+                        onPress={() => console.log('Paper button pressed!')}
+                        style={{ marginTop: 10 }}
+                    >
+                        Test Paper Button
+                    </Button>
+                </Card.Content>
+            </Card>
+
             {/* Component for home user story view from top of the screen */}
             <HomeUserStory />
             {/* Component for home type of food  cateory */}

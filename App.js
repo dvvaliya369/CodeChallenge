@@ -7,15 +7,17 @@
 
 import React from 'react';
 import { LogBox } from 'react-native';
-import Navigator from './src/navigations/Navigator'
+import { Provider as PaperProvider } from 'react-native-paper';
+import Navigator from './src/navigations/Navigator';
+import customTheme from './src/utilities/Theme';
 
 const App = () => {
-  LogBox.ignoreAllLogs()
+  LogBox.ignoreAllLogs();
 
   return (
-    <>
+    <PaperProvider theme={customTheme}>
       <Navigator />
-    </>
+    </PaperProvider>
   );
 };
 
