@@ -7,14 +7,14 @@
 
 import React from 'react';
 import { LogBox } from 'react-native';
-import Navigator from './src/navigations/Navigator'
+import ButtonExamples from './ButtonExamples';
 
 const App = () => {
   LogBox.ignoreAllLogs()
 
   return (
     <>
-      <Navigator />
+      <ButtonExamples />
     </>
   );
 };
