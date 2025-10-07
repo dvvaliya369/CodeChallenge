@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
   },
   closeButtonText: {
     fontSize: 18,
-    color: '#999999',
+    color: 'red',
   },
   searchContainer: {
     padding: 16,
