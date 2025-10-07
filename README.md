@@ -1,8 +1,14 @@
-# SelectInput Component
+# UI Components Library
+
+A collection of reusable, accessible React components built with TypeScript.
+
+## Components
+
+### SelectInput Component
 
 A reusable, accessible select input component built with React and TypeScript.
 
-## Features
+#### Features
 
 - ✅ Single and multiple selection support
 - ✅ Keyboard navigation (Arrow keys, Enter, Escape, Tab)
@@ -16,6 +22,23 @@ A reusable, accessible select input component built with React and TypeScript.
 - ✅ Responsive design
 - ✅ Test coverage
 
+### Button Component
+
+A flexible, accessible button component with multiple variants and states.
+
+#### Features
+
+- ✅ Multiple variants (primary, secondary, outline, text, danger, success)
+- ✅ Different sizes (small, medium, large)
+- ✅ Disabled and loading states
+- ✅ Icon support (left and right positioning)
+- ✅ Custom styling props
+- ✅ Full accessibility support (ARIA labels, focus management)
+- ✅ TypeScript support
+- ✅ Loading spinner animation
+- ✅ Full-width and rounded options
+- ✅ Test coverage
+
 ## Installation
 
 ```bash
@@ -23,11 +46,12 @@ npm install react react-dom
 ```
 
 Copy the following files to your project:
-- `SelectInput.tsx`
-- `SelectInput.css`
-- `types.ts`
+- `SelectInput.tsx` + `SelectInput.css` + `types.ts`
+- `Button.tsx` + `Button.css` + `types.ts`
 
 ## Basic Usage
+
+### SelectInput
 
 ```tsx
 import React, { useState } from 'react';
@@ -54,7 +78,35 @@ function MyComponent() {
 }
 ```
 
-## Props
+### Button
+
+```tsx
+import React from 'react';
+import { Button } from './Button';
+
+function MyComponent() {
+  return (
+    <div>
+      <Button variant="primary" onClick={() => console.log('Clicked!')}>
+        Primary Button
+      </Button>
+      
+      <Button 
+        variant="outline" 
+        size="large" 
+        icon={<SaveIcon />}
+        loading={isLoading}
+      >
+        Save Document
+      </Button>
+    </div>
+  );
+}
+```
+
+## Component Props
+
+### SelectInput Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -74,7 +126,29 @@ function MyComponent() {
 | `maxHeight` | `number` | `200` | Maximum height for the dropdown |
 | `testId` | `string` | `'select-input'` | Test id for testing |
 
-## SelectOption Interface
+### Button Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Button text content |
+| `variant` | `'primary' \| 'secondary' \| 'outline' \| 'text' \| 'danger' \| 'success'` | `'primary'` | Button visual variant |
+| `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Button size |
+| `disabled` | `boolean` | `false` | Whether the button is disabled |
+| `loading` | `boolean` | `false` | Whether the button is in loading state |
+| `icon` | `React.ReactNode` | - | Icon to display in the button |
+| `iconPosition` | `'left' \| 'right'` | `'left'` | Position of the icon |
+| `onClick` | `(event: React.MouseEvent<HTMLButtonElement>) => void` | - | Click handler |
+| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Button type attribute |
+| `className` | `string` | `''` | Custom className for styling |
+| `style` | `React.CSSProperties` | - | Custom inline styles |
+| `fullWidth` | `boolean` | `false` | Whether button should take full width |
+| `rounded` | `boolean` | `false` | Whether the button should have rounded corners |
+| `testId` | `string` | - | Test id for testing |
+| `aria-label` | `string` | - | ARIA label for accessibility |
+
+## TypeScript Interfaces
+
+### SelectOption
 
 ```tsx
 interface SelectOption {
@@ -84,9 +158,33 @@ interface SelectOption {
 }
 ```
 
+### ButtonProps
+
+```tsx
+interface ButtonProps {
+  children: React.ReactNode;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  disabled?: boolean;
+  loading?: boolean;
+  icon?: React.ReactNode;
+  iconPosition?: ButtonIconPosition;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: 'button' | 'submit' | 'reset';
+  className?: string;
+  style?: React.CSSProperties;
+  fullWidth?: boolean;
+  testId?: string;
+  'aria-label'?: string;
+  rounded?: boolean;
+}
+```
+
 ## Examples
 
-### Multiple Selection
+### SelectInput Examples
+
+#### Multiple Selection
 
 ```tsx
 <SelectInput
@@ -99,7 +197,7 @@ interface SelectOption {
 />
 ```
 
-### Searchable Select
+#### Searchable Select
 
 ```tsx
 <SelectInput
@@ -112,7 +210,7 @@ interface SelectOption {
 />
 ```
 
-### With Validation
+#### With Validation
 
 ```tsx
 <SelectInput
@@ -126,57 +224,88 @@ interface SelectOption {
 />
 ```
 
-### Custom Option Rendering
+### Button Examples
+
+#### Button Variants
 
 ```tsx
-<SelectInput
-  options={users}
-  value={selectedUser}
-  onChange={setSelectedUser}
-  renderOption={(option) => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-      <img src={option.avatar} alt="" width="20" height="20" />
-      <span>{option.label}</span>
-      <small>{option.email}</small>
-    </div>
-  )}
-/>
+<div>
+  <Button variant="primary">Primary</Button>
+  <Button variant="secondary">Secondary</Button>
+  <Button variant="outline">Outline</Button>
+  <Button variant="text">Text</Button>
+  <Button variant="danger">Danger</Button>
+  <Button variant="success">Success</Button>
+</div>
 ```
 
-### Loading State
+#### Button with Icon
 
 ```tsx
-<SelectInput
-  label="Loading Data"
-  options={options}
-  value={value}
-  onChange={setValue}
-  loading
-/>
+<Button 
+  icon={<SaveIcon />} 
+  iconPosition="left"
+  variant="primary"
+>
+  Save Document
+</Button>
+```
+
+#### Loading Button
+
+```tsx
+<Button 
+  loading={isLoading} 
+  onClick={handleAsyncAction}
+  variant="primary"
+>
+  {isLoading ? 'Processing...' : 'Submit'}
+</Button>
+```
+
+#### Form Usage
+
+```tsx
+<form onSubmit={handleSubmit}>
+  <Button type="submit" variant="primary">
+    Submit
+  </Button>
+  <Button type="reset" variant="outline">
+    Reset
+  </Button>
+  <Button type="button" variant="text" onClick={handleCancel}>
+    Cancel
+  </Button>
+</form>
 ```
 
 ## Keyboard Navigation
 
+### SelectInput
 - **Enter/Space**: Open/close dropdown, select focused option
 - **Arrow Down/Up**: Navigate through options
 - **Escape**: Close dropdown
 - **Tab**: Move to next focusable element (closes dropdown)
 - **Type**: Search for options (when searchable)
 
+### Button
+- **Enter/Space**: Activate button
+- **Tab**: Move to next focusable element
+
 ## Accessibility Features
 
+Both components include:
 - Full ARIA support with proper roles and labels
 - Keyboard navigation
 - Screen reader compatibility
 - High contrast mode support
 - Focus management
-- Required field indication
-- Error announcements
+- Required field indication (SelectInput)
+- Error announcements (SelectInput)
 
 ## Styling
 
-The component uses CSS classes that can be customized:
-
+### SelectInput Classes
 ```css
 .select-input { /* Main container */ }
 .select-input__control { /* The clickable control */ }
@@ -186,17 +315,33 @@ The component uses CSS classes that can be customized:
 .select-input--error { /* Error state */ }
 ```
 
+### Button Classes
+```css
+.button { /* Base button styles */ }
+.button--primary { /* Primary variant */ }
+.button--secondary { /* Secondary variant */ }
+.button--outline { /* Outline variant */ }
+.button--small { /* Small size */ }
+.button--medium { /* Medium size */ }
+.button--large { /* Large size */ }
+.button--disabled { /* Disabled state */ }
+.button--loading { /* Loading state */ }
+.button--full-width { /* Full width */ }
+.button--rounded { /* Rounded corners */ }
+```
+
 You can override styles by:
-1. Modifying `SelectInput.css`
+1. Modifying the CSS files
 2. Using the `className` prop
 3. Using CSS-in-JS solutions
 
 ## Testing
 
-The component includes comprehensive test coverage. Run tests with:
+Both components include comprehensive test coverage. Run tests with:
 
 ```bash
 npm test SelectInput.test.tsx
+npm test Button.test.tsx
 ```
 
 Test utilities are provided for common testing scenarios.

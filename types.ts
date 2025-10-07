@@ -36,3 +36,40 @@ export interface SelectInputProps {
   /** Test id for testing */
   testId?: string;
 }
+
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'text' | 'danger' | 'success';
+export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonIconPosition = 'left' | 'right';
+
+export interface ButtonProps {
+  /** Button text content */
+  children: React.ReactNode;
+  /** Button visual variant */
+  variant?: ButtonVariant;
+  /** Button size */
+  size?: ButtonSize;
+  /** Whether the button is disabled */
+  disabled?: boolean;
+  /** Whether the button is in loading state */
+  loading?: boolean;
+  /** Icon to display in the button */
+  icon?: React.ReactNode;
+  /** Position of the icon */
+  iconPosition?: ButtonIconPosition;
+  /** Click handler */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  /** Button type attribute */
+  type?: 'button' | 'submit' | 'reset';
+  /** Custom className for styling */
+  className?: string;
+  /** Custom inline styles */
+  style?: React.CSSProperties;
+  /** Whether button should take full width */
+  fullWidth?: boolean;
+  /** Test id for testing */
+  testId?: string;
+  /** ARIA label for accessibility */
+  'aria-label'?: string;
+  /** Whether the button should have rounded corners */
+  rounded?: boolean;
+}
