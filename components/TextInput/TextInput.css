@@ -1,0 +1,180 @@
+/* TextInput Component Styles */
+
+.text-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+.text-input-container--full-width {
+  width: 100%;
+}
+
+.text-input-container--disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Label Styles */
+.text-input-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 2px;
+  display: block;
+}
+
+.text-input-required {
+  color: #dc2626;
+  margin-left: 2px;
+}
+
+/* Input Base Styles */
+.text-input {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+  background-color: #ffffff;
+  color: #111827;
+  outline: none;
+  font-family: inherit;
+}
+
+.text-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.text-input:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.text-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Size Variants */
+.text-input--small {
+  padding: 6px 12px;
+  font-size: 12px;
+  min-height: 32px;
+}
+
+.text-input--medium {
+  padding: 8px 12px;
+  font-size: 14px;
+  min-height: 40px;
+}
+
+.text-input--large {
+  padding: 12px 16px;
+  font-size: 16px;
+  min-height: 48px;
+}
+
+/* Full Width */
+.text-input--full-width {
+  width: 100%;
+}
+
+/* Error State */
+.text-input-container--error .text-input-label {
+  color: #dc2626;
+}
+
+.text-input--error {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.text-input--error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* Helper Text and Error Messages */
+.text-input-helper,
+.text-input-error {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.text-input-helper {
+  color: #6b7280;
+}
+
+.text-input-error {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .text-input-label {
+    color: #f3f4f6;
+  }
+
+  .text-input {
+    background-color: #1f2937;
+    border-color: #4b5563;
+    color: #f3f4f6;
+  }
+
+  .text-input:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+  }
+
+  .text-input:disabled {
+    background-color: #374151;
+    color: #9ca3af;
+  }
+
+  .text-input::placeholder {
+    color: #9ca3af;
+  }
+
+  .text-input--error {
+    border-color: #f87171;
+    background-color: #451a1a;
+  }
+
+  .text-input--error:focus {
+    border-color: #f87171;
+    box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.1);
+  }
+
+  .text-input-helper {
+    color: #d1d5db;
+  }
+
+  .text-input-error {
+    color: #fca5a5;
+  }
+
+  .text-input-container--error .text-input-label {
+    color: #fca5a5;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .text-input {
+    border-width: 2px;
+  }
+
+  .text-input:focus {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .text-input {
+    transition: none;
+  }
+}
