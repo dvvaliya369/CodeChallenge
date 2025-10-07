@@ -1,0 +1,225 @@
+.select-input {
+  position: relative;
+  width: 100%;
+  font-family: inherit;
+}
+
+.select-input__label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #374151;
+  font-size: 14px;
+}
+
+.select-input__required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.select-input__control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.select-input__control:hover:not(.select-input--disabled .select-input__control) {
+  border-color: #9ca3af;
+}
+
+.select-input__control:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.select-input--disabled .select-input__control {
+  background-color: #f9fafb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.select-input--error .select-input__control {
+  border-color: #ef4444;
+}
+
+.select-input--error .select-input__control:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.select-input__value {
+  flex: 1;
+  color: #374151;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.select-input--disabled .select-input__value {
+  color: #9ca3af;
+}
+
+.select-input__indicators {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.select-input__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.select-input__arrow {
+  width: 16px;
+  height: 16px;
+  color: #9ca3af;
+  transition: transform 0.15s ease-in-out;
+}
+
+.select-input__arrow::before {
+  content: '▼';
+  font-size: 12px;
+}
+
+.select-input__arrow--open {
+  transform: rotate(180deg);
+}
+
+.select-input__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  margin-top: 2px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.select-input__search {
+  padding: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.select-input__search-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+.select-input__search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.select-input__options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.select-input__option {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #374151;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.select-input__option:hover:not(.select-input__option--disabled) {
+  background-color: #f3f4f6;
+}
+
+.select-input__option--focused {
+  background-color: #eff6ff;
+}
+
+.select-input__option--selected {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.select-input__option--disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.select-input__checkbox {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.select-input__no-options {
+  padding: 12px;
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.select-input__error {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #ef4444;
+}
+
+/* Focus visible for better accessibility */
+.select-input__control:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .select-input__control {
+    border-width: 2px;
+  }
+  
+  .select-input__option--selected {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .select-input__control,
+  .select-input__arrow,
+  .select-input__option {
+    transition: none;
+  }
+  
+  .select-input__spinner {
+    animation: none;
+  }
+}

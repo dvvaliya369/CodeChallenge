@@ -1,85 +1,220 @@
-# CodeChallenge
-## Project Documentation
+# SelectInput Component
 
-### Developed by Dharmendra Valiya
+A reusable, accessible select input component built with React and TypeScript.
 
-It was developed in React-native-cli.
+## Features
 
-## Tech Tools
-
-CodeChallenge uses a number of open source tools to work properly:
-
-- [react-native] - an open-source mobile application framework created by Facebook, Inc.
-- [npm] - package manager for the JavaScript.
-- [node.js] - an open-source, cross-platform, back-end JavaScript runtime environment
-- [Visul Studio Code] - source-code editor made by Microsoft.
-- [Xcode] - Apple's integrated development environment for macOS, used to develop software for macOS, iOS, iPadOS, watchOS, and tvOS.
-- [Android studio] - official integrated development environment for Google's Android operating system.
+- ✅ Single and multiple selection support
+- ✅ Keyboard navigation (Arrow keys, Enter, Escape, Tab)
+- ✅ Search/filter functionality
+- ✅ Loading and disabled states
+- ✅ Error handling and validation
+- ✅ Custom option rendering
+- ✅ Full accessibility support (ARIA labels, roles)
+- ✅ TypeScript support
+- ✅ Customizable styling with CSS
+- ✅ Responsive design
+- ✅ Test coverage
 
 ## Installation
 
-CodeChallenge recommneds [Node.js](https://nodejs.org/) v12+ to run.
-
-Install the above mentioned tools and clone the project from mentioned github repo.
-# repo url ~> git clone https://github.com/dvvaliya/CodeChallenge.git
-
-```sh
-cd CodeChallenge
-npm install
-cd ios
-pod install
+```bash
+npm install react react-dom
 ```
 
-#### To run on android device or emulator
-Note:- Make sure your device is connected to your machine or your emulator is opened.
+Copy the following files to your project:
+- `SelectInput.tsx`
+- `SelectInput.css`
+- `types.ts`
 
-```sh
-npm start
-npx react-native run-android
+## Basic Usage
+
+```tsx
+import React, { useState } from 'react';
+import { SelectInput } from './SelectInput';
+
+const options = [
+  { value: 'react', label: 'React' },
+  { value: 'vue', label: 'Vue.js' },
+  { value: 'angular', label: 'Angular' }
+];
+
+function MyComponent() {
+  const [value, setValue] = useState('');
+
+  return (
+    <SelectInput
+      label="Choose Framework"
+      options={options}
+      value={value}
+      onChange={setValue}
+      placeholder="Select a framework"
+    />
+  );
+}
 ```
 
-#### To run on iOS device or simulator
-Note:- If you are running app on your device make sure your device is connected to your machine.
+## Props
 
-```sh
-npm start
-npx react-native run-ios
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `options` | `SelectOption[]` | - | Array of options to display |
+| `value` | `string \| number \| (string \| number)[]` | - | Currently selected value(s) |
+| `onChange` | `(value: string \| number \| (string \| number)[]) => void` | - | Callback when selection changes |
+| `placeholder` | `string` | `'Select an option'` | Placeholder text when no option is selected |
+| `disabled` | `boolean` | `false` | Whether the select is disabled |
+| `multiple` | `boolean` | `false` | Whether multiple selections are allowed |
+| `error` | `string` | - | Error message to display |
+| `loading` | `boolean` | `false` | Whether the component is in loading state |
+| `className` | `string` | `''` | Custom className for styling |
+| `label` | `string` | - | Label for the select input |
+| `required` | `boolean` | `false` | Whether the field is required |
+| `searchable` | `boolean` | `false` | Enable search/filter functionality |
+| `renderOption` | `(option: SelectOption) => React.ReactNode` | - | Custom render function for options |
+| `maxHeight` | `number` | `200` | Maximum height for the dropdown |
+| `testId` | `string` | `'select-input'` | Test id for testing |
+
+## SelectOption Interface
+
+```tsx
+interface SelectOption {
+  value: string | number;
+  label: string;
+  disabled?: boolean;
+}
 ```
 
-#### To run for testing
-```sh
-npm run test
+## Examples
+
+### Multiple Selection
+
+```tsx
+<SelectInput
+  label="Select Multiple Frameworks"
+  options={frameworks}
+  value={selectedFrameworks}
+  onChange={setSelectedFrameworks}
+  multiple
+  placeholder="Choose one or more frameworks"
+/>
 ```
 
-Quick tips for understanding structure and editing in codebase:
-1. CodeChallege codebase structure is like CodeChallenge-> src-> assets, components, navigations, screens, styles & utilities.
-2. assets folder consist of two folders: Fonts & Images 
-a. Add all fonts in Fonts folder and make sure it has .ttf extension file.
-b. Add all images in Images folder to used them in the app.
-3. components folder consits of frequently used components so we can reuse them anywhere in the app.
-   * a. Right now components consist of two folders: Home & Post.
-   * b. Home folder consits of three components which we are using in Home screen named as HomeUserStory.js for showing top most list of Home screen, Category.js       for displaying category type and HomeRecipeList for main list of recipe in Home screen.
-   * c. Post folder consist of two components named as CookingDurationSlider.js which we are using in Post screen for sliding values for cooking duration and PostTextInput.js which we are usinh for TextInput like recipe name & Description.
-   * Note: In Above any components you can make any changes to reflect them in all screens wherever we are using that components.
-4. navigations folder contain main Navigator.js file which we are using to assign bottom tabs and any screen we need them in stack that should be put in this class.
-5. screens folder is the main folder where we have all the screens folder like Home, Post, Search, Notifications & Profile.
-   * a. Home folder consist the Home.js which we are using for rendering Home screen UI.
-   * b. Post folder consist the Post.js & Pic.js, while Post.js are using for rendering Post screen UI & Pic.js are using for custom laytout of camera overlay.
-6. styles folder consist of Style.js in that we are declaring all the styles of the app at one place, so we can reuse any styles as we want.
-7. utilities folder consist of Colors.js, Constant.js & Images.js, while Colors.js are using for all colors which we are using in the app and Constant.js are declaring all static values at one place and Images.js are using for declaring all static images which we are using in the app so similar images we use use without reassign them.
+### Searchable Select
 
-P.s. For better experience of camera and UI of the app try to run on Real android device via debugging or on iOS Simulator.
+```tsx
+<SelectInput
+  label="Search Countries"
+  options={countries}
+  value={selectedCountry}
+  onChange={setSelectedCountry}
+  searchable
+  placeholder="Search and select a country"
+/>
+```
 
-###### Author - Dharmendra Valiya
+### With Validation
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+```tsx
+<SelectInput
+  label="Required Field"
+  options={options}
+  value={value}
+  onChange={setValue}
+  required
+  error={error}
+  placeholder="This field is required"
+/>
+```
 
-   [dill]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [git-repo-url]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [Android studio]: <https://developer.android.com/studio>
-   [npm]: <https://www.npmjs.com/>
-   [Visul Studio Code]: <https://code.visualstudio.com/download>
-   [node.js]: <http://nodejs.org>
-   [Xcode]: <https://developer.apple.com/xcode/>
-   [react-native]: <https://reactnative.dev/>
- 
+### Custom Option Rendering
+
+```tsx
+<SelectInput
+  options={users}
+  value={selectedUser}
+  onChange={setSelectedUser}
+  renderOption={(option) => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <img src={option.avatar} alt="" width="20" height="20" />
+      <span>{option.label}</span>
+      <small>{option.email}</small>
+    </div>
+  )}
+/>
+```
+
+### Loading State
+
+```tsx
+<SelectInput
+  label="Loading Data"
+  options={options}
+  value={value}
+  onChange={setValue}
+  loading
+/>
+```
+
+## Keyboard Navigation
+
+- **Enter/Space**: Open/close dropdown, select focused option
+- **Arrow Down/Up**: Navigate through options
+- **Escape**: Close dropdown
+- **Tab**: Move to next focusable element (closes dropdown)
+- **Type**: Search for options (when searchable)
+
+## Accessibility Features
+
+- Full ARIA support with proper roles and labels
+- Keyboard navigation
+- Screen reader compatibility
+- High contrast mode support
+- Focus management
+- Required field indication
+- Error announcements
+
+## Styling
+
+The component uses CSS classes that can be customized:
+
+```css
+.select-input { /* Main container */ }
+.select-input__control { /* The clickable control */ }
+.select-input__dropdown { /* Dropdown container */ }
+.select-input__option { /* Individual options */ }
+.select-input--disabled { /* Disabled state */ }
+.select-input--error { /* Error state */ }
+```
+
+You can override styles by:
+1. Modifying `SelectInput.css`
+2. Using the `className` prop
+3. Using CSS-in-JS solutions
+
+## Testing
+
+The component includes comprehensive test coverage. Run tests with:
+
+```bash
+npm test SelectInput.test.tsx
+```
+
+Test utilities are provided for common testing scenarios.
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Contributing
+
+1. Ensure all tests pass
+2. Add tests for new features
+3. Follow TypeScript best practices
+4. Maintain accessibility standards
+
+## License
+
+MIT License - feel free to use in your projects!
