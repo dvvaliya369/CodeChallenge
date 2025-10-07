@@ -1,85 +1,226 @@
-# CodeChallenge
-## Project Documentation
+# Reusable TextInput Component
 
-### Developed by Dharmendra Valiya
+A flexible, accessible, and customizable TextInput component built with React and TypeScript.
 
-It was developed in React-native-cli.
+## Features
 
-## Tech Tools
-
-CodeChallenge uses a number of open source tools to work properly:
-
-- [react-native] - an open-source mobile application framework created by Facebook, Inc.
-- [npm] - package manager for the JavaScript.
-- [node.js] - an open-source, cross-platform, back-end JavaScript runtime environment
-- [Visul Studio Code] - source-code editor made by Microsoft.
-- [Xcode] - Apple's integrated development environment for macOS, used to develop software for macOS, iOS, iPadOS, watchOS, and tvOS.
-- [Android studio] - official integrated development environment for Google's Android operating system.
+- ✅ **Multiple Variants**: Outlined, filled, and standard styles
+- ✅ **Size Options**: Small, medium, and large sizes
+- ✅ **Icon Support**: Start and end icons
+- ✅ **Validation**: Built-in error handling and helper text
+- ✅ **Accessibility**: Full ARIA support and keyboard navigation
+- ✅ **TypeScript**: Complete type safety
+- ✅ **Customizable**: Extensive styling options via CSS custom properties
+- ✅ **Dark Mode**: Built-in dark mode support
+- ✅ **Character Count**: Optional character counting with max length
+- ✅ **Form Integration**: Works seamlessly with forms and form libraries
 
 ## Installation
 
-CodeChallenge recommneds [Node.js](https://nodejs.org/) v12+ to run.
-
-Install the above mentioned tools and clone the project from mentioned github repo.
-# repo url ~> git clone https://github.com/dvvaliya/CodeChallenge.git
-
-```sh
-cd CodeChallenge
-npm install
-cd ios
-pod install
+```bash
+npm install reusable-textinput-component
+# or
+yarn add reusable-textinput-component
 ```
 
-#### To run on android device or emulator
-Note:- Make sure your device is connected to your machine or your emulator is opened.
+## Basic Usage
 
-```sh
-npm start
-npx react-native run-android
+```tsx
+import React, { useState } from 'react';
+import { TextInput } from 'reusable-textinput-component';
+
+function App() {
+  const [value, setValue] = useState('');
+
+  return (
+    <TextInput
+      label="Email Address"
+      type="email"
+      placeholder="Enter your email"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+}
 ```
 
-#### To run on iOS device or simulator
-Note:- If you are running app on your device make sure your device is connected to your machine.
+## API Reference
 
-```sh
-npm start
-npx react-native run-ios
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | - | Label text for the input |
+| `error` | `string` | - | Error message to display |
+| `helperText` | `string` | - | Helper text to display below the input |
+| `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Size variant of the input |
+| `variant` | `'outlined' \| 'filled' \| 'standard'` | `'outlined'` | Visual variant of the input |
+| `required` | `boolean` | `false` | Whether the input is required |
+| `showRequired` | `boolean` | `true` | Whether to show the required asterisk |
+| `startIcon` | `React.ReactNode` | - | Icon to display at the start of the input |
+| `endIcon` | `React.ReactNode` | - | Icon to display at the end of the input |
+| `containerClassName` | `string` | - | Custom class name for the container |
+| `inputClassName` | `string` | - | Custom class name for the input element |
+| `labelClassName` | `string` | - | Custom class name for the label |
+| `showCharacterCount` | `boolean` | `false` | Whether to display character count |
+| `maxLength` | `number` | - | Maximum character count |
+
+All standard HTML input props are also supported.
+
+## Examples
+
+### Basic Input
+
+```tsx
+<TextInput
+  label="Username"
+  placeholder="Enter your username"
+/>
 ```
 
-#### To run for testing
-```sh
-npm run test
+### With Icons
+
+```tsx
+const SearchIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <circle cx="11" cy="11" r="8"/>
+    <path d="M21 21L16.65 16.65"/>
+  </svg>
+);
+
+<TextInput
+  startIcon={<SearchIcon />}
+  placeholder="Search..."
+  label="Search"
+/>
 ```
 
-Quick tips for understanding structure and editing in codebase:
-1. CodeChallege codebase structure is like CodeChallenge-> src-> assets, components, navigations, screens, styles & utilities.
-2. assets folder consist of two folders: Fonts & Images 
-a. Add all fonts in Fonts folder and make sure it has .ttf extension file.
-b. Add all images in Images folder to used them in the app.
-3. components folder consits of frequently used components so we can reuse them anywhere in the app.
-   * a. Right now components consist of two folders: Home & Post.
-   * b. Home folder consits of three components which we are using in Home screen named as HomeUserStory.js for showing top most list of Home screen, Category.js       for displaying category type and HomeRecipeList for main list of recipe in Home screen.
-   * c. Post folder consist of two components named as CookingDurationSlider.js which we are using in Post screen for sliding values for cooking duration and PostTextInput.js which we are usinh for TextInput like recipe name & Description.
-   * Note: In Above any components you can make any changes to reflect them in all screens wherever we are using that components.
-4. navigations folder contain main Navigator.js file which we are using to assign bottom tabs and any screen we need them in stack that should be put in this class.
-5. screens folder is the main folder where we have all the screens folder like Home, Post, Search, Notifications & Profile.
-   * a. Home folder consist the Home.js which we are using for rendering Home screen UI.
-   * b. Post folder consist the Post.js & Pic.js, while Post.js are using for rendering Post screen UI & Pic.js are using for custom laytout of camera overlay.
-6. styles folder consist of Style.js in that we are declaring all the styles of the app at one place, so we can reuse any styles as we want.
-7. utilities folder consist of Colors.js, Constant.js & Images.js, while Colors.js are using for all colors which we are using in the app and Constant.js are declaring all static values at one place and Images.js are using for declaring all static images which we are using in the app so similar images we use use without reassign them.
+### With Validation
 
-P.s. For better experience of camera and UI of the app try to run on Real android device via debugging or on iOS Simulator.
+```tsx
+const [email, setEmail] = useState('');
+const [error, setError] = useState('');
 
-###### Author - Dharmendra Valiya
+const validateEmail = (value: string) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(value) ? '' : 'Please enter a valid email address';
+};
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+<TextInput
+  label="Email"
+  type="email"
+  value={email}
+  onChange={(e) => {
+    setEmail(e.target.value);
+    setError(validateEmail(e.target.value));
+  }}
+  error={error}
+  required
+/>
+```
 
-   [dill]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [git-repo-url]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [Android studio]: <https://developer.android.com/studio>
-   [npm]: <https://www.npmjs.com/>
-   [Visul Studio Code]: <https://code.visualstudio.com/download>
-   [node.js]: <http://nodejs.org>
-   [Xcode]: <https://developer.apple.com/xcode/>
-   [react-native]: <https://reactnative.dev/>
- 
+### Different Sizes
+
+```tsx
+<TextInput size="small" label="Small" placeholder="Small input" />
+<TextInput size="medium" label="Medium" placeholder="Medium input" />
+<TextInput size="large" label="Large" placeholder="Large input" />
+```
+
+### Different Variants
+
+```tsx
+<TextInput variant="outlined" label="Outlined" placeholder="Outlined input" />
+<TextInput variant="filled" label="Filled" placeholder="Filled input" />
+<TextInput variant="standard" label="Standard" placeholder="Standard input" />
+```
+
+### With Character Count
+
+```tsx
+<TextInput
+  label="Bio"
+  placeholder="Tell us about yourself"
+  maxLength={100}
+  showCharacterCount
+  multiline
+/>
+```
+
+## Styling
+
+The component uses CSS custom properties for theming. You can override these in your CSS:
+
+```css
+:root {
+  --text-input-border-radius: 8px;
+  --text-input-border-focus: #your-brand-color;
+  --text-input-font-size-medium: 16px;
+  /* ... other custom properties */
+}
+```
+
+### Available CSS Custom Properties
+
+```css
+:root {
+  /* Colors */
+  --text-input-bg: #ffffff;
+  --text-input-border: #d1d5db;
+  --text-input-border-hover: #9ca3af;
+  --text-input-border-focus: #3b82f6;
+  --text-input-border-error: #ef4444;
+  --text-input-text: #111827;
+  --text-input-placeholder: #6b7280;
+  
+  /* Sizes */
+  --text-input-height-small: 32px;
+  --text-input-height-medium: 40px;
+  --text-input-height-large: 48px;
+  
+  /* Other properties... */
+}
+```
+
+## Accessibility
+
+The component follows WAI-ARIA guidelines:
+
+- Proper labeling with `htmlFor` and `id` associations
+- Error announcements with `role="alert"`
+- Appropriate `aria-invalid` and `aria-describedby` attributes
+- Keyboard navigation support
+- High contrast mode support
+- Reduced motion support
+
+## TypeScript
+
+Full TypeScript support with proper type definitions:
+
+```tsx
+import { TextInput, TextInputProps, TextInputRef } from 'reusable-textinput-component';
+
+// Use with forwardRef
+const MyInput = forwardRef<TextInputRef, TextInputProps>((props, ref) => (
+  <TextInput ref={ref} {...props} />
+));
+```
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+MIT © [Your Name]

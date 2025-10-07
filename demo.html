@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextInput Component Demo</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+        }
+        
+        #root {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem 0;
+        }
+        
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #1a202c;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section h2 {
+            color: #2d3748;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .input-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .form-section {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .demo-container {
+                margin: 0 1rem;
+                padding: 1rem;
+            }
+            
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        // TextInput Component
+        const TextInput = React.forwardRef(({
+            label,
+            error,
+            helperText,
+            size = 'medium',
+            variant = 'outlined',
+            required = false,
+            showRequired = true,
+            startIcon,
+            endIcon,
+            containerClassName = '',
+            inputClassName = '',
+            labelClassName = '',
+            showCharacterCount = false,
+            maxLength,
+            className,
+            disabled,
+            ...props
+        }, ref) => {
+            const inputId = props.id || `text-input-${Math.random().toString(36).substr(2, 9)}`;
+            const hasError = Boolean(error);
+            const characterCount = props.value ? String(props.value).length : 0;
+
+            const containerClasses = [
+                'text-input-container',
+                `text-input-container--${size}`,
+                `text-input-container--${variant}`,
+                hasError && 'text-input-container--error',
+                disabled && 'text-input-container--disabled',
+                containerClassName
+            ].filter(Boolean).join(' ');
+
+            const inputClasses = [
+                'text-input',
+                `text-input--${size}`,
+                `text-input--${variant}`,
+                startIcon && 'text-input--with-start-icon',
+                endIcon && 'text-input--with-end-icon',
+                hasError && 'text-input--error',
+                inputClassName,
+                className
+            ].filter(Boolean).join(' ');
+
+            const labelClasses = [
+                'text-input-label',
+                required && showRequired && 'text-input-label--required',
+                hasError && 'text-input-label--error',
+                disabled && 'text-input-label--disabled',
+                labelClassName
+            ].filter(Boolean).join(' ');
+
+            return React.createElement('div', { className: containerClasses }, [
+                label && React.createElement('label', {
+                    key: 'label',
+                    htmlFor: inputId,
+                    className: labelClasses
+                }, [
+                    label,
+                    required && showRequired && React.createElement('span', {
+                        key: 'required',
+                        className: 'text-input-required'
+                    }, '*')
+                ]),
+                
+                React.createElement('div', {
+                    key: 'wrapper',
+                    className: 'text-input-wrapper'
+                }, [
+                    startIcon && React.createElement('div', {
+                        key: 'start-icon',
+                        className: 'text-input-icon text-input-icon--start'
+                    }, startIcon),
+                    
+                    React.createElement('input', {
+                        key: 'input',
+                        ref,
+                        id: inputId,
+                        className: inputClasses,
+                        disabled,
+                        maxLength,
+                        'aria-invalid': hasError,
+                        'aria-describedby': [
+                            error && `${inputId}-error`,
+                            helperText && `${inputId}-helper`,
+                            showCharacterCount && maxLength && `${inputId}-count`
+                        ].filter(Boolean).join(' ') || undefined,
+                        ...props
+                    }),
+                    
+                    endIcon && React.createElement('div', {
+                        key: 'end-icon',
+                        className: 'text-input-icon text-input-icon--end'
+                    }, endIcon)
+                ]),
+
+                React.createElement('div', {
+                    key: 'footer',
+                    className: 'text-input-footer'
+                }, [
+                    React.createElement('div', {
+                        key: 'messages',
+                        className: 'text-input-messages'
+                    }, [
+                        error && React.createElement('div', {
+                            key: 'error',
+                            id: `${inputId}-error`,
+                            className: 'text-input-error',
+                            role: 'alert'
+                        }, error),
+                        !error && helperText && React.createElement('div', {
+                            key: 'helper',
+                            id: `${inputId}-helper`,
+                            className: 'text-input-helper'
+                        }, helperText)
+                    ]),
+                    
+                    showCharacterCount && maxLength && React.createElement('div', {
+                        key: 'count',
+                        id: `${inputId}-count`,
+                        className: 'text-input-count'
+                    }, `${characterCount}/${maxLength}`)
+                ])
+            ]);
+        });
+
+        // Icons
+        const SearchIcon = () => React.createElement('svg', {
+            width: 16,
+            height: 16,
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: 2
+        }, [
+            React.createElement('circle', { key: 'circle', cx: 11, cy: 11, r: 8 }),
+            React.createElement('path', { key: 'path', d: 'M21 21L16.65 16.65' })
+        ]);
+
+        const UserIcon = () => React.createElement('svg', {
+            width: 16,
+            height: 16,
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: 2
+        }, [
+            React.createElement('path', { key: 'body', d: 'M20 21V19a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2' }),
+            React.createElement('circle', { key: 'head', cx: 12, cy: 7, r: 4 })
+        ]);
+
+        const EyeIcon = () => React.createElement('svg', {
+            width: 16,
+            height: 16,
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: 2
+        }, [
+            React.createElement('path', { key: 'eye', d: 'M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z' }),
+            React.createElement('circle', { key: 'pupil', cx: 12, cy: 12, r: 3 })
+        ]);
+
+        // Demo App
+        const App = () => {
+            const [formData, setFormData] = React.useState({
+                name: '',
+                email: '',
+                password: '',
+                search: '',
+                bio: ''
+            });
+
+            const [errors, setErrors] = React.useState({});
+
+            const handleInputChange = (field) => (e) => {
+                setFormData(prev => ({
+                    ...prev,
+                    [field]: e.target.value
+                }));
+                
+                if (errors[field]) {
+                    setErrors(prev => ({
+                        ...prev,
+                        [field]: ''
+                    }));
+                }
+            };
+
+            const validateEmail = (email) => {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            };
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                const newErrors = {};
+
+                if (!formData.name.trim()) {
+                    newErrors.name = 'Name is required';
+                }
+
+                if (!formData.email.trim()) {
+                    newErrors.email = 'Email is required';
+                } else if (!validateEmail(formData.email)) {
+                    newErrors.email = 'Please enter a valid email address';
+                }
+
+                if (!formData.password.trim()) {
+                    newErrors.password = 'Password is required';
+                } else if (formData.password.length < 6) {
+                    newErrors.password = 'Password must be at least 6 characters';
+                }
+
+                setErrors(newErrors);
+
+                if (Object.keys(newErrors).length === 0) {
+                    alert('Form submitted successfully!');
+                }
+            };
+
+            return React.createElement('div', { className: 'demo-container' }, [
+                React.createElement('h1', { key: 'title' }, 'TextInput Component Demo'),
+                
+                React.createElement('div', { key: 'sizes', className: 'section' }, [
+                    React.createElement('h2', { key: 'title' }, 'Size Variants'),
+                    React.createElement('div', { key: 'inputs', className: 'input-group' }, [
+                        React.createElement(TextInput, {
+                            key: 'small',
+                            size: 'small',
+                            placeholder: 'Small input',
+                            label: 'Small Size'
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'medium',
+                            size: 'medium',
+                            placeholder: 'Medium input (default)',
+                            label: 'Medium Size'
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'large',
+                            size: 'large',
+                            placeholder: 'Large input',
+                            label: 'Large Size'
+                        })
+                    ])
+                ]),
+
+                React.createElement('div', { key: 'variants', className: 'section' }, [
+                    React.createElement('h2', { key: 'title' }, 'Style Variants'),
+                    React.createElement('div', { key: 'inputs', className: 'input-group' }, [
+                        React.createElement(TextInput, {
+                            key: 'outlined',
+                            variant: 'outlined',
+                            placeholder: 'Outlined input (default)',
+                            label: 'Outlined'
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'filled',
+                            variant: 'filled',
+                            placeholder: 'Filled input',
+                            label: 'Filled'
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'standard',
+                            variant: 'standard',
+                            placeholder: 'Standard input',
+                            label: 'Standard'
+                        })
+                    ])
+                ]),
+
+                React.createElement('div', { key: 'icons', className: 'section' }, [
+                    React.createElement('h2', { key: 'title' }, 'With Icons'),
+                    React.createElement('div', { key: 'inputs', className: 'input-row' }, [
+                        React.createElement(TextInput, {
+                            key: 'search',
+                            startIcon: React.createElement(SearchIcon),
+                            placeholder: 'Search...',
+                            label: 'Search Input'
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'user',
+                            startIcon: React.createElement(UserIcon),
+                            placeholder: 'Enter username',
+                            label: 'Username'
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'password',
+                            endIcon: React.createElement(EyeIcon),
+                            type: 'password',
+                            placeholder: 'Enter password',
+                            label: 'Password with End Icon'
+                        })
+                    ])
+                ]),
+
+                React.createElement('div', { key: 'states', className: 'section' }, [
+                    React.createElement('h2', { key: 'title' }, 'States'),
+                    React.createElement('div', { key: 'inputs', className: 'input-row' }, [
+                        React.createElement(TextInput, {
+                            key: 'normal',
+                            placeholder: 'Regular input',
+                            label: 'Normal State'
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'disabled',
+                            placeholder: 'This input is disabled',
+                            label: 'Disabled State',
+                            disabled: true
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'error',
+                            placeholder: 'This has an error',
+                            label: 'Error State',
+                            error: 'This field is required'
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'helper',
+                            placeholder: 'With helper text',
+                            label: 'With Helper Text',
+                            helperText: 'This is some helpful information'
+                        })
+                    ])
+                ]),
+
+                React.createElement('div', { key: 'counter', className: 'section' }, [
+                    React.createElement('h2', { key: 'title' }, 'Character Count'),
+                    React.createElement(TextInput, {
+                        key: 'bio',
+                        placeholder: 'Type something...',
+                        label: 'Message',
+                        helperText: 'Enter your message',
+                        maxLength: 100,
+                        showCharacterCount: true,
+                        value: formData.bio,
+                        onChange: handleInputChange('bio')
+                    })
+                ]),
+
+                React.createElement('div', { key: 'form', className: 'section' }, [
+                    React.createElement('h2', { key: 'title' }, 'Complete Form Example'),
+                    React.createElement('form', {
+                        key: 'form',
+                        onSubmit: handleSubmit,
+                        className: 'form-section'
+                    }, [
+                        React.createElement(TextInput, {
+                            key: 'name',
+                            label: 'Full Name',
+                            placeholder: 'Enter your full name',
+                            required: true,
+                            startIcon: React.createElement(UserIcon),
+                            value: formData.name,
+                            onChange: handleInputChange('name'),
+                            error: errors.name
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'email',
+                            label: 'Email Address',
+                            type: 'email',
+                            placeholder: 'Enter your email',
+                            required: true,
+                            value: formData.email,
+                            onChange: handleInputChange('email'),
+                            error: errors.email
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'password',
+                            label: 'Password',
+                            type: 'password',
+                            placeholder: 'Enter your password',
+                            required: true,
+                            helperText: 'Must be at least 6 characters',
+                            endIcon: React.createElement(EyeIcon),
+                            value: formData.password,
+                            onChange: handleInputChange('password'),
+                            error: errors.password
+                        }),
+                        React.createElement(TextInput, {
+                            key: 'search',
+                            label: 'Search',
+                            placeholder: 'Search for something...',
+                            startIcon: React.createElement(SearchIcon),
+                            value: formData.search,
+                            onChange: handleInputChange('search'),
+                            helperText: 'Optional search field'
+                        }),
+                        React.createElement('button', {
+                            key: 'submit',
+                            type: 'submit',
+                            className: 'submit-button'
+                        }, 'Submit Form')
+                    ])
+                ])
+            ]);
+        };
+
+        ReactDOM.render(React.createElement(App), document.getElementById('root'));
+    </script>
+    
+    <style>
+        /* TextInput Component Styles - Inlined for demo */
+        :root {
+            --text-input-border-radius: 4px;
+            --text-input-border-width: 1px;
+            --text-input-transition: all 0.2s ease-in-out;
+            
+            --text-input-bg: #ffffff;
+            --text-input-border: #d1d5db;
+            --text-input-border-hover: #9ca3af;
+            --text-input-border-focus: #3b82f6;
+            --text-input-border-error: #ef4444;
+            --text-input-text: #111827;
+            --text-input-placeholder: #6b7280;
+            --text-input-label: #374151;
+            --text-input-helper: #6b7280;
+            --text-input-error: #ef4444;
+            --text-input-disabled-bg: #f9fafb;
+            --text-input-disabled-border: #e5e7eb;
+            --text-input-disabled-text: #9ca3af;
+            --text-input-icon: #6b7280;
+            
+            --text-input-height-small: 32px;
+            --text-input-height-medium: 40px;
+            --text-input-height-large: 48px;
+            
+            --text-input-padding-x-small: 8px;
+            --text-input-padding-x-medium: 12px;
+            --text-input-padding-x-large: 16px;
+            
+            --text-input-font-size-small: 14px;
+            --text-input-font-size-medium: 16px;
+            --text-input-font-size-large: 18px;
+            
+            --text-input-icon-size-small: 16px;
+            --text-input-icon-size-medium: 20px;
+            --text-input-icon-size-large: 24px;
+        }
+
+        .text-input-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .text-input-container--disabled {
+            opacity: 0.6;
+        }
+
+        .text-input-label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-input-label);
+            transition: var(--text-input-transition);
+        }
+
+        .text-input-label--error {
+            color: var(--text-input-error);
+        }
+
+        .text-input-label--disabled {
+            color: var(--text-input-disabled-text);
+        }
+
+        .text-input-required {
+            color: var(--text-input-error);
+            margin-left: 2px;
+        }
+
+        .text-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .text-input {
+            width: 100%;
+            border: var(--text-input-border-width) solid var(--text-input-border);
+            border-radius: var(--text-input-border-radius);
+            background-color: var(--text-input-bg);
+            color: var(--text-input-text);
+            transition: var(--text-input-transition);
+            outline: none;
+            font-family: inherit;
+            line-height: 1.5;
+        }
+
+        .text-input::placeholder {
+            color: var(--text-input-placeholder);
+            opacity: 1;
+        }
+
+        .text-input:hover:not(:disabled) {
+            border-color: var(--text-input-border-hover);
+        }
+
+        .text-input:focus {
+            border-color: var(--text-input-border-focus);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .text-input:disabled {
+            background-color: var(--text-input-disabled-bg);
+            border-color: var(--text-input-disabled-border);
+            color: var(--text-input-disabled-text);
+            cursor: not-allowed;
+        }
+
+        .text-input--error {
+            border-color: var(--text-input-border-error);
+        }
+
+        .text-input--error:focus {
+            border-color: var(--text-input-border-error);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .text-input--small {
+            height: var(--text-input-height-small);
+            padding: 0 var(--text-input-padding-x-small);
+            font-size: var(--text-input-font-size-small);
+        }
+
+        .text-input--medium {
+            height: var(--text-input-height-medium);
+            padding: 0 var(--text-input-padding-x-medium);
+            font-size: var(--text-input-font-size-medium);
+        }
+
+        .text-input--large {
+            height: var(--text-input-height-large);
+            padding: 0 var(--text-input-padding-x-large);
+            font-size: var(--text-input-font-size-large);
+        }
+
+        .text-input--with-start-icon.text-input--small {
+            padding-left: calc(var(--text-input-padding-x-small) + var(--text-input-icon-size-small) + 8px);
+        }
+
+        .text-input--with-start-icon.text-input--medium {
+            padding-left: calc(var(--text-input-padding-x-medium) + var(--text-input-icon-size-medium) + 8px);
+        }
+
+        .text-input--with-start-icon.text-input--large {
+            padding-left: calc(var(--text-input-padding-x-large) + var(--text-input-icon-size-large) + 8px);
+        }
+
+        .text-input--with-end-icon.text-input--small {
+            padding-right: calc(var(--text-input-padding-x-small) + var(--text-input-icon-size-small) + 8px);
+        }
+
+        .text-input--with-end-icon.text-input--medium {
+            padding-right: calc(var(--text-input-padding-x-medium) + var(--text-input-icon-size-medium) + 8px);
+        }
+
+        .text-input--with-end-icon.text-input--large {
+            padding-right: calc(var(--text-input-padding-x-large) + var(--text-input-icon-size-large) + 8px);
+        }
+
+        .text-input--filled {
+            background-color: #f9fafb;
+            border: var(--text-input-border-width) solid transparent;
+            border-bottom: 2px solid var(--text-input-border);
+            border-radius: var(--text-input-border-radius) var(--text-input-border-radius) 0 0;
+        }
+
+        .text-input--filled:hover:not(:disabled) {
+            background-color: #f3f4f6;
+            border-bottom-color: var(--text-input-border-hover);
+        }
+
+        .text-input--filled:focus {
+            background-color: var(--text-input-bg);
+            border-bottom-color: var(--text-input-border-focus);
+            box-shadow: none;
+        }
+
+        .text-input--filled.text-input--error {
+            border-bottom-color: var(--text-input-border-error);
+        }
+
+        .text-input--standard {
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid var(--text-input-border);
+            border-radius: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .text-input--standard:hover:not(:disabled) {
+            border-bottom-color: var(--text-input-border-hover);
+        }
+
+        .text-input--standard:focus {
+            border-bottom-color: var(--text-input-border-focus);
+            box-shadow: none;
+        }
+
+        .text-input--standard.text-input--error {
+            border-bottom-color: var(--text-input-border-error);
+        }
+
+        .text-input-icon {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-input-icon);
+            pointer-events: none;
+        }
+
+        .text-input-icon--start {
+            left: var(--text-input-padding-x-medium);
+        }
+
+        .text-input-icon--end {
+            right: var(--text-input-padding-x-medium);
+        }
+
+        .text-input-container--small .text-input-icon {
+            width: var(--text-input-icon-size-small);
+            height: var(--text-input-icon-size-small);
+        }
+
+        .text-input-container--small .text-input-icon--start {
+            left: var(--text-input-padding-x-small);
+        }
+
+        .text-input-container--small .text-input-icon--end {
+            right: var(--text-input-padding-x-small);
+        }
+
+        .text-input-container--medium .text-input-icon {
+            width: var(--text-input-icon-size-medium);
+            height: var(--text-input-icon-size-medium);
+        }
+
+        .text-input-container--large .text-input-icon {
+            width: var(--text-input-icon-size-large);
+            height: var(--text-input-icon-size-large);
+        }
+
+        .text-input-container--large .text-input-icon--start {
+            left: var(--text-input-padding-x-large);
+        }
+
+        .text-input-container--large .text-input-icon--end {
+            right: var(--text-input-padding-x-large);
+        }
+
+        .text-input-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 4px;
+            min-height: 20px;
+        }
+
+        .text-input-messages {
+            flex: 1;
+        }
+
+        .text-input-error {
+            color: var(--text-input-error);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .text-input-helper {
+            color: var(--text-input-helper);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .text-input-count {
+            color: var(--text-input-helper);
+            font-size: 12px;
+            white-space: nowrap;
+            margin-left: 8px;
+        }
+    </style>
+</body>
+</html>
