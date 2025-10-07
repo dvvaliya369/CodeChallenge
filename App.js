@@ -1,20 +1,14 @@
-/**
- * CodeChallenge
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import { LogBox } from 'react-native';
-import Navigator from './src/navigations/Navigator'
+import { SafeAreaView, StatusBar } from 'react-native';
+import TextInputExamples from './src/examples/TextInputExamples';
 
 const App = () => {
-  LogBox.ignoreAllLogs()
-
   return (
     <>
-      <Navigator />
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView style={{ flex: 1 }}>
+        <TextInputExamples />
+      </SafeAreaView>
     </>
   );
 };
