@@ -5,6 +5,7 @@ import Category from '../../components/Home/Category'
 import HomeRecipeList from '../../components/Home/HomeRecipeList'
 import HomeUserStory from '../../components/Home/HomeUserStory'
 import Style from '../../styles/Style'
+import Button from '../../components/Button'
 
 // Block of code for Home screen render
 const Home = ({ route }) => {
@@ -21,6 +22,7 @@ const Home = ({ route }) => {
             style={{ flex: 1, backgroundColor: 'white' }}>
             {/* Component for home user story view from top of the screen */}
             <HomeUserStory />
+            <Button title="Press Me" onPress={() => alert('Button Pressed!')} />
             {/* Component for home type of food  cateory */}
             <Category />
             <View style={Style.homeSeperator} />
