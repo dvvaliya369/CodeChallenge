@@ -23,6 +23,7 @@ const Home = ({ route }) => {
             <HomeUserStory />
             {/* Component for home type of food  cateory */}
             <Category />
+            <Button title="Press Me" onPress={() => alert('Button Pressed!')} />
             <View style={Style.homeSeperator} />
             {/* Component for home user recipe list view */}
             <HomeRecipeList />
