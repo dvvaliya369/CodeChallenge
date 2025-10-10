@@ -1,12 +1,12 @@
-# My Project
+# <span style="color: red;">My Project</span>
 
 A simple and clean project template to help you get started quickly.
 
-## Description
+## <span style="color: red;">Description</span>
 
 This project serves as a basic template that you can customize for your own needs. It includes essential documentation structure and common sections that most projects require.
 
-## Installation
+## <span style="color: red;">Installation</span>
 
 ```bash
 # Clone this repository
@@ -23,7 +23,7 @@ pip install -r requirements.txt
 bundle install
 ```
 
-## Usage
+## <span style="color: red;">Usage</span>
 
 ```bash
 # Run the project
@@ -34,21 +34,21 @@ python main.py
 your-command-here
 ```
 
-### Basic Example
+### <span style="color: red;">Basic Example</span>
 
 ```javascript
 // Example code snippet
 console.log("Hello, World!");
 ```
 
-## Features
+## <span style="color: red;">Features</span>
 
 - ✅ Clean and simple structure
 - ✅ Easy to customize
 - ✅ Well-documented
 - ✅ Ready to use
 
-## Contributing
+## <span style="color: red;">Contributing</span>
 
 1. Fork the project
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -56,17 +56,17 @@ console.log("Hello, World!");
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
+## <span style="color: red;">License</span>
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
+## <span style="color: red;">Contact</span>
 
 - **Author**: Your Name
 - **Email**: your.email@example.com
 - **GitHub**: [@yourusername](https://github.com/yourusername)
 
-## Acknowledgments
+## <span style="color: red;">Acknowledgments</span>
 
 - Thanks to all contributors
 - Inspiration from similar projects
