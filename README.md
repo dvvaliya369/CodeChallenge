@@ -1,4 +1,4 @@
-# <span style="color: red;">My Project</span>
+# <span style="color: green;">My Project</span>
 
 A simple and clean project template to help you get started quickly.
 
