@@ -11,6 +11,7 @@ const Post = ({ navigation, route }) => {
     const [recipeName, setRecipeName] = useState("")
     const [description, setDescription] = useState("")
     const [coverPicture, setCoverPicture] = useState("")
+    const [cookingDuration, setCookingDuration] = useState(30)
 
     useEffect(() => {
         if (route.params) {
@@ -73,14 +74,24 @@ const Post = ({ navigation, route }) => {
                     }} />
 
                 {/* Slider for Cooking duration */}
-                <CookingDurationSlider onChange={value => {
-                    console.log(Math.floor(value))
-                }} />
+                <CookingDurationSlider 
+                    value={cookingDuration}
+                    onChange={value => {
+                        setCookingDuration(value)
+                        console.log('Cooking Duration:', Math.round(value), 'minutes')
+                    }} 
+                />
 
                 {/* Touch event */}
                 <TouchableOpacity style={Style.nextButtonView}
                     onPress={() => {
-                        // navigation.navigate('Pic')
+                        console.log('Recipe Data:', {
+                            name: recipeName,
+                            description: description,
+                            cookingDuration: Math.round(cookingDuration),
+                            coverPicture: coverPicture
+                        })
+                        // navigation.navigate('NextScreen')
                     }}
                 >
                     <Text style={Style.nextButtonText}>Next</Text>

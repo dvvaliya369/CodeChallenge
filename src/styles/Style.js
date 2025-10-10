@@ -91,6 +91,16 @@ const Style = {
     },
     nextButtonText:{ alignSelf: 'center', fontSize: 15, fontWeight: '700' },
 
+    //Current duration display
+    currentDurationText: {
+        textAlign: 'center', 
+        color: Colors.themePoloBlueColor, 
+        fontSize: 16, 
+        fontWeight: '600', 
+        marginTop: 16, 
+        marginBottom: 8
+    },
+
     //Pic
     picCameraBUttonOuterView: {
         alignSelf: 'center', top: 40, borderWidth: 5,
