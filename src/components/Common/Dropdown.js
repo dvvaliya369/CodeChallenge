@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   dropdownItemText: {
     fontSize: 16,
-    color: Colors.themeRedBorderColor, // Red text
+    color: 'green', // Green text
     fontWeight: '500',
   },
 });
