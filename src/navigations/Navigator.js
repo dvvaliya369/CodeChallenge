@@ -96,7 +96,7 @@ const Navigator = ({ navigation, route }) => {
                                         <Image
                                             source={Images.homeSearchIcon}
                                             style={[Style.searchTabBarImage, {
-                                                tintColor: focused ? "" :
+                                                tintColor: focused ? Colors.themeYellowColor :
                                                     Colors.themeLightGrayTextColor
                                             }]}
                                         />
