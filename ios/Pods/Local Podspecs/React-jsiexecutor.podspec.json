@@ -19,23 +19,11 @@
   },
   "header_dir": "jsireact",
   "dependencies": {
-    "React-cxxreact": [
-      "0.64.2"
-    ],
-    "React-jsi": [
-      "0.64.2"
-    ],
-    "React-perflogger": [
-      "0.64.2"
-    ],
-    "RCT-Folly": [
-      "2020.01.13.00"
-    ],
-    "DoubleConversion": [
-
-    ],
-    "glog": [
-
-    ]
+    "React-cxxreact": ["0.64.2"],
+    "React-jsi": ["0.64.2"],
+    "React-perflogger": ["0.64.2"],
+    "RCT-Folly": ["2020.01.13.00"],
+    "DoubleConversion": [],
+    "glog": []
   }
 }
