@@ -18,20 +18,10 @@
   "platforms": {
     "ios": "9.0"
   },
-  "default_subspecs": [
-    "RN",
-    "RCT"
-  ],
-  "preserve_paths": [
-    "LICENSE",
-    "README.md",
-    "package.json",
-    "index.js"
-  ],
+  "default_subspecs": ["RN", "RCT"],
+  "preserve_paths": ["LICENSE", "README.md", "package.json", "index.js"],
   "dependencies": {
-    "React-Core": [
-
-    ]
+    "React-Core": []
   },
   "subspecs": [
     {
@@ -45,43 +35,25 @@
     {
       "name": "TextDetector",
       "dependencies": {
-        "react-native-camera/RN": [
-
-        ],
-        "react-native-camera/RCT": [
-
-        ],
-        "GoogleMLKit/TextRecognition": [
-
-        ]
+        "react-native-camera/RN": [],
+        "react-native-camera/RCT": [],
+        "GoogleMLKit/TextRecognition": []
       }
     },
     {
       "name": "FaceDetectorMLKit",
       "dependencies": {
-        "react-native-camera/RN": [
-
-        ],
-        "react-native-camera/RCT": [
-
-        ],
-        "GoogleMLKit/FaceDetection": [
-
-        ]
+        "react-native-camera/RN": [],
+        "react-native-camera/RCT": [],
+        "GoogleMLKit/FaceDetection": []
       }
     },
     {
       "name": "BarcodeDetectorMLKit",
       "dependencies": {
-        "react-native-camera/RN": [
-
-        ],
-        "react-native-camera/RCT": [
-
-        ],
-        "GoogleMLKit/BarcodeScanning": [
-
-        ]
+        "react-native-camera/RN": [],
+        "react-native-camera/RCT": [],
+        "GoogleMLKit/BarcodeScanning": []
       }
     }
   ]

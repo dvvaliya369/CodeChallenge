@@ -1,41 +1,43 @@
-import React from 'react'
-import { View, FlatList, SafeAreaView, Image } from 'react-native'
-import Style from '../../styles/Style'
-import Constants from '../../utilities/Constants'
-import Images from '../../utilities/Images'
+import React from 'react';
+import { View, FlatList, SafeAreaView, Image } from 'react-native';
+import Style from '../../styles/Style';
+import Constants from '../../utilities/Constants';
+import Images from '../../utilities/Images';
 
 const HomeUserStory = () => {
-
-    /* UI  Component for Home user story list*/
-    const ItemView = ({ item, index }) => {
-        return (
-            <View>
-                <Image source={item.value} style={Style.homeUserStory} />
-                {index === 0 ?
-                    <View style={Style.homeUserStoryAdd}>
-                        <Image source={Images.homePlusIcon} style={Style.homeUserStoryAddImage} />
-                    </View>
-                    : <View></View>
-                }
-            </View>
-        )
-    }
-
-    /* Flatlist Component for Home user story list*/
+  /* UI  Component for Home user story list*/
+  const ItemView = ({ item, index }) => {
     return (
-        <SafeAreaView>
-            <FlatList style={Style.categoryFlatList}
-                data={Constants.homeStoryuserImageArray}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={ItemView}
-                keyExtractor={(index) => index.toString()}
-                ItemSeparatorComponent={
-                    () => <View style={{ width: 15 }} />
-                }
+      <View>
+        <Image source={item.value} style={Style.homeUserStory} />
+        {index === 0 ? (
+          <View style={Style.homeUserStoryAdd}>
+            <Image
+              source={Images.homePlusIcon}
+              style={Style.homeUserStoryAddImage}
             />
-        </SafeAreaView>
-    )
-}
+          </View>
+        ) : (
+          <View></View>
+        )}
+      </View>
+    );
+  };
+
+  /* Flatlist Component for Home user story list*/
+  return (
+    <SafeAreaView>
+      <FlatList
+        style={Style.categoryFlatList}
+        data={Constants.homeStoryuserImageArray}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={ItemView}
+        keyExtractor={index => index.toString()}
+        ItemSeparatorComponent={() => <View style={{ width: 15 }} />}
+      />
+    </SafeAreaView>
+  );
+};
 
 export default HomeUserStory;
