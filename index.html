@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - John Doe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="John Doe" id="profile-image">
+                    <div class="avatar-overlay">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name">John Doe</h1>
+                    <p class="profile-title">Full Stack Developer</p>
+                    <p class="profile-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        San Francisco, CA
+                    </p>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Follow
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Message
+                    </button>
+                </div>
+            </div>
+
+            <!-- Profile Stats -->
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-number">1,234</span>
+                    <span class="stat-label">Followers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">567</span>
+                    <span class="stat-label">Following</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">89</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4.9</span>
+                    <span class="stat-label">Rating</span>
+                </div>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="profile-content">
+                <!-- About Section -->
+                <div class="content-section">
+                    <h2>About</h2>
+                    <p>Passionate full-stack developer with 5+ years of experience building scalable web applications. I specialize in React, Node.js, and cloud technologies. Always eager to learn new technologies and solve complex problems.</p>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="content-section">
+                    <h2>Skills</h2>
+                    <div class="skills-container">
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">CSS/SCSS</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="content-section">
+                    <h2>Experience</h2>
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3>Senior Full Stack Developer</h3>
+                            <span class="experience-duration">2021 - Present</span>
+                        </div>
+                        <p class="experience-company">TechCorp Inc.</p>
+                        <p class="experience-description">Leading development of enterprise web applications using React, Node.js, and AWS. Mentoring junior developers and architecting scalable solutions.</p>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3>Frontend Developer</h3>
+                            <span class="experience-duration">2019 - 2021</span>
+                        </div>
+                        <p class="experience-company">StartupXYZ</p>
+                        <p class="experience-description">Developed responsive web applications and implemented modern UI/UX designs. Improved application performance by 40%.</p>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="content-section">
+                    <h2>Contact</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>john.doe@example.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <span>linkedin.com/in/johndoe</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <span>github.com/johndoe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple interaction for profile image hover effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileImage = document.querySelector('.profile-avatar');
+            const buttons = document.querySelectorAll('.btn');
+
+            // Add click handlers for buttons
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.textContent.trim();
+                    alert(`${action} clicked! This would normally trigger the respective action.`);
+                });
+            });
+
+            // Add some interactive feedback
+            const skillBars = document.querySelectorAll('.skill-progress');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fillSkill 1.5s ease-in-out forwards';
+                    }
+                });
+            });
+
+            skillBars.forEach(bar => {
+                observer.observe(bar);
+            });
+        });
+    </script>
+</body>
+</html>
