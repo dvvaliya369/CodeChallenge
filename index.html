@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-image-container">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" 
+                         alt="Profile Picture" 
+                         class="profile-image" 
+                         id="profileImage">
+                    <div class="image-overlay">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name" id="profileName">John Doe</h1>
+                    <p class="profile-title" id="profileTitle">Full Stack Developer</p>
+                    <p class="profile-location"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>
+                </div>
+                <button class="edit-btn" id="editBtn">
+                    <i class="fas fa-edit"></i> Edit Profile
+                </button>
+            </div>
+
+            <!-- Profile Stats -->
+            <div class="profile-stats">
+                <div class="stat">
+                    <h3>156</h3>
+                    <p>Projects</p>
+                </div>
+                <div class="stat">
+                    <h3>2.4K</h3>
+                    <p>Followers</p>
+                </div>
+                <div class="stat">
+                    <h3>1.8K</h3>
+                    <p>Following</p>
+                </div>
+            </div>
+
+            <!-- Profile Tabs -->
+            <div class="profile-tabs">
+                <button class="tab-btn active" data-tab="about">About</button>
+                <button class="tab-btn" data-tab="experience">Experience</button>
+                <button class="tab-btn" data-tab="skills">Skills</button>
+                <button class="tab-btn" data-tab="contact">Contact</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- About Tab -->
+                <div class="tab-pane active" id="about">
+                    <div class="content-section">
+                        <h3><i class="fas fa-user"></i> About Me</h3>
+                        <p id="aboutText">
+                            Passionate full-stack developer with 5+ years of experience building scalable web applications. 
+                            I love creating user-friendly interfaces and robust backend systems. When I'm not coding, 
+                            you can find me hiking, reading tech blogs, or contributing to open-source projects.
+                        </p>
+                        
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <div class="education-item">
+                            <h4>Computer Science, B.S.</h4>
+                            <p>University of California, Berkeley • 2018</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Tab -->
+                <div class="tab-pane" id="experience">
+                    <div class="content-section">
+                        <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <h4>Senior Full Stack Developer</h4>
+                                <span class="date">2022 - Present</span>
+                            </div>
+                            <p class="company">Tech Innovations Inc.</p>
+                            <ul>
+                                <li>Led development of microservices architecture serving 1M+ users</li>
+                                <li>Mentored junior developers and conducted code reviews</li>
+                                <li>Implemented CI/CD pipelines reducing deployment time by 60%</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <h4>Full Stack Developer</h4>
+                                <span class="date">2019 - 2022</span>
+                            </div>
+                            <p class="company">StartupXYZ</p>
+                            <ul>
+                                <li>Built responsive web applications using React and Node.js</li>
+                                <li>Designed and implemented RESTful APIs</li>
+                                <li>Collaborated with design team to create seamless user experiences</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Tab -->
+                <div class="tab-pane" id="skills">
+                    <div class="content-section">
+                        <h3><i class="fas fa-code"></i> Technical Skills</h3>
+                        <div class="skills-container">
+                            <div class="skill-item">
+                                <span class="skill-name">JavaScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">React</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Node.js</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Python</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">MongoDB</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">AWS</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Tab -->
+                <div class="tab-pane" id="contact">
+                    <div class="content-section">
+                        <h3><i class="fas fa-envelope"></i> Get In Touch</h3>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>john.doe@example.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+1 (555) 123-4567</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-linkedin"></i>
+                                <span>linkedin.com/in/johndoe</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-github"></i>
+                                <span>github.com/johndoe</span>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editName">Name:</label>
+                    <input type="text" id="editName" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="editTitle">Title:</label>
+                    <input type="text" id="editTitle" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="editAbout">About:</label>
+                    <textarea id="editAbout" name="about" rows="4"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelEdit" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
