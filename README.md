@@ -1,85 +1,183 @@
-# CodeChallenge
-## Project Documentation
+# Button Component Project
 
-### Developed by Dharmendra Valiya
+A reusable React button component with TypeScript support and pre-commit hooks for code quality.
 
-It was developed in React-native-cli.
+## Features
 
-## Tech Tools
-
-CodeChallenge uses a number of open source tools to work properly:
-
-- [react-native] - an open-source mobile application framework created by Facebook, Inc.
-- [npm] - package manager for the JavaScript.
-- [node.js] - an open-source, cross-platform, back-end JavaScript runtime environment
-- [Visul Studio Code] - source-code editor made by Microsoft.
-- [Xcode] - Apple's integrated development environment for macOS, used to develop software for macOS, iOS, iPadOS, watchOS, and tvOS.
-- [Android studio] - official integrated development environment for Google's Android operating system.
+- 🎨 **Multiple Variants**: Primary, Secondary, Outline, Ghost, and Danger styles
+- 📏 **Flexible Sizes**: Small, Medium, and Large options
+- 🔧 **TypeScript Support**: Fully typed with comprehensive prop interfaces
+- ♿ **Accessibility**: ARIA compliant with proper focus management
+- 🎭 **Icons Support**: Start and end icon placement
+- ⚡ **Loading State**: Built-in loading spinner and state management
+- 📱 **Responsive**: Mobile-friendly design with responsive breakpoints
+- 🌙 **Dark Mode**: Automatic dark mode support
+- 🎯 **Pre-commit Hooks**: Automated linting and formatting before commits
 
 ## Installation
 
-CodeChallenge recommneds [Node.js](https://nodejs.org/) v12+ to run.
-
-Install the above mentioned tools and clone the project from mentioned github repo.
-# repo url ~> git clone https://github.com/dvvaliya/CodeChallenge.git
-
-```sh
-cd CodeChallenge
+```bash
 npm install
-cd ios
-pod install
 ```
 
-#### To run on android device or emulator
-Note:- Make sure your device is connected to your machine or your emulator is opened.
+## Usage
 
-```sh
-npm start
-npx react-native run-android
+### Basic Button
+
+```tsx
+import { Button } from './components';
+
+function App() {
+  return (
+    <Button variant="primary" onClick={() => console.log('Clicked!')}>
+      Click me
+    </Button>
+  );
+}
 ```
 
-#### To run on iOS device or simulator
-Note:- If you are running app on your device make sure your device is connected to your machine.
+### Advanced Usage
 
-```sh
-npm start
-npx react-native run-ios
+```tsx
+import { Button } from './components';
+
+function MyComponent() {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    // Perform async operation
+    await submitForm();
+    setLoading(false);
+  };
+
+  return (
+    <div>
+      {/* Different variants */}
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="danger">Danger</Button>
+
+      {/* Different sizes */}
+      <Button size="small">Small</Button>
+      <Button size="medium">Medium</Button>
+      <Button size="large">Large</Button>
+
+      {/* With icons */}
+      <Button startIcon="📧">Email</Button>
+      <Button endIcon="→">Next</Button>
+
+      {/* Loading state */}
+      <Button loading={loading} onClick={handleSubmit}>
+        Submit
+      </Button>
+
+      {/* Full width */}
+      <Button fullWidth variant="primary">
+        Full Width
+      </Button>
+
+      {/* Disabled */}
+      <Button disabled>Disabled</Button>
+    </div>
+  );
+}
 ```
 
-#### To run for testing
-```sh
-npm run test
+## Props
+
+| Prop        | Type                                                           | Default     | Description          |
+| ----------- | -------------------------------------------------------------- | ----------- | -------------------- |
+| `children`  | `ReactNode`                                                    | -           | Button content       |
+| `variant`   | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'danger'` | `'primary'` | Visual style variant |
+| `size`      | `'small' \| 'medium' \| 'large'`                               | `'medium'`  | Button size          |
+| `loading`   | `boolean`                                                      | `false`     | Loading state        |
+| `fullWidth` | `boolean`                                                      | `false`     | Full width button    |
+| `startIcon` | `ReactNode`                                                    | -           | Icon before text     |
+| `endIcon`   | `ReactNode`                                                    | -           | Icon after text      |
+| `disabled`  | `boolean`                                                      | `false`     | Disabled state       |
+
+All standard HTML button attributes are also supported.
+
+## Development
+
+### Scripts
+
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Fix ESLint errors
+- `npm run format` - Format code with Prettier
+- `npm run format:check` - Check code formatting
+- `npm run type-check` - Run TypeScript type checking
+
+### Pre-commit Hooks
+
+This project uses Husky and lint-staged to automatically run code quality checks before each commit:
+
+- **ESLint**: Checks for code quality and potential errors
+- **Prettier**: Ensures consistent code formatting
+- **TypeScript**: Validates type correctness
+
+The pre-commit hook will:
+
+1. Run ESLint with auto-fix on staged JavaScript/TypeScript files
+2. Format staged files with Prettier
+3. Prevent commit if there are linting errors that can't be auto-fixed
+
+### File Structure
+
+```
+├── components/
+│   ├── Button.tsx      # Main button component
+│   ├── Button.css      # Button styles
+│   └── index.ts        # Export declarations
+├── src/
+│   └── ButtonExamples.tsx  # Usage examples
+├── .husky/
+│   └── pre-commit      # Git pre-commit hook
+├── .eslintrc.js        # ESLint configuration
+├── .prettierrc         # Prettier configuration
+├── tsconfig.json       # TypeScript configuration
+└── package.json        # Project dependencies and scripts
 ```
 
-Quick tips for understanding structure and editing in codebase:
-1. CodeChallege codebase structure is like CodeChallenge-> src-> assets, components, navigations, screens, styles & utilities.
-2. assets folder consist of two folders: Fonts & Images 
-a. Add all fonts in Fonts folder and make sure it has .ttf extension file.
-b. Add all images in Images folder to used them in the app.
-3. components folder consits of frequently used components so we can reuse them anywhere in the app.
-   * a. Right now components consist of two folders: Home & Post.
-   * b. Home folder consits of three components which we are using in Home screen named as HomeUserStory.js for showing top most list of Home screen, Category.js       for displaying category type and HomeRecipeList for main list of recipe in Home screen.
-   * c. Post folder consist of two components named as CookingDurationSlider.js which we are using in Post screen for sliding values for cooking duration and PostTextInput.js which we are usinh for TextInput like recipe name & Description.
-   * Note: In Above any components you can make any changes to reflect them in all screens wherever we are using that components.
-4. navigations folder contain main Navigator.js file which we are using to assign bottom tabs and any screen we need them in stack that should be put in this class.
-5. screens folder is the main folder where we have all the screens folder like Home, Post, Search, Notifications & Profile.
-   * a. Home folder consist the Home.js which we are using for rendering Home screen UI.
-   * b. Post folder consist the Post.js & Pic.js, while Post.js are using for rendering Post screen UI & Pic.js are using for custom laytout of camera overlay.
-6. styles folder consist of Style.js in that we are declaring all the styles of the app at one place, so we can reuse any styles as we want.
-7. utilities folder consist of Colors.js, Constant.js & Images.js, while Colors.js are using for all colors which we are using in the app and Constant.js are declaring all static values at one place and Images.js are using for declaring all static images which we are using in the app so similar images we use use without reassign them.
+## Customization
 
-P.s. For better experience of camera and UI of the app try to run on Real android device via debugging or on iOS Simulator.
+### Styling
 
-###### Author - Dharmendra Valiya
+The button component uses CSS custom properties (CSS variables) for easy theming. You can override the default styles by modifying the CSS variables in your global styles:
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+```css
+:root {
+  --btn-primary-bg: #your-color;
+  --btn-primary-hover: #your-hover-color;
+  /* Add more custom properties as needed */
+}
+```
 
-   [dill]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [git-repo-url]: <git clone https://github.com/dvvaliya/CodeChallenge.git>
-   [Android studio]: <https://developer.android.com/studio>
-   [npm]: <https://www.npmjs.com/>
-   [Visul Studio Code]: <https://code.visualstudio.com/download>
-   [node.js]: <http://nodejs.org>
-   [Xcode]: <https://developer.apple.com/xcode/>
-   [react-native]: <https://reactnative.dev/>
- 
+### Adding New Variants
+
+To add new button variants:
+
+1. Update the `ButtonProps` interface in `Button.tsx`
+2. Add corresponding CSS classes in `Button.css`
+3. Update the component logic to handle the new variant
+
+## Browser Support
+
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- IE11+ (with polyfills for CSS Grid if needed)
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run the linting and formatting checks
+5. Commit your changes (pre-commit hooks will run automatically)
+6. Push and create a pull request
+
+## License
+
+MIT License - see LICENSE file for details

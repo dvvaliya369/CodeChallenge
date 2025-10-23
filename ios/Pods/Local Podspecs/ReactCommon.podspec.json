@@ -24,30 +24,14 @@
     {
       "name": "turbomodule",
       "dependencies": {
-        "React-callinvoker": [
-          "0.64.2"
-        ],
-        "React-perflogger": [
-          "0.64.2"
-        ],
-        "React-Core": [
-          "0.64.2"
-        ],
-        "React-cxxreact": [
-          "0.64.2"
-        ],
-        "React-jsi": [
-          "0.64.2"
-        ],
-        "RCT-Folly": [
-          "2020.01.13.00"
-        ],
-        "DoubleConversion": [
-
-        ],
-        "glog": [
-
-        ]
+        "React-callinvoker": ["0.64.2"],
+        "React-perflogger": ["0.64.2"],
+        "React-Core": ["0.64.2"],
+        "React-cxxreact": ["0.64.2"],
+        "React-jsi": ["0.64.2"],
+        "RCT-Folly": ["2020.01.13.00"],
+        "DoubleConversion": [],
+        "glog": []
       },
       "subspecs": [
         {
@@ -64,9 +48,7 @@
             "react/nativemodule/samples/platform/ios/**/*.{mm,cpp,h}"
           ],
           "dependencies": {
-            "ReactCommon/turbomodule/core": [
-              "0.64.2"
-            ]
+            "ReactCommon/turbomodule/core": ["0.64.2"]
           }
         }
       ]
