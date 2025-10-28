@@ -4,6 +4,7 @@ import GlobalFont from 'react-native-global-font';
 import Category from '../../components/Home/Category';
 import HomeRecipeList from '../../components/Home/HomeRecipeList';
 import HomeUserStory from '../../components/Home/HomeUserStory';
+import RedBox from '../../components/RedBox';
 import Style from '../../styles/Style';
 
 // Block of code for Home screen render
@@ -23,6 +24,8 @@ const Home = ({ route }) => {
     >
       {/* Component for home user story view from top of the screen */}
       <HomeUserStory />
+      {/* Red Box Component */}
+      <RedBox>Red Box</RedBox>
       {/* Component for home type of food  cateory */}
       <Category />
       <View style={Style.homeSeperator} />
