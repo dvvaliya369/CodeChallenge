@@ -2,7 +2,6 @@ import React from 'react';
 import { TextInput, View } from 'react-native';
 import Colors from '../../utilities/Colors';
 
-// Common Textinput for recipe name & description
 const PostTextInput = ({
   onChangeText,
   inputvalue,

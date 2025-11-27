@@ -1,12 +1,9 @@
-//List down all the styles here, so we can reuse styles in any screens of the app
-
 import { Platform, Dimensions } from 'react-native';
 import Colors from '../utilities/Colors';
 
 const Style = {
-  //Botom tabbar
   searchTabBar: {
-    position: 'absolute', // space from bottombar
+    position: 'absolute',
     height: 56,
     width: 56,
     borderRadius: 28,
@@ -20,7 +17,6 @@ const Style = {
     tintColor: '#9FA5C0',
     alignContent: 'center',
   },
-  //Home-category
   homeUserStory: {
     width: 56,
     height: 56,
@@ -119,7 +115,6 @@ const Style = {
     fontSize: 12,
   },
 
-  //Post
   cancelText: {
     marginLeft: 24,
     color: '#FF6464',
@@ -230,7 +225,6 @@ const Style = {
   },
   nextButtonText: { alignSelf: 'center', fontSize: 15, fontWeight: '700' },
 
-  //Pic
   picCameraBUttonOuterView: {
     alignSelf: 'center',
     top: 40,
@@ -249,7 +243,6 @@ const Style = {
     marginTop: 2,
   },
 
-  //Search
   searchView: {
     justifyContent: 'center',
     flex: 1,

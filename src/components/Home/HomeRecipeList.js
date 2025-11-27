@@ -5,7 +5,6 @@ import Constants from '../../utilities/Constants';
 import Images from '../../utilities/Images';
 
 const HomeRecipeList = () => {
-  /* UI Component for Receipe list*/
   const ItemView = ({ item, index }) => {
     return (
       <>
@@ -31,15 +30,13 @@ const HomeRecipeList = () => {
     );
   };
 
-  /* Flatlist Component for Receipe list*/
   return (
     <FlatList
       style={Style.categoryFlatList}
-      // columnWrapperStyle={{justifyContent:'space-between'}}
       contentContainerStyle={{ marginHorizontal: 0 }}
       data={Constants.recipeArray}
       renderItem={ItemView}
-      numColumns={2} /* To shows two items next to each other in Receipe list*/
+      numColumns={2}
       showsVerticalScrollIndicator={false}
       keyExtractor={index => index.toString()}
       ItemSeparatorComponent={() => <View style={{ height: 20 }} />}

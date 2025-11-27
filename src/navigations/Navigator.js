@@ -23,7 +23,6 @@ const Navigator = ({ navigation, route }) => {
     const [postTabBarHide, setPostTabBarhide] = useState(false);
 
     useEffect(() => {}, [postTabBarHide]);
-    //Bottom tab bar and its events
     return (
       <>
         <MaterialBottomTabNavigator.Navigator
@@ -37,7 +36,6 @@ const Navigator = ({ navigation, route }) => {
             name="Home"
             component={Home}
             options={{
-              // Custom label for tab bar
               tabBarLabel: ({ focused }) => (
                 <Text
                   style={{
@@ -48,8 +46,7 @@ const Navigator = ({ navigation, route }) => {
                   Home
                 </Text>
               ),
-              tabBarVisible: true, // To show & hide the tab bar for specific screens.
-              // Custom icon for tab bar
+              tabBarVisible: true,
               tabBarIcon: ({ focused }) => (
                 <Image
                   source={Images.homeTabIcon}
@@ -69,11 +66,7 @@ const Navigator = ({ navigation, route }) => {
             name="Post"
             component={Post}
             options={{
-              // drawBehind: false,
-              // bottomTabs: {
-              //     visible: false
-              // },
-              tabBarVisible: !postTabBarHide, //Show & hide tab bar
+              tabBarVisible: !postTabBarHide,
               tabBarLabel: ({ focused }) => (
                 <Text
                   style={{
@@ -83,7 +76,7 @@ const Navigator = ({ navigation, route }) => {
                 >
                   Post
                 </Text>
-              ) /* Custom label for tab bar*/,
+              ),
 
               tabBarIcon: ({ focused }) => (
                 <Image
@@ -96,11 +89,11 @@ const Navigator = ({ navigation, route }) => {
                       : Colors.themeLightGrayTextColor,
                   }}
                 />
-              ) /* Custom icon for tab bar*/,
+              ),
             }}
             listeners={() => ({
               tabPress: e => {
-                setPostTabBarhide(true); // Setting Tab bar hideen is true for Post tab or screen.
+                setPostTabBarhide(true);
               },
             })}
           />
@@ -121,7 +114,6 @@ const Navigator = ({ navigation, route }) => {
               ),
               tabBarIcon: ({ focused }) => (
                 <>
-                  {/* Seach Bottom tab custom component */}
                   <View
                     style={[
                       Style.searchTabBar,
@@ -213,7 +205,6 @@ const Navigator = ({ navigation, route }) => {
   };
 
   return (
-    // Add newly created screens in stack for navigation.
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen

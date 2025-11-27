@@ -1,5 +1,3 @@
-//List down all the colors here, so we can reuse colors in any screens of the app
-
 const Colors = {
   themeYellowColor: '#FFF395',
   themePoloBlueColor: '#3E5481',

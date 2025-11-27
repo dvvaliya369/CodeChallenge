@@ -1,8 +1,5 @@
-//List down all the constants here, so we can reuse constants in any screens of the app
-
 import Images from './Images';
 const Constants = {
-  // for Home screen
   categoryText: 'Category',
   categoryArray: [
     { value: 'All' },

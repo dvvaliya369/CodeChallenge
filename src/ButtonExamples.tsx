@@ -1,9 +1,6 @@
 import React from 'react';
 import { Button } from '../components';
 
-/**
- * Example usage of the Button component
- */
 const ButtonExamples: React.FC = () => {
   return (
     <div

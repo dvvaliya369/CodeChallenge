@@ -15,7 +15,6 @@ const Category = () => {
 
   const ItemView = ({ item, index }) => {
     return (
-      // Category Touch event to change its appearance.
       <TouchableOpacity
         style={
           selectedIndex === index
@@ -45,7 +44,6 @@ const Category = () => {
 
   return (
     <SafeAreaView>
-      {/* /* Flatlist Component for Category type */}
       <Text style={Style.categoryText}>{Constants.categoryText}</Text>
       <FlatList
         style={Style.categoryFlatList}

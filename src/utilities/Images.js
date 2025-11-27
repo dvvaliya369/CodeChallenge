@@ -1,5 +1,3 @@
-//List down all static images here, so it can be reuse in any screens of the app
-
 const Images = {
   homeStoryUserimage1: require('../assets/Images/Avatar.png'),
   homeStoryUserimage2: require('../assets/Images/Avatar2.png'),

@@ -4,7 +4,6 @@ import Colors from '../../utilities/Colors';
 import Style from '../../styles/Style';
 import Slider from 'react-native-slider';
 
-//Custom component for slider - Cooking Duration
 const CookingDurationSlider = ({ onChange }) => {
   return (
     <>
@@ -15,7 +14,6 @@ const CookingDurationSlider = ({ onChange }) => {
         <Text style={Style.cookingSliderRightText}>{'>60'}</Text>
       </View>
 
-      {/* Slider component for Cooking Duration */}
       <Slider
         minimumTrackTintColor={Colors.themeYellowColor}
         maximumTrackTintColor="#d3d3d3"
@@ -24,7 +22,7 @@ const CookingDurationSlider = ({ onChange }) => {
         minimumValue={10}
         maximumValue={60}
         value={30}
-        onValueChange={onChange} /* Slider Drag or change event */
+        onValueChange={onChange}
       />
     </>
   );

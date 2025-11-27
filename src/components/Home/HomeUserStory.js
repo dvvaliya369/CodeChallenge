@@ -5,7 +5,6 @@ import Constants from '../../utilities/Constants';
 import Images from '../../utilities/Images';
 
 const HomeUserStory = () => {
-  /* UI  Component for Home user story list*/
   const ItemView = ({ item, index }) => {
     return (
       <View>
@@ -24,7 +23,6 @@ const HomeUserStory = () => {
     );
   };
 
-  /* Flatlist Component for Home user story list*/
   return (
     <SafeAreaView>
       <FlatList

@@ -21,7 +21,7 @@ const Post = ({ navigation, route }) => {
     if (route.params) {
       setCoverPicture(
         route.params.photo
-      ); /* Fetchindg data from captured image to display */
+      );
     }
   });
 
@@ -29,17 +29,15 @@ const Post = ({ navigation, route }) => {
     <View style={{ flex: 1, backgroundColor: 'white' }}>
       <SafeAreaView />
 
-      {/* To move screens up when click on any textinput */}
       <KeyboardAwareScrollView scrollEnabled={true}>
         <TouchableOpacity
           onPress={() => {
-            navigation.replace('Home'); //As we need to clear the state variables once user pressed cancel.
+            navigation.replace('Home');
           }}
         >
           <Text style={Style.cancelText}>Cancel</Text>
         </TouchableOpacity>
 
-        {/* Touch event to add cover photo  */}
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('Pic');
@@ -86,7 +84,6 @@ const Post = ({ navigation, route }) => {
           </View>
         </TouchableOpacity>
 
-        {/* Textinput for recipe name */}
         <Text style={Style.recipeText}>Recipe Name</Text>
         <PostTextInput
           inputStyle={Style.recipeNameTextInput}
@@ -97,7 +94,6 @@ const Post = ({ navigation, route }) => {
           }}
         />
 
-        {/* Textinput for recipe description */}
         <Text style={Style.recipeText}>Description</Text>
         <PostTextInput
           inputStyle={Style.recipeDescriptionTextInput}
@@ -109,19 +105,15 @@ const Post = ({ navigation, route }) => {
           }}
         />
 
-        {/* Slider for Cooking duration */}
         <CookingDurationSlider
           onChange={value => {
             console.log(Math.floor(value));
           }}
         />
 
-        {/* Touch event */}
         <TouchableOpacity
           style={Style.nextButtonView}
-          onPress={() => {
-            // navigation.navigate('Pic')
-          }}
+          onPress={() => {}}
         >
           <Text style={Style.nextButtonText}>Next</Text>
         </TouchableOpacity>

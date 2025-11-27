@@ -34,20 +34,17 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react'],
   rules: {
-    // React specific rules
-    'react/react-in-jsx-scope': 'off', // Not needed with React 17+
-    'react/prop-types': 'off', // Using TypeScript for prop validation
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
     'react/display-name': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
 
-    // TypeScript specific rules
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
 
-    // General rules
     'prefer-const': 'error',
     'no-var': 'error',
     'no-console': 'warn',
@@ -55,7 +52,6 @@ module.exports = {
     eqeqeq: ['error', 'always'],
     curly: ['error', 'all'],
 
-    // Code style
     indent: ['error', 2, { SwitchCase: 1 }],
     quotes: ['error', 'single', { avoidEscape: true }],
     semi: ['error', 'always'],

@@ -13,14 +13,11 @@ import Style from '../../styles/Style';
 const Pic = ({ navigation }) => {
   const cameraRef = useRef();
 
-  // Capture event for camera
   const takePicture = async () => {
-    // if (cameraRef) {
     const options = { quality: 0.5, base64: true };
     const data = await cameraRef.current.takePictureAsync(options);
     console.log(data.uri);
     await navigation.navigate('Post', { photo: data.uri });
-    // }
   };
 
   return (
@@ -36,10 +33,9 @@ const Pic = ({ navigation }) => {
       <RNCamera
         ref={cameraRef}
         autoFocus={false}
-        captureAudio={false} // True only for video recording
-        mirrorImage={false} // as iOS alwyas mirror the image after captures so set it true to stop mirroring
+        captureAudio={false}
+        mirrorImage={false}
         removeClippedSubviews={true}
-        //Custom style for camera overlay
         style={{
           width: Dimensions.get('screen').width,
           height: Dimensions.get('screen').height * 0.6,
@@ -47,7 +43,6 @@ const Pic = ({ navigation }) => {
         }}
       />
 
-      {/* Custom Camera Button */}
       <TouchableOpacity
         style={Style.picCameraBUttonOuterView}
         onPress={takePicture}
