@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chess Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f0f2f5;
+      --surface: #ffffff;
+      --surface2: #e8eaed;
+      --text: #1a1a2e;
+      --text-muted: #6b7280;
+      --accent: #6c5ce7;
+      --accent-hover: #5a4bd1;
+      --light-sq: #f0d9b5;
+      --dark-sq: #b58863;
+      --highlight: rgba(108,92,231,0.55);
+      --last-move: rgba(255,215,0,0.40);
+      --check: rgba(220,38,38,0.60);
+      --shadow: 0 4px 24px rgba(0,0,0,0.10);
+      --border: #e2e8f0;
+      --captured-bg: #f8fafc;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f0f1a;
+      --surface: #1a1a2e;
+      --surface2: #252540;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #a78bfa;
+      --accent-hover: #8b5cf6;
+      --light-sq: #769656;
+      --dark-sq: #4a7c59;
+      --highlight: rgba(167,139,250,0.60);
+      --last-move: rgba(255,215,0,0.30);
+      --check: rgba(248,113,113,0.60);
+      --shadow: 0 4px 24px rgba(0,0,0,0.45);
+      --border: #2d2d50;
+      --captured-bg: #252540;
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 12px 40px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      width: 100%;
+      max-width: 980px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      font-size: 1.15rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.18s;
+    }
+    .theme-btn:hover { background: var(--accent); color: #fff; transform: scale(1.09); }
+
+    .game-wrap {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 980px;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 200px;
+      flex-shrink: 0;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .card h3 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .player-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .av-w { background: #f0d9b5; color: #3d2b1f; }
+    .av-b { background: #2a1a08; color: #f0d9b5; }
+
+    .p-name { font-weight: 600; font-size: 0.88rem; }
+    .p-score { font-size: 0.74rem; color: var(--text-muted); }
+
+    .pulse-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-left: auto;
+      box-shadow: 0 0 0 3px rgba(108,92,231,0.2);
+      animation: pulse 1.3s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform:scale(1); opacity:1; }
+      50%      { transform:scale(1.4); opacity:0.6; }
+    }
+
+    .cap-row {
+      display: flex; flex-wrap: wrap; gap: 1px;
+      min-height: 26px;
+      background: var(--captured-bg);
+      border-radius: 8px;
+      padding: 4px 7px;
+      font-size: 1.05rem;
+      transition: background 0.3s;
+    }
+
+    .status-card { text-align: center; }
+    .status-txt { font-size: 0.9rem; font-weight: 600; color: var(--accent); }
+    .move-num-txt { font-size: 0.74rem; color: var(--text-muted); margin-top: 3px; }
+
+    .btn {
+      width: 100%; padding: 9px 12px;
+      border-radius: 10px; border: none;
+      font-family: inherit; font-size: 0.84rem; font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      transition: background 0.18s, transform 0.14s, opacity 0.2s;
+    }
+    .btn-p { background: var(--accent); color: #fff; }
+    .btn-p:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-s { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .btn-s:hover { filter: brightness(0.93); transform: translateY(-1px); }
+    .btn:disabled { opacity: 0.38; cursor: not-allowed; transform: none !important; }
+    .btn-group { display: flex; flex-direction: column; gap: 8px; }
+
+    .move-list {
+      max-height: 160px; overflow-y: auto;
+      font-size: 0.78rem; scrollbar-width: thin;
+    }
+    .move-list::-webkit-scrollbar { width: 3px; }
+    .move-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    .ml-row {
+      display: flex; gap: 4px;
+      padding: 2px 0; border-bottom: 1px solid var(--border);
+    }
+    .ml-row:last-child { border-bottom: none; }
+    .ml-n { color: var(--text-muted); width: 24px; flex-shrink: 0; }
+    .ml-w { color: var(--text); flex: 1; font-weight: 500; }
+    .ml-b { color: var(--text-muted); flex: 1; }
+
+    /* ── Board ── */
+    .board-area { display: flex; flex-direction: column; align-items: center; }
+
+    .board-with-coords {
+      display: flex; align-items: flex-start; gap: 0;
+    }
+
+    .rank-labels {
+      display: flex; flex-direction: column;
+    }
+    .rank-lbl {
+      height: var(--sq, 68px);
+      width: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.62rem; font-weight: 600;
+      color: var(--text-muted);
+      user-select: none;
+    }
+
+    .board-col { display: flex; flex-direction: column; }
+
+    .board-shell {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow), 0 0 0 4px var(--accent);
+    }
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(8, var(--sq));
+      grid-template-rows: repeat(8, var(--sq));
+      --sq: clamp(42px, 9.5vw, 68px);
+    }
+
+    .file-labels {
+      display: flex;
+      padding-left: 16px;
+      margin-top: 3px;
+    }
+    .file-lbl {
+      width: var(--sq, 68px);
+      text-align: center;
+      font-size: 0.62rem; font-weight: 600;
+      color: var(--text-muted);
+      user-select: none;
+    }
+
+    .sq {
+      width: var(--sq); height: var(--sq);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; position: relative;
+      transition: filter 0.1s;
+      user-select: none;
+    }
+    .sq.lt { background: var(--light-sq); }
+    .sq.dk { background: var(--dark-sq); }
+    .sq:hover { filter: brightness(1.07); }
+
+    .sq.sel    { outline: 3px solid var(--accent); outline-offset: -3px; z-index: 2; }
+    .sq.lm-from,
+    .sq.lm-to  { background: var(--last-move) !important; }
+
+    .sq.ck-sq::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--check); pointer-events: none; z-index: 1;
+    }
+
+    .sq.mv-dot::before {
+      content: ''; position: absolute;
+      width: 33%; height: 33%;
+      border-radius: 50%;
+      background: rgba(90,70,210,0.45);
+      z-index: 3; pointer-events: none;
+    }
+    .sq.mv-cap::before {
+      content: ''; position: absolute; inset: 4px;
+      border-radius: 50%;
+      border: 3px solid rgba(90,70,210,0.50);
+      z-index: 3; pointer-events: none; background: transparent;
+    }
+
+    .piece {
+      font-size: calc(var(--sq, 68px) * 0.74);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 2;
+      transition: transform 0.1s;
+    }
+    .sq:hover .piece { transform: scale(1.09); }
+
+    /* Modals */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.58);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 300;
+    }
+    .overlay.hide { display: none; }
+
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px 34px;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 16px;
+      text-align: center; min-width: 270px;
+    }
+    .m-icon  { font-size: 3.2rem; }
+    .m-title { font-size: 1.2rem; font-weight: 700; color: var(--text); }
+    .m-sub   { font-size: 0.88rem; color: var(--text-muted); }
+
+    .promo-row { display: flex; gap: 10px; }
+    .promo-btn {
+      width: 58px; height: 58px; font-size: 2.2rem;
+      background: var(--surface2); border: 2px solid var(--border);
+      border-radius: 12px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s, transform 0.14s;
+    }
+    .promo-btn:hover { border-color: var(--accent); transform: scale(1.1); }
+
+    @media (max-width: 680px) {
+      .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; }
+      .sidebar .card { flex: 1 1 150px; }
+      .btn-group { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">&#9822; Chess</div>
+  <button class="theme-btn" id="themeBtn" title="Toggle light / dark">&#10024;</button>
+</header>
+
+<div class="game-wrap">
+
+  <!-- Left sidebar -->
+  <div class="sidebar">
+    <div class="card">
+      <h3>Black</h3>
+      <div class="player-row">
+        <div class="avatar av-b">B</div>
+        <div>
+          <div class="p-name">Player 2</div>
+          <div class="p-score" id="sc-b">+0 pts</div>
+        </div>
+        <div class="pulse-dot" id="dot-b" style="display:none"></div>
+      </div>
+      <div class="cap-row" id="cap-b"></div>
+    </div>
+
+    <div class="card status-card">
+      <div class="status-txt" id="stxt">White to move</div>
+      <div class="move-num-txt" id="mnum">Move 1</div>
+    </div>
+
+    <div class="card">
+      <h3>White</h3>
+      <div class="player-row">
+        <div class="avatar av-w">W</div>
+        <div>
+          <div class="p-name">Player 1</div>
+          <div class="p-score" id="sc-w">+0 pts</div>
+        </div>
+        <div class="pulse-dot" id="dot-w"></div>
+      </div>
+      <div class="cap-row" id="cap-w"></div>
+    </div>
+  </div>
+
+  <!-- Board -->
+  <div class="board-area">
+    <div class="board-with-coords">
+      <div class="rank-labels" id="rlbls"></div>
+      <div class="board-col">
+        <div class="board-shell">
+          <div id="board"></div>
+        </div>
+        <div class="file-labels" id="flbls"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right sidebar -->
+  <div class="sidebar">
+    <div class="card btn-group">
+      <button class="btn btn-p" id="btnNew">&#9654; New Game</button>
+      <button class="btn btn-s" id="btnUndo" disabled>&#8592; Undo</button>
+      <button class="btn btn-s" id="btnFlip">&#8646; Flip Board</button>
+    </div>
+    <div class="card">
+      <h3>Move History</h3>
+      <div class="move-list" id="mlist"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Promotion overlay -->
+<div class="overlay hide" id="promoOverlay">
+  <div class="modal-box">
+    <div class="m-title">Promote Pawn</div>
+    <div class="promo-row" id="promoRow"></div>
+  </div>
+</div>
+
+<!-- Game over overlay -->
+<div class="overlay hide" id="overOverlay">
+  <div class="modal-box">
+    <div class="m-icon" id="oIcon">&#127942;</div>
+    <div class="m-title" id="oTitle">Checkmate!</div>
+    <div class="m-sub"   id="oSub">White wins</div>
+    <button class="btn btn-p" id="btnOverNew"
+      style="width:auto;padding:10px 32px;font-size:0.92rem;margin-top:6px;">
+      &#9654; Play Again
+    </button>
+  </div>
+</div>
+
+<script>
+/* ─── Theme ───────────────────────────────────────────────────────── */
+let dark = false;
+document.getElementById('themeBtn').addEventListener('click', () => {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
+  document.getElementById('themeBtn').textContent = dark ? '☀️' : '✨';
+});
+
+/* ─── Piece glyphs & values ───────────────────────────────────────── */
+const G = {
+  wK:'♔',wQ:'♕',wR:'♖',wB:'♗',wN:'♘',wP:'♙',
+  bK:'♚',bQ:'♛',bR:'♜',bB:'♝',bN:'♞',bP:'♟'
+};
+const V = {K:0,Q:9,R:5,B:3,N:3,P:1};
+const col  = p => p ? p[0] : null;
+const typ  = p => p ? p[1] : null;
+const opp  = c => c==='w' ? 'b' : 'w';
+
+/* ─── Initial board ───────────────────────────────────────────────── */
+function startBoard() {
+  const b = Array.from({length:8}, () => Array(8).fill(null));
+  const back = ['R','N','B','Q','K','B','N','R'];
+  for (let c=0;c<8;c++) {
+    b[0][c]='b'+back[c]; b[1][c]='bP';
+    b[6][c]='wP';         b[7][c]='w'+back[c];
+  }
+  return b;
+}
+
+/* ─── Game state ──────────────────────────────────────────────────── */
+let board, turn, sel, legl, hist, capBy;
+let castle, ep, hm, fn;
+let lm, stack, promo, flip;
+
+function newGame() {
+  board  = startBoard();
+  turn='w'; sel=null; legl=[]; hist=[]; capBy={w:[],b:[]};
+  castle={w:{k:true,q:true},b:{k:true,q:true}};
+  ep=null; hm=0; fn=1;
+  lm=null; stack=[]; promo=null; flip=false;
+  drawCoords(); draw(); status(); side(); mhistory();
+  document.getElementById('btnUndo').disabled=true;
+}
+
+/* ─── Move generation ─────────────────────────────────────────────── */
+function raw(b, r, c, cr, ep) {
+  const p=b[r][c]; if(!p) return [];
+  const pc=col(p), pt=typ(p), mv=[];
+  function add(nr,nc){ if(nr>=0&&nr<8&&nc>=0&&nc<8&&col(b[nr][nc])!==pc) mv.push([nr,nc,null]); }
+  function slide(dr,dc){ let nr=r+dr,nc=c+dc;
+    while(nr>=0&&nr<8&&nc>=0&&nc<8){
+      if(b[nr][nc]){if(col(b[nr][nc])!==pc)mv.push([nr,nc,null]);break;}
+      mv.push([nr,nc,null]); nr+=dr; nc+=dc;
+    }
+  }
+  if (pt==='P') {
+    const d=pc==='w'?-1:1, sr=pc==='w'?6:1;
+    if (b[r+d]&&b[r+d][c]===null) {
+      mv.push([r+d,c,null]);
+      if (r===sr&&b[r+2*d][c]===null) mv.push([r+2*d,c,null]);
+    }
+    for (const dc of[-1,1]) {
+      const nr=r+d,nc=c+dc;
+      if (nr>=0&&nr<8&&nc>=0&&nc<8) {
+        if (b[nr][nc]&&col(b[nr][nc])!==pc) mv.push([nr,nc,null]);
+        if (ep&&ep[0]===nr&&ep[1]===nc) mv.push([nr,nc,'ep']);
+      }
+    }
+  }
+  if (pt==='N') {[[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]].forEach(([dr,dc])=>add(r+dr,c+dc));}
+  if (pt==='B'||pt==='Q') {[[-1,-1],[-1,1],[1,-1],[1,1]].forEach(([dr,dc])=>slide(dr,dc));}
+  if (pt==='R'||pt==='Q') {[[-1,0],[1,0],[0,-1],[0,1]].forEach(([dr,dc])=>slide(dr,dc));}
+  if (pt==='K') {
+    [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]].forEach(([dr,dc])=>add(r+dr,c+dc));
+    const noCr={w:{k:false,q:false},b:{k:false,q:false}};
+    if (cr[pc].k&&!b[r][5]&&!b[r][6]&&b[r][7]===pc+'R')
+      if (!atk(b,r,4,opp(pc),noCr)&&!atk(b,r,5,opp(pc),noCr)&&!atk(b,r,6,opp(pc),noCr))
+        mv.push([r,6,'ck']);
+    if (cr[pc].q&&!b[r][3]&&!b[r][2]&&!b[r][1]&&b[r][0]===pc+'R')
+      if (!atk(b,r,4,opp(pc),noCr)&&!atk(b,r,3,opp(pc),noCr)&&!atk(b,r,2,opp(pc),noCr))
+        mv.push([r,2,'cq']);
+  }
+  return mv;
+}
+
+function atk(b, r, c, byC, cr) {
+  for (let br=0;br<8;br++) for(let bc=0;bc<8;bc++)
+    if(col(b[br][bc])===byC)
+      if(raw(b,br,bc,cr||{w:{k:false,q:false},b:{k:false,q:false}},null).some(([mr,mc])=>mr===r&&mc===c))
+        return true;
+  return false;
+}
+
+function kingAt(b, color) {
+  for(let r=0;r<8;r++) for(let c=0;c<8;c++) if(b[r][c]===color+'K') return [r,c];
+  return null;
+}
+
+function checked(b, color) {
+  const k=kingAt(b,color); return k?atk(b,k[0],k[1],opp(color)):false;
+}
+
+function tempApply(b, fr, fc, tr, tc, flag, ep) {
+  const nb=b.map(r=>[...r]);
+  nb[tr][tc]=nb[fr][fc]; nb[fr][fc]=null;
+  if(flag==='ep'){const d=col(nb[tr][tc])==='w'?1:-1; nb[tr+d][tc]=null;}
+  if(flag==='ck'){nb[tr][5]=nb[tr][7]; nb[tr][7]=null;}
+  if(flag==='cq'){nb[tr][3]=nb[tr][0]; nb[tr][0]=null;}
+  return nb;
+}
+
+function legal(b, r, c, cr, ep) {
+  const pc=col(b[r][c]);
+  return raw(b,r,c,cr,ep).filter(([tr,tc,flag])=>{
+    const nb=tempApply(b,r,c,tr,tc,flag,ep);
+    return !checked(nb,pc);
+  });
+}
+
+function allLegal(b, color, cr, ep) {
+  const out=[];
+  for(let r=0;r<8;r++) for(let c=0;c<8;c++)
+    if(col(b[r][c])===color)
+      legal(b,r,c,cr,ep).forEach(m=>out.push({from:[r,c],to:m}));
+  return out;
+}
+
+/* ─── Apply move ──────────────────────────────────────────────────── */
+function applyMove(fr, fc, tr, tc, prom) {
+  const p=board[fr][fc], pc=col(p), pt=typ(p);
+  const cap=board[tr][tc];
+  const epCap=ep&&tr===ep[0]&&tc===ep[1]&&pt==='P';
+
+  stack.push({
+    board:board.map(r=>[...r]), turn,
+    castle:JSON.parse(JSON.stringify(castle)),
+    ep, hm, fn, lm,
+    capBy:JSON.parse(JSON.stringify(capBy)),
+    hist:[...hist]
+  });
+
+  let flag=null;
+  if(pt==='K'){if(tc===6&&fc===4)flag='ck'; if(tc===2&&fc===4)flag='cq';}
+  if(epCap)flag='ep';
+
+  const nb=tempApply(board,fr,fc,tr,tc,flag,ep);
+  if(prom) nb[tr][tc]=pc+prom;
+  board=nb;
+
+  if(cap) capBy[pc].push(cap);
+  if(epCap) capBy[pc].push(opp(pc)+'P');
+
+  ep=(pt==='P'&&Math.abs(tr-fr)===2)?[(fr+tr)/2,tc]:null;
+
+  if(pt==='K'){castle[pc].k=false;castle[pc].q=false;}
+  if(pt==='R'){if(fc===0)castle[pc].q=false; if(fc===7)castle[pc].k=false;}
+
+  lm=[fr,fc,tr,tc];
+
+  const F='abcdefgh', R='87654321';
+  let note=pt!=='P'?pt:'';
+  if(cap||epCap){if(pt==='P')note+=F[fc]; note+='x';}
+  note+=F[tc]+R[tr];
+  if(prom)note+='='+prom;
+  if(flag==='ck')note='O-O';
+  if(flag==='cq')note='O-O-O';
+  hist.push(note);
+
+  hm=(pt==='P'||cap)?0:hm+1;
+  if(pc==='b')fn++;
+  turn=opp(pc); sel=null; legl=[];
+  draw(); status(); side(); mhistory();
+  document.getElementById('btnUndo').disabled=stack.length===0;
+}
+
+/* ─── Undo ────────────────────────────────────────────────────────── */
+function undoMove() {
+  if(!stack.length)return;
+  const s=stack.pop();
+  board=s.board; turn=s.turn; castle=s.castle; ep=s.ep;
+  hm=s.hm; fn=s.fn; lm=s.lm; capBy=s.capBy; hist=s.hist;
+  sel=null; legl=[];
+  draw(); status(); side(); mhistory();
+  document.getElementById('btnUndo').disabled=stack.length===0;
+}
+
+/* ─── Draw board ──────────────────────────────────────────────────── */
+function draw() {
+  const el=document.getElementById('board');
+  el.innerHTML='';
+  for(let vr=0;vr<8;vr++) for(let vc=0;vc<8;vc++) {
+    const r=flip?7-vr:vr, c=flip?7-vc:vc;
+    const sq=document.createElement('div');
+    sq.className='sq '+((r+c)%2===0?'lt':'dk');
+    sq.dataset.r=r; sq.dataset.c=c;
+    if(lm){const[fr,fc,tr,tc]=lm;if(r===fr&&c===fc)sq.classList.add('lm-from');if(r===tr&&c===tc)sq.classList.add('lm-to');}
+    if(sel&&sel[0]===r&&sel[1]===c)sq.classList.add('sel');
+    if(legl.some(([lr,lc])=>lr===r&&lc===c))
+      sq.classList.add(board[r][c]?'mv-cap':'mv-dot');
+    if(board[r][c]&&typ(board[r][c])==='K'&&col(board[r][c])===turn&&checked(board,turn))
+      sq.classList.add('ck-sq');
+    if(board[r][c]){
+      const pe=document.createElement('div');
+      pe.className='piece';
+      pe.textContent=G[board[r][c]];
+      pe.style.filter=col(board[r][c])==='w'
+        ?'drop-shadow(0 1px 2px rgba(0,0,0,0.6))'
+        :'drop-shadow(0 1px 2px rgba(255,255,255,0.15))';
+      sq.appendChild(pe);
+    }
+    sq.addEventListener('click',onSq);
+    el.appendChild(sq);
+  }
+}
+
+function drawCoords() {
+  const rl=document.getElementById('rlbls');
+  const fl=document.getElementById('flbls');
+  rl.innerHTML=''; fl.innerHTML='';
+  for(let i=0;i<8;i++){
+    const d=document.createElement('div'); d.className='rank-lbl';
+    d.textContent=flip?(i+1):(8-i); rl.appendChild(d);
+  }
+  const L='abcdefgh';
+  for(let i=0;i<8;i++){
+    const d=document.createElement('div'); d.className='file-lbl';
+    d.textContent=flip?L[7-i]:L[i]; fl.appendChild(d);
+  }
+}
+
+/* ─── Click handler ───────────────────────────────────────────────── */
+function onSq(e) {
+  const sq=e.currentTarget, r=+sq.dataset.r, c=+sq.dataset.c;
+  if(promo)return;
+  if(sel){
+    const mv=legl.find(([lr,lc])=>lr===r&&lc===c);
+    if(mv){
+      const p=board[sel[0]][sel[1]], pc=col(p), pt=typ(p);
+      const prow=pc==='w'?0:7;
+      if(pt==='P'&&r===prow) showPromo(sel[0],sel[1],r,c,pc);
+      else applyMove(sel[0],sel[1],r,c,null);
+      return;
+    }
+  }
+  if(board[r][c]&&col(board[r][c])===turn){
+    sel=[r,c];
+    legl=legal(board,r,c,castle,ep).map(([mr,mc])=>[mr,mc]);
+  }else{sel=null;legl=[];}
+  draw();
+}
+
+/* ─── Promotion ───────────────────────────────────────────────────── */
+function showPromo(fr,fc,tr,tc,pc) {
+  promo={fr,fc,tr,tc};
+  const row=document.getElementById('promoRow'); row.innerHTML='';
+  for(const t of['Q','R','B','N']){
+    const b=document.createElement('div'); b.className='promo-btn';
+    b.textContent=G[pc+t]; b.title={Q:'Queen',R:'Rook',B:'Bishop',N:'Knight'}[t];
+    b.addEventListener('click',()=>{
+      document.getElementById('promoOverlay').classList.add('hide');
+      applyMove(promo.fr,promo.fc,promo.tr,promo.tc,t);
+      promo=null;
+    });
+    row.appendChild(b);
+  }
+  document.getElementById('promoOverlay').classList.remove('hide');
+}
+
+/* ─── Status ──────────────────────────────────────────────────────── */
+function status() {
+  const all=allLegal(board,turn,castle,ep);
+  const chk=checked(board,turn);
+  const tn=turn==='w'?'White':'Black';
+  document.getElementById('dot-w').style.display=turn==='w'?'':'none';
+  document.getElementById('dot-b').style.display=turn==='b'?'':'none';
+  document.getElementById('mnum').textContent='Move '+fn;
+  const st=document.getElementById('stxt');
+  if(all.length===0){
+    if(chk){
+      const w=turn==='w'?'Black':'White';
+      st.textContent='Checkmate!';
+      openOver('Checkmate!',w+' wins the game!','🏆');
+    }else{
+      st.textContent='Stalemate — Draw';
+      openOver('Stalemate!','The game is a draw.','🤝');
+    }
+  }else if(hm>=100){
+    st.textContent='Draw — 50-move rule';
+    openOver('Draw!','50-move rule.','🤝');
+  }else{
+    st.textContent=chk?tn+' is in Check!':tn+' to move';
+  }
+}
+
+function openOver(title,sub,icon) {
+  document.getElementById('oIcon').textContent=icon;
+  document.getElementById('oTitle').textContent=title;
+  document.getElementById('oSub').textContent=sub;
+  document.getElementById('overOverlay').classList.remove('hide');
+}
+
+function side() {
+  for(const pc of['w','b']){
+    const id=pc;
+    const pcs=capBy[pc];
+    document.getElementById('cap-'+id).innerHTML=pcs.map(p=>'<span>'+G[p]+'</span>').join('');
+    const mat=pcs.reduce((s,p)=>s+(V[typ(p)]||0),0);
+    document.getElementById('sc-'+id).textContent='+'+mat+' pts';
+  }
+}
+
+function mhistory() {
+  const el=document.getElementById('mlist'); el.innerHTML='';
+  for(let i=0;i<hist.length;i+=2){
+    const row=document.createElement('div'); row.className='ml-row';
+    row.innerHTML=
+      '<span class="ml-n">'+(Math.floor(i/2)+1)+'.</span>'+
+      '<span class="ml-w">'+(hist[i]||'')+'</span>'+
+      '<span class="ml-b">'+(hist[i+1]||'')+'</span>';
+    el.appendChild(row);
+  }
+  el.scrollTop=el.scrollHeight;
+}
+
+/* ─── Controls ────────────────────────────────────────────────────── */
+document.getElementById('btnNew').addEventListener('click',()=>{
+  document.getElementById('overOverlay').classList.add('hide'); newGame();
+});
+document.getElementById('btnOverNew').addEventListener('click',()=>{
+  document.getElementById('overOverlay').classList.add('hide'); newGame();
+});
+document.getElementById('btnUndo').addEventListener('click',undoMove);
+document.getElementById('btnFlip').addEventListener('click',()=>{
+  flip=!flip; drawCoords(); draw();
+});
+
+/* ─── Boot ────────────────────────────────────────────────────────── */
+newGame();
+</script>
+</body>
+</html>
