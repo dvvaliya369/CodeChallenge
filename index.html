@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumina — Design That Moves You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #6c63ff;
+      --accent-light: #8b85ff;
+      --accent-dark: #4e46d4;
+      --bg: #0d0d14;
+      --surface: #161622;
+      --surface2: #1e1e2e;
+      --text: #f0f0f8;
+      --muted: #9090b0;
+      --border: #2a2a40;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 6%;
+      background: rgba(13,13,20,0.8);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 1.4rem; font-weight: 800;
+      background: linear-gradient(135deg, #6c63ff, #a78bfa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent); color: #fff; border: none; cursor: pointer;
+      padding: 0.55rem 1.3rem; border-radius: 999px; font-size: 0.88rem; font-weight: 600;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,99,255,0.35); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 7rem 6% 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(108,99,255,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.35);
+      color: var(--accent-light); font-size: 0.8rem; font-weight: 600;
+      padding: 0.35rem 0.9rem; border-radius: 999px; margin-bottom: 1.6rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 800; line-height: 1.15;
+      max-width: 800px; margin-bottom: 1.4rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #6c63ff, #a78bfa, #38bdf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted); max-width: 560px; margin-bottom: 2.4rem;
+    }
+
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      color: #fff; border: none; cursor: pointer;
+      padding: 0.85rem 2rem; border-radius: 999px; font-size: 1rem; font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s; text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(108,99,255,0.4); }
+
+    .btn-secondary {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border); cursor: pointer;
+      padding: 0.85rem 2rem; border-radius: 999px; font-size: 1rem; font-weight: 600;
+      transition: border-color 0.2s, transform 0.2s; text-decoration: none;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+    /* METRICS */
+    .metrics {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 2.5rem; margin-top: 4rem;
+    }
+    .metric { text-align: center; }
+    .metric-num {
+      font-size: 2.4rem; font-weight: 800;
+      background: linear-gradient(135deg, #6c63ff, #a78bfa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .metric-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* SECTION SHARED */
+    section { padding: 6rem 6%; }
+    .section-tag {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent-light); margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; line-height: 1.2;
+      margin-bottom: 1rem; max-width: 600px;
+    }
+    .section-sub { color: var(--muted); max-width: 520px; margin-bottom: 3rem; }
+
+    /* FEATURES */
+    .features { background: var(--surface); }
+    .features-inner { max-width: 1100px; margin: 0 auto; }
+    .features-header { text-align: center; }
+    .features-header .section-title, .features-header .section-sub { margin-left: auto; margin-right: auto; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 1rem;
+    }
+
+    .card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+      border-color: var(--accent);
+    }
+
+    .card-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(108,99,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.2rem;
+    }
+
+    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .card p { color: var(--muted); font-size: 0.92rem; }
+
+    /* HOW IT WORKS */
+    .how { max-width: 1100px; margin: 0 auto; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+    .step { display: flex; flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1rem; color: #fff; flex-shrink: 0;
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; }
+    .step p { color: var(--muted); font-size: 0.9rem; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: var(--surface); }
+    .testimonials-inner { max-width: 1100px; margin: 0 auto; }
+    .testimonials-header { text-align: center; }
+    .testimonials-header .section-title,
+    .testimonials-header .section-sub { margin-left: auto; margin-right: auto; }
+
+    .testi-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .testi-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      transition: transform 0.2s;
+    }
+    .testi-card:hover { transform: translateY(-4px); }
+
+    .stars { color: #f5a623; font-size: 0.9rem; margin-bottom: 1rem; }
+    .testi-quote { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.4rem; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+    .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem; color: #fff; flex-shrink: 0;
+    }
+    .author-name { font-weight: 600; font-size: 0.9rem; }
+    .author-role { font-size: 0.8rem; color: var(--muted); }
+
+    /* PRICING */
+    .pricing-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .pricing-inner .section-title, .pricing-inner .section-sub { margin-left: auto; margin-right: auto; }
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem; margin-top: 1rem;
+    }
+
+    .plan {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2.2rem; text-align: left;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .plan:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.3); }
+    .plan.popular {
+      border-color: var(--accent);
+      background: linear-gradient(160deg, rgba(108,99,255,0.12), var(--surface2));
+    }
+
+    .plan-badge {
+      display: inline-block; background: var(--accent); color: #fff;
+      font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 999px;
+      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .plan-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .plan-price { font-size: 2.6rem; font-weight: 800; margin-bottom: 0.25rem; }
+    .plan-price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+    .plan-desc { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem; }
+    .plan-features { list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+    .plan-features li { font-size: 0.9rem; color: var(--muted); display: flex; gap: 0.5rem; }
+    .plan-features li::before { content: '✓'; color: var(--accent-light); font-weight: 700; }
+    .plan-btn {
+      display: block; text-align: center; padding: 0.8rem;
+      border-radius: 999px; font-weight: 600; font-size: 0.95rem;
+      cursor: pointer; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .plan-btn-outline {
+      border: 1px solid var(--border); color: var(--text); background: transparent;
+    }
+    .plan-btn-outline:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .plan-btn-solid {
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      color: #fff; border: none;
+    }
+    .plan-btn-solid:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(108,99,255,0.4); }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      text-align: center; padding: 6rem 6%;
+    }
+    .cta-banner h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; }
+    .cta-banner p { color: var(--muted); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    /* FOOTER */
+    footer {
+      background: var(--surface); padding: 3rem 6% 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo {
+      font-size: 1.3rem; font-weight: 800;
+      background: linear-gradient(135deg, #6c63ff, #a78bfa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { color: var(--muted); font-size: 0.82rem; width: 100%; text-align: center; margin-top: 1rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 5%; }
+      .nav-links { display: none; }
+      section { padding: 4rem 5%; }
+      .metrics { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="#">Lumina</a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+    </ul>
+    <a class="nav-cta" href="#pricing">Get Started</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="badge">✦ Now in Open Beta</span>
+    <h1>Design that<br /><span>moves people</span></h1>
+    <p>Lumina is the all-in-one creative platform that lets teams ship stunning, conversion-ready designs — without the back-and-forth.</p>
+    <div class="hero-buttons">
+      <a class="btn-primary" href="#pricing">Start for free</a>
+      <a class="btn-secondary" href="#how">See how it works</a>
+    </div>
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-num">40k+</div>
+        <div class="metric-label">Teams onboarded</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">98%</div>
+        <div class="metric-label">Satisfaction rate</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">3×</div>
+        <div class="metric-label">Faster delivery</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="features-inner">
+      <div class="features-header">
+        <div class="section-tag">Features</div>
+        <h2 class="section-title">Everything your team needs to create</h2>
+        <p class="section-sub">From idea to launch, Lumina covers every step of the design process with tools built for speed.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Lightning Fast Editor</h3>
+          <p>A canvas that keeps up with your thinking — real-time collaboration with zero lag, even on complex files.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎨</div>
+          <h3>Smart Design Tokens</h3>
+          <p>Define colors, typography, and spacing once. Watch them update everywhere instantly across your entire project.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🤖</div>
+          <h3>AI-Assisted Layouts</h3>
+          <p>Describe what you need. Lumina's AI generates polished layout suggestions you can use or build on.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔗</div>
+          <h3>One-Click Handoff</h3>
+          <p>Export pixel-perfect specs, code snippets, and assets directly to your dev team with a single click.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Analytics Integration</h3>
+          <p>Connect your designs to real user data. See heatmaps and click rates right inside your canvas.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛡️</div>
+          <h3>Enterprise Security</h3>
+          <p>SOC 2 Type II certified. SSO, audit logs, and granular permissions keep your IP locked down.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="how">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-title">Three steps to your best work</h2>
+      <p class="section-sub">No steep learning curve. You'll be shipping polished designs within your first session.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Create your workspace</h3>
+          <p>Sign up, invite your team, and set up a shared workspace in under two minutes. Import existing assets from Figma or Sketch instantly.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Design & collaborate</h3>
+          <p>Work on the same canvas simultaneously. Leave comments, resolve threads, and keep feedback organized without switching apps.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Ship with confidence</h3>
+          <p>Generate production-ready specs and assets. Connect to your pipeline via webhooks or push directly to GitHub.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Measure & iterate</h3>
+          <p>Track how users interact with shipped designs. Use built-in A/B testing to find what truly converts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="testimonials-inner">
+      <div class="testimonials-header">
+        <div class="section-tag">Testimonials</div>
+        <h2 class="section-title">Loved by teams at every scale</h2>
+        <p class="section-sub">Hear from the designers and product leaders who rely on Lumina every day.</p>
+      </div>
+      <div class="testi-cards">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-quote">"We cut our design-to-handoff cycle from 2 weeks to 3 days. The token system alone paid for the subscription ten times over."</p>
+          <div class="testi-author">
+            <div class="avatar">SR</div>
+            <div>
+              <div class="author-name">Sofia Reyes</div>
+              <div class="author-role">Head of Design, Nuvola</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-quote">"The AI layout suggestions feel like having a senior designer on call 24/7. I've shipped more in 3 months than in the past year."</p>
+          <div class="testi-author">
+            <div class="avatar">JK</div>
+            <div>
+              <div class="author-name">James Kim</div>
+              <div class="author-role">Founder, Stackly</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-quote">"Real-time collaboration used to be a nightmare across time zones. With Lumina, our remote team finally feels like they're in the same room."</p>
+          <div class="testi-author">
+            <div class="avatar">AP</div>
+            <div>
+              <div class="author-name">Amara Patel</div>
+              <div class="author-role">Product Lead, Driftwave</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="pricing-inner">
+      <div class="section-tag">Pricing</div>
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <p class="section-sub">Start free. Scale as you grow. No surprise charges.</p>
+      <div class="plans">
+        <div class="plan">
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">$0 <span>/ month</span></div>
+          <div class="plan-desc">Perfect for solo creators and freelancers just getting started.</div>
+          <ul class="plan-features">
+            <li>3 active projects</li>
+            <li>2 collaborators</li>
+            <li>Community templates</li>
+            <li>5 GB asset storage</li>
+          </ul>
+          <a class="plan-btn plan-btn-outline" href="#">Get started free</a>
+        </div>
+        <div class="plan popular">
+          <span class="plan-badge">Most Popular</span>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">$29 <span>/ month</span></div>
+          <div class="plan-desc">For growing teams that need power, speed, and collaboration.</div>
+          <ul class="plan-features">
+            <li>Unlimited projects</li>
+            <li>15 collaborators</li>
+            <li>AI layout assistant</li>
+            <li>50 GB asset storage</li>
+            <li>Analytics integration</li>
+            <li>Priority support</li>
+          </ul>
+          <a class="plan-btn plan-btn-solid" href="#">Start Pro trial</a>
+        </div>
+        <div class="plan">
+          <div class="plan-name">Enterprise</div>
+          <div class="plan-price">$99 <span>/ month</span></div>
+          <div class="plan-desc">Advanced security and controls for large organizations.</div>
+          <ul class="plan-features">
+            <li>Unlimited everything</li>
+            <li>SSO & SAML</li>
+            <li>Audit logs</li>
+            <li>Custom SLA</li>
+            <li>Dedicated success manager</li>
+          </ul>
+          <a class="plan-btn plan-btn-outline" href="#">Contact sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <h2>Ready to build something beautiful?</h2>
+    <p>Join 40,000+ teams already shipping faster with Lumina. No credit card required.</p>
+    <a class="btn-primary" href="#">Start for free today</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Lumina</span>
+      <div class="footer-links">
+        <a href="#">Product</a>
+        <a href="#">Blog</a>
+        <a href="#">Careers</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 Lumina, Inc. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
