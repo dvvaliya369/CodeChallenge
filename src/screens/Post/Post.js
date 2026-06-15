@@ -21,9 +21,9 @@ const Post = ({ navigation, route }) => {
     if (route.params) {
       setCoverPicture(
         route.params.photo
-      ); /* Fetchindg data from captured image to display */
+      ); /* Fetching data from captured image to display */
     }
-  });
+  }, [route.params]); // Dependency array prevents infinite re-render loop
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -112,7 +112,8 @@ const Post = ({ navigation, route }) => {
         {/* Slider for Cooking duration */}
         <CookingDurationSlider
           onChange={value => {
-            console.log(Math.floor(value));
+            // Slider value handled by parent state; no logging of user data
+            void value;
           }}
         />
 
