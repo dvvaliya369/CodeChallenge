@@ -41,7 +41,7 @@ const HomeRecipeList = () => {
       renderItem={ItemView}
       numColumns={2} /* To shows two items next to each other in Receipe list*/
       showsVerticalScrollIndicator={false}
-      keyExtractor={index => index.toString()}
+      keyExtractor={(item, index) => index.toString()}
       ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
     />
   );
