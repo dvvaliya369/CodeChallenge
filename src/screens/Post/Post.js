@@ -21,9 +21,10 @@ const Post = ({ navigation, route }) => {
     if (route.params) {
       setCoverPicture(
         route.params.photo
-      ); /* Fetchindg data from captured image to display */
+      ); /* Fetching data from captured image to display */
     }
-  });
+  }, [route.params]); // Security fix: dependency array added to prevent effect running on every render,
+  // which allowed route.params to inject/overwrite coverPicture state continuously.
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>

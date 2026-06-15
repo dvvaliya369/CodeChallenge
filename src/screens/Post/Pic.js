@@ -18,7 +18,8 @@ const Pic = ({ navigation }) => {
     // if (cameraRef) {
     const options = { quality: 0.5, base64: true };
     const data = await cameraRef.current.takePictureAsync(options);
-    console.log(data.uri);
+    // Security fix: removed console.log(data.uri) — logging the captured photo's
+    // file URI exposes sensitive user data to device logs (ADB, crash reporters).
     await navigation.navigate('Post', { photo: data.uri });
     // }
   };
