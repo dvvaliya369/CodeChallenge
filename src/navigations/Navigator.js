@@ -140,7 +140,7 @@ const Navigator = ({ navigation, route }) => {
                         Style.searchTabBarImage,
                         {
                           tintColor: focused
-                            ? ''
+                            ? Colors.themeYellowColor
                             : Colors.themeLightGrayTextColor,
                         },
                       ]}
