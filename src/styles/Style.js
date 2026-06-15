@@ -249,13 +249,183 @@ const Style = {
     marginTop: 2,
   },
 
-  //Search
+  //Search (legacy placeholder — kept for backwards-compat)
   searchView: {
     justifyContent: 'center',
     flex: 1,
     backgroundColor: 'white',
   },
   searchText: { alignSelf: 'center', fontWeight: '700', fontSize: 15 },
+
+  // Search screen — recipe search feature
+  searchScreenContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+    paddingTop: Platform.OS === 'android' ? 40 : 16,
+  },
+  searchScreenTitle: {
+    color: Colors.themePoloBlueColor,
+    fontWeight: '700',
+    fontSize: 22,
+    marginHorizontal: 24,
+    marginBottom: 16,
+    fontFamily: 'Inter-Medium',
+  },
+
+  // Search input row
+  searchInputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: Colors.categoryTypeLightGreyColor,
+    borderRadius: 16,
+    marginHorizontal: 24,
+    paddingHorizontal: 16,
+    height: 50,
+    marginBottom: 16,
+  },
+  searchInputIcon: {
+    width: 18,
+    height: 18,
+    tintColor: Colors.themeLightGrayTextColor,
+    marginRight: 10,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 15,
+    color: Colors.recipeUserTextColor,
+    fontFamily: 'Inter-Medium',
+  },
+
+  // Horizontal category filter chips
+  searchCategoryScroll: {
+    flexGrow: 0,
+    marginBottom: 12,
+  },
+  searchCategoryScrollContent: {
+    paddingHorizontal: 24,
+    gap: 8,
+  },
+  searchCategoryChip: {
+    backgroundColor: Colors.categoryTypeLightGreyColor,
+    borderRadius: 20,
+    paddingHorizontal: 18,
+    paddingVertical: 8,
+    marginRight: 8,
+  },
+  searchCategoryChipActive: {
+    backgroundColor: Colors.themeYellowColor,
+  },
+  searchCategoryChipText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: Colors.themeLightGrayTextColor,
+    fontFamily: 'Inter-Medium',
+  },
+  searchCategoryChipTextActive: {
+    color: Colors.themePoloBlueColor,
+  },
+
+  // Result count label
+  searchResultCount: {
+    color: Colors.themeLightGrayTextColor,
+    fontSize: 13,
+    marginHorizontal: 24,
+    marginBottom: 12,
+    fontFamily: 'Inter-Medium',
+  },
+
+  // Recipe result cards list
+  searchRecipeList: {
+    paddingHorizontal: 24,
+    paddingBottom: 32,
+  },
+  searchRecipeCard: {
+    flexDirection: 'row',
+    backgroundColor: Colors.categoryTypeLightGreyColor,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  searchRecipeCardImage: {
+    width: 100,
+    height: 100,
+    borderTopLeftRadius: 16,
+    borderBottomLeftRadius: 16,
+  },
+  searchRecipeCardBody: {
+    flex: 1,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    justifyContent: 'space-between',
+  },
+  searchRecipeUserRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  searchRecipeUserImg: {
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+  },
+  searchRecipeUserName: {
+    marginLeft: 6,
+    fontSize: 12,
+    color: Colors.themeLightGrayTextColor,
+    fontFamily: 'Inter-Medium',
+  },
+  searchRecipeTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: Colors.themePoloBlueColor,
+    fontFamily: 'Inter-Medium',
+    marginBottom: 6,
+  },
+  searchRecipeMetaRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  searchRecipeTypeBadge: {
+    backgroundColor: Colors.themeYellowColor,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 3,
+  },
+  searchRecipeTypeText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: Colors.themePoloBlueColor,
+  },
+  searchRecipeTime: {
+    fontSize: 12,
+    color: Colors.themeLightGrayTextColor,
+    fontFamily: 'Inter-Medium',
+  },
+
+  // Empty state
+  searchEmptyState: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 60,
+  },
+  searchEmptyIcon: {
+    width: 48,
+    height: 48,
+    tintColor: Colors.themeLightGrayTextColor,
+    marginBottom: 16,
+  },
+  searchEmptyTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: Colors.themePoloBlueColor,
+    marginBottom: 8,
+    fontFamily: 'Inter-Medium',
+  },
+  searchEmptySubtitle: {
+    fontSize: 14,
+    color: Colors.themeLightGrayTextColor,
+    fontFamily: 'Inter-Medium',
+  },
 };
 
 export default Style;
