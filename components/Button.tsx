@@ -80,7 +80,12 @@ export const Button: React.FC<ButtonProps> = ({
     .join(' ');
 
   return (
-    <button className={classes} disabled={disabled || loading} {...rest}>
+    <button
+      className={classes}
+      disabled={disabled || loading}
+      aria-busy={loading || undefined}
+      {...rest}
+    >
       {loading && (
         <span className="btn__spinner" aria-hidden="true">
           ⟳
