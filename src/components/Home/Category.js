@@ -53,7 +53,7 @@ const Category = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={ItemView}
-        keyExtractor={index => index.toString()}
+        keyExtractor={(item, index) => index.toString()}
         ItemSeparatorComponent={() => <View style={{ width: 15 }} />}
       />
     </SafeAreaView>
