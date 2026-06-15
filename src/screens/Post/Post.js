@@ -21,9 +21,9 @@ const Post = ({ navigation, route }) => {
     if (route.params) {
       setCoverPicture(
         route.params.photo
-      ); /* Fetchindg data from captured image to display */
+      ); /* Fetching data from captured image to display */
     }
-  });
+  }, [route.params]);
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
