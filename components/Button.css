@@ -122,6 +122,12 @@
 
 .btn--loading {
   cursor: wait;
+  pointer-events: none;
+}
+
+/* Loading takes precedence over disabled cursor so the wait cursor is visible */
+.btn--disabled.btn--loading {
+  cursor: wait;
 }
 
 .btn--full-width {
