@@ -44,6 +44,38 @@ const Constants = {
       userName: 'John Priyadi',
       userImg: Images.homerecipeUserimage4,
     },
+    {
+      recipeName: 'Avocado Toast',
+      image: Images.homerecipeimage1,
+      type: 'Vegan',
+      time: '<15 mins',
+      userName: 'Maria Torres',
+      userImg: Images.homerecipeUserimage1,
+    },
+    {
+      recipeName: 'Green Smoothie Bowl',
+      image: Images.homerecipeimage2,
+      type: 'Vegan',
+      time: '<20 mins',
+      userName: 'Lena Park',
+      userImg: Images.homerecipeUserimage2,
+    },
+    {
+      recipeName: 'Keto Chicken Bowl',
+      image: Images.homerecipeimage3,
+      type: 'Keto',
+      time: '>30 mins',
+      userName: 'James Wilcox',
+      userImg: Images.homerecipeUserimage3,
+    },
+    {
+      recipeName: 'Cauliflower Rice',
+      image: Images.homerecipeimage4,
+      type: 'Keto',
+      time: '>25 mins',
+      userName: 'Sara Bloom',
+      userImg: Images.homerecipeUserimage4,
+    },
   ],
 
   homeStoryuserImageArray: [
