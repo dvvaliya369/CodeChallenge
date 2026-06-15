@@ -19,6 +19,7 @@ const Constants = {
       time: '>60 mins',
       userName: 'Calum Lewis',
       userImg: Images.homerecipeUserimage1,
+      rating: 4.5,
     },
     {
       recipeName: 'Salad',
@@ -27,6 +28,7 @@ const Constants = {
       time: '>60 mins',
       userName: 'Eilif Sonas',
       userImg: Images.homerecipeUserimage2,
+      rating: 4.2,
     },
     {
       recipeName: 'British Dessert',
@@ -35,6 +37,7 @@ const Constants = {
       time: '>50 mins',
       userName: 'Elena Shelby',
       userImg: Images.homerecipeUserimage3,
+      rating: 4.8,
     },
     {
       recipeName: 'Fifteens',
@@ -43,6 +46,7 @@ const Constants = {
       time: '>50 mins',
       userName: 'John Priyadi',
       userImg: Images.homerecipeUserimage4,
+      rating: 4.0,
     },
   ],
 
